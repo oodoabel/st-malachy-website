@@ -5,6 +5,7 @@ import Vission from "@/components/Vission";
 import about from "@/components/About";
 import Link from "next/link";
 import SetPersons from "@/components/SetPersons";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Slider />
       <AboutUs />
       <SetPersons />
+      <Footer />
     </div>
   );
 }

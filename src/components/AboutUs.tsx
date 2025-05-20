@@ -3,7 +3,7 @@ import React from "react";
 export const AboutUs = () => {
   return (
     <>
-      <div className="flex flex-col p-10">
+      <div className="flex items-center flex-col p-10">
         <div className="md:px-40">
           <p className="text-lg font-thin md:text-3xl text-gray-400">
             About Us
@@ -39,7 +39,12 @@ export const AboutUs = () => {
         <div className="md:flex p-5 gap-4 md:px-40 ">
           <div className="w-full md:w-1/2 pb-5 font-sans text-left text-md md:text-xl border-b border-r md:border-t border-gray-400 flex flex-col">
             <div className="px-3">
-              <p className="font-bold text-gray-600 text-xl pt-5 md:text-4xl">
+              <p className="flex gap-2 font-bold text-gray-600 text-xl pt-5 md:text-4xl">
+                <img
+                  className="h-10 w-10"
+                  src="mission.png"
+                  alt="mission icon"
+                />
                 Mission
               </p>
               We were founded for a purpose, just as you were created for a
@@ -52,15 +57,63 @@ export const AboutUs = () => {
 
           <div className="w-full md:w-1/2 pb-5 font-sans text-left text-md md:text-xl border-b border-r md:border-t border-gray-400 flex flex-col">
             <div className="px-3">
-              <p className="font-bold text-gray-600 text-xl pt-5 md:text-4xl">
+              <p className="flex gap-1 items-center font-bold text-gray-600 text-xl pt-5 md:text-4xl">
+                <img
+                  className="h-15 w-15"
+                  src="vision.png"
+                  alt="mission icon"
+                />
                 Vision
               </p>
-              We were founded for a purpose, just as you were created for a
-              purpose too! At the NFCS, we are always working towards fulfilling
-              our purpose, and what do you think that purpose will worth if it
-              does not include your spiritual, academic and social life as a
-              Catholic student?
+              Enhancing the spiritual growth of her members, ensuring that they
+              are imbibed with and guided by Catholic principles in their
+              educational pursuits and manifest same during and after school
+              life. To serve as a rallying point for all Catholic students in
+              the local chapter, by helping to co-ordinate their religious life.
             </div>
+          </div>
+        </div>
+
+        <div className="w-full md:w-1/2  pb-5 font-sans text-left text-md md:text-xl border-b border-r md:border-t border-gray-400 hidden md:flex flex-col">
+          <div className="px-3">
+            <p className="flex items-center font-bold text-gray-600 text-xl pt-5 md:text-4xl">
+              NFCS Anthem
+            </p>
+            <p>
+              1.NFCS Nigeria Federation of Catholic Students is living the
+              Faith. We are the hope of our Faith to blossom The dreams of the
+              Church, hail NFCS. With the strength of our Youth, We will move
+              our faith forward. And defend it whatever be the case.
+            </p>
+            <br />
+            <p>
+              Chorus: <br /> When the roll is called On the last day A joyful
+              song we’ll raise Hail NFCS!
+            </p>
+            <br />
+            <p>
+              2. Let’s spread the good news of the Kingdom To all people on
+              earth, through NFCS, And join hands with groups of like minds. To
+              evangelize the world, through NFCS Let the message be brought to
+              every living soul. By the life we live as students
+            </p>
+            <br />
+            <p>
+              Chorus: <br /> When the roll is called On the last day A joyful
+              song we’ll raise Hail NFCS!
+            </p>
+            <br />
+            <p>
+              3. We say no to corruption, and greed, Sectionalism and violence
+              in NFCS. And chant down the agent of Bribery, Ethnicism and war in
+              NFCS. With Jesus, Prince of Love and Peace, We pitch our tent. Yes
+              the enemies will forever be shamed
+            </p>
+            <br />
+            <p>
+              Chorus: <br /> When the roll is called On the last day A joyful
+              song we’ll raise Hail NFCS!
+            </p>
           </div>
         </div>
       </div>
