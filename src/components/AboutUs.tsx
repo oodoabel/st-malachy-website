@@ -1,4 +1,12 @@
 import React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export const AboutUs = () => {
   return (
@@ -74,48 +82,60 @@ export const AboutUs = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-1/2  pb-5 font-sans text-left text-md md:text-xl border-b border-r md:border-t border-gray-400 hidden md:flex flex-col">
-          <div className="px-3">
-            <p className="flex items-center font-bold text-gray-600 text-xl pt-5 md:text-4xl">
-              NFCS Anthem
-            </p>
-            <p>
-              1.NFCS Nigeria Federation of Catholic Students is living the
-              Faith. We are the hope of our Faith to blossom The dreams of the
-              Church, hail NFCS. With the strength of our Youth, We will move
-              our faith forward. And defend it whatever be the case.
-            </p>
-            <br />
-            <p>
-              Chorus: <br /> When the roll is called On the last day A joyful
-              song we’ll raise Hail NFCS!
-            </p>
-            <br />
-            <p>
-              2. Let’s spread the good news of the Kingdom To all people on
-              earth, through NFCS, And join hands with groups of like minds. To
-              evangelize the world, through NFCS Let the message be brought to
-              every living soul. By the life we live as students
-            </p>
-            <br />
-            <p>
-              Chorus: <br /> When the roll is called On the last day A joyful
-              song we’ll raise Hail NFCS!
-            </p>
-            <br />
-            <p>
-              3. We say no to corruption, and greed, Sectionalism and violence
-              in NFCS. And chant down the agent of Bribery, Ethnicism and war in
-              NFCS. With Jesus, Prince of Love and Peace, We pitch our tent. Yes
-              the enemies will forever be shamed
-            </p>
-            <br />
-            <p>
-              Chorus: <br /> When the roll is called On the last day A joyful
-              song we’ll raise Hail NFCS!
-            </p>
-          </div>
-        </div>
+        <Dialog>
+          <DialogTrigger className="cursor-pointer">
+            click to view Anthem{" "}
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>NFCS ANTHEM</DialogTitle>
+              <DialogDescription>
+                <div className="w-full  pb-5 font-sans text-left text-md md:text-xl border-b border-r md:border-t border-gray-400 md:flex flex-col">
+                  <div className="">
+                    <p>
+                      1.NFCS Nigeria Federation of Catholic Students is living
+                      the Faith. We are the hope of our Faith to blossom The
+                      dreams of the Church, hail NFCS. With the strength of our
+                      Youth, We will move our faith forward. And defend it
+                      whatever be the case.
+                    </p>
+                    <br />
+                    <p>
+                      Chorus: <br /> When the roll is called On the last day A
+                      joyful song we’ll raise Hail NFCS!
+                    </p>
+                    <br />
+                    <p>
+                      2. Let’s spread the good news of the Kingdom To all people
+                      on earth, through NFCS, And join hands with groups of like
+                      minds. To evangelize the world, through NFCS Let the
+                      message be brought to every living soul. By the life we
+                      live as students
+                    </p>
+                    <br />
+                    <p>
+                      Chorus: <br /> When the roll is called On the last day A
+                      joyful song we’ll raise Hail NFCS!
+                    </p>
+                    <br />
+                    <p>
+                      3. We say no to corruption, and greed, Sectionalism and
+                      violence in NFCS. And chant down the agent of Bribery,
+                      Ethnicism and war in NFCS. With Jesus, Prince of Love and
+                      Peace, We pitch our tent. Yes the enemies will forever be
+                      shamed
+                    </p>
+                    <br />
+                    <p>
+                      Chorus: <br /> When the roll is called On the last day A
+                      joyful song we’ll raise Hail NFCS!
+                    </p>
+                  </div>
+                </div>
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       </div>
     </>
   );
