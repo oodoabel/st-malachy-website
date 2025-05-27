@@ -90,7 +90,7 @@ export const AboutUs = () => {
             <DialogHeader>
               <DialogTitle>NFCS ANTHEM</DialogTitle>
               <DialogDescription>
-                <div className="w-full  pb-5 font-sans text-left text-md md:text-xl border-b border-r md:border-t border-gray-400 md:flex flex-col">
+                <div className="w-full pb-5 font-sans text-left text-md md:text-xl border-b border-r md:border-t border-gray-400 md:flex flex-col">
                   <div className="">
                     <p>
                       1.NFCS Nigeria Federation of Catholic Students is living
