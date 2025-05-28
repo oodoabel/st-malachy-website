@@ -28,12 +28,6 @@ const executives: Executive[] = [
     position: "Vice president Bosso",
     imageUrl: "/vp-bosso.png",
   },
-  {
-    id: 4,
-    name: "Ojone Mercy Obute",
-    position: "Secretary",
-    imageUrl: "/sec-gk.png",
-  },
 ];
 
 const ExecutiveCard = ({ executive }: { executive: Executive }) => {
@@ -90,7 +84,7 @@ const ExecutiveTeam = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="flex flex-col  gap-6 lg:flex lg:flex-row justify-center">
           {executives.map((executive) => (
             <ExecutiveCard key={executive.id} executive={executive} />
           ))}

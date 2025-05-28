@@ -12,26 +12,33 @@ const priests: Priest[] = [
   {
     id: 1,
     name: "Very Rv. Fr. Nelson Gabriel Onuh",
-    office: "Chaplain",
+    office: "Chaplain NFCS National/Futminna",
     imageUrl: "/fr-nelson.png",
   },
   {
     id: 2,
     name: "Rev. Fr. Jean Patasitti",
-    office: "Assisting Chaplain",
+    office: "Assisting Chaplain, NFCS Futminna",
     imageUrl: "/fr-patasitti2.png",
   },
   {
     id: 3,
     name: "Rev. Fr Benedict Sedi",
-    office: "Assisting Chaplain",
+    office: "Assisting Chaplain, NFCS Futminna",
     imageUrl: "/fr-sedi.png",
   },
 ];
 
 const PriestCard = ({ priest }: { priest: Priest }) => {
   return (
-    <div className="flex flex-col items-center rounded-lg bg-white p-6 shadow-md transition-all hover:shadow-lg">
+    <div
+      className="
+        flex flex-col items-center rounded-lg bg-white p-6 shadow-md 
+        transition-transform duration-300 ease-in-out 
+        hover:shadow-lg hover:-translate-y-2 hover:scale-105
+        animate-fadeInUp
+      "
+    >
       <div className="relative mb-4 h-40 w-40 overflow-hidden rounded-full">
         <Image
           src={priest.imageUrl}
