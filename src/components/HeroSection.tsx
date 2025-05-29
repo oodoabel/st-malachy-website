@@ -87,7 +87,7 @@ const NavbarHero: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 min-h-screen bg-gray-100 flex flex-col md:flex-row items-center max-w-screen mx-auto px-6 gap-12">
+      <section className="pt-20 min-h-screen bg-gray-100 flex flex-col md:flex-row items-center mx-auto px-6 gap-12">
         {/* Left Text Content */}
         <div className="md:w-1/2 space-y-8">
           <h1 className="text-5xl font-serif font-extrabold text-gray-900 leading-tight">

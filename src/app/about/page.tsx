@@ -6,104 +6,252 @@ import { FaChurch, FaUserFriends, FaHandsHelping } from "react-icons/fa";
 
 const AboutPage = () => {
   return (
-    <div className="bg-gray-950 text-gray-100 min-h-screen py-20 px-6 md:px-12 lg:px-24 font-sans">
-      <div className="max-w-5xl mx-auto space-y-16">
+    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 text-gray-800 py-16 px-6 md:px-12 lg:px-24 font-sans">
+      <div className="max-w-6xl mx-auto space-y-16">
         {/* Header */}
         <header className="text-center animate-fade-in-down">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white">
-            About Us
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+            About Our Chaplaincy
           </h1>
-          <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
-            Discover who we are, what we believe, and how we serve the Catholic
-            student community at the Federal University of Technology, Minna
-            (FUTMinna), Niger State.
+          <div className="w-24 h-1 bg-gray-400 mx-auto my-6"></div>
+          <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+            Discover the vibrant Catholic community at the Federal University of
+            Technology, Minna - where faith, knowledge, and service converge.
           </p>
         </header>
 
         {/* Mission, Community, Impact */}
-        <section className="grid md:grid-cols-3 gap-10 animate-fade-in-up delay-200">
-          <div className="bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-700 hover:scale-105 transition-transform duration-300">
-            <FaChurch className="text-4xl text-white mb-4" />
-            <h2 className="text-xl font-bold mb-2 text-white">Our Mission</h2>
-            <p className="text-gray-400 text-sm">
-              To nurture the spiritual, academic, and moral lives of Catholic
-              students through sacraments, formation, and service rooted in
-              Christ.
+        <section className="grid md:grid-cols-3 gap-8 animate-fade-in-up delay-200">
+          <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300">
+            <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+              <FaChurch className="text-2xl text-gray-700" />
+            </div>
+            <h2 className="text-xl font-semibold mb-3 text-gray-800">
+              Our Mission
+            </h2>
+            <p className="text-gray-600 mb-4">
+              To nurture spiritual growth through sacraments, formation
+              programs, and service opportunities rooted in Catholic tradition.
             </p>
-            <p>
-              <Link href="/chaplaincy-anthem">view NFCS anthem →</Link>
-            </p>
+            <Link
+              href="/chaplaincy-anthem"
+              className="text-gray-700 hover:text-gray-900 font-medium inline-flex items-center transition-colors"
+            >
+              View NFCS anthem
+              <svg
+                className="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
           </div>
 
-          <div className="bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-700 hover:scale-105 transition-transform duration-300">
-            <FaUserFriends className="text-4xl text-white mb-4" />
-            <h2 className="text-xl font-bold mb-2 text-white">Our Community</h2>
-            <p className="text-gray-400 text-sm">
-              We are a family of Catholic students at FUTMinna — united by
-              faith, fellowship, and a shared commitment to spiritual growth and
-              evangelization.{" "}
+          <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300">
+            <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+              <FaUserFriends className="text-2xl text-gray-700" />
+            </div>
+            <h2 className="text-xl font-semibold mb-3 text-gray-800">
+              Our Community
+            </h2>
+            <p className="text-gray-600 mb-4">
+              A diverse family of Catholic students united in faith, fellowship,
+              and commitment to academic excellence and spiritual growth.
             </p>
-            <p>
-              <Link href="/about/forums">Go to Forums →</Link>
-            </p>
+            <Link
+              href="/about/forums"
+              className="text-gray-700 hover:text-gray-900 font-medium inline-flex items-center transition-colors"
+            >
+              Explore forums
+              <svg
+                className="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
           </div>
 
-          <div className="bg-gray-800 rounded-xl p-8 shadow-lg border border-gray-700 hover:scale-105 transition-transform duration-300">
-            <FaHandsHelping className="text-4xl text-white mb-4" />
-            <h2 className="text-xl font-bold mb-2 text-white">Our Impact</h2>
-            <p className="text-gray-400 text-sm">
-              Through campus outreach, spiritual programs, and community
-              service, we bring the light of Christ to our campus and society.
+          <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300">
+            <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+              <FaHandsHelping className="text-2xl text-gray-700" />
+            </div>
+            <h2 className="text-xl font-semibold mb-3 text-gray-800">
+              Our Impact
+            </h2>
+            <p className="text-gray-600 mb-4">
+              Transforming campus life through outreach programs, leadership
+              development, and service initiatives that make a lasting
+              difference.
             </p>
-            <p>
-              <Link href="/events">view events →</Link>
-            </p>
+            <Link
+              href="/events"
+              className="text-gray-700 hover:text-gray-900 font-medium inline-flex items-center transition-colors"
+            >
+              View events
+              <svg
+                className="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </Link>
           </div>
         </section>
 
         {/* History Section */}
-        <section className="bg-gray-900 border border-gray-700 rounded-xl p-10 shadow-xl animate-fade-in-up delay-300">
-          <h2 className="text-2xl font-bold text-white mb-4">Our Story</h2>
-          <p className="text-gray-400 text-base leading-relaxed">
-            The Catholic Chaplaincy at FUTMinna has been a beacon of faith,
-            knowledge, and service for years. Rooted in Catholic tradition and
-            youth empowerment, we serve as a spiritual home for students to
-            encounter Christ, grow in leadership, and live out their faith with
-            courage and compassion.
-          </p>
-        </section>
-        <footer className="bg-gray-900 border-t border-gray-800 py-6 px-4 text-sm text-gray-400">
-          <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p>
-              &copy; {new Date().getFullYear()} Catholic Chaplaincy, FUTMinna.
-              All rights reserved.
-            </p>
-
-            <div className="flex space-x-4 text-lg">
-              <a href="#" aria-label="Facebook" className="hover:text-white">
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-2.9h2V9.4c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.5h2.3l-.4 2.9h-1.9v7A10 10 0 0022 12z" />
-                </svg>
-              </a>
-              <a href="#" aria-label="Instagram" className="hover:text-white">
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M7 2C4.8 2 3 3.8 3 6v12c0 2.2 1.8 4 4 4h10c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4H7zm10 2a2 2 0 012 2v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6a2 2 0 012-2h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.9a1 1 0 100 2 1 1 0 000-2z" />
-                </svg>
-              </a>
-              <a href="#" aria-label="YouTube" className="hover:text-white">
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                  <path d="M21.8 8.001a2.6 2.6 0 00-1.83-1.837C18.41 6 12 6 12 6s-6.41 0-7.97.164A2.6 2.6 0 002.2 8c-.16 1.562-.2 3.144-.2 3.999s.04 2.437.2 4c.17 1.038.998 1.848 2.03 2.005C5.6 18 12 18 12 18s6.41 0 7.97-.164c1.03-.157 1.86-.967 2.03-2.005.16-1.562.2-3.144.2-4s-.04-2.437-.2-3.999zM10 14.5v-5l5 2.5-5 2.5z" />
-                </svg>
-              </a>
+        <section className="bg-white rounded-xl p-10 shadow-md border border-gray-200 animate-fade-in-up delay-300">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Our Heritage
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <p className="text-gray-700 leading-relaxed mb-6">
+                Established in [Year], the Catholic Chaplaincy at FUTMinna has
+                served as a spiritual anchor for generations of students. Our
+                rich history reflects the enduring presence of Catholic values
+                in academic excellence.
+              </p>
+              <p className="text-gray-700 leading-relaxed">
+                From humble beginnings to our current vibrant community, we
+                continue to uphold the traditions of faith while embracing the
+                challenges of modern campus life.
+              </p>
+            </div>
+            <div className="bg-gray-100 rounded-lg p-6 border border-gray-200">
+              <h3 className="font-semibold text-gray-800 mb-3">Quick Facts</h3>
+              <ul className="space-y-3 text-gray-700">
+                <li className="flex items-start">
+                  <span className="bg-gray-300 rounded-full w-2 h-2 mt-2 mr-3"></span>
+                  <span>Serving FUTMinna since [Year]</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-gray-300 rounded-full w-2 h-2 mt-2 mr-3"></span>
+                  <span>[Number] active members</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-gray-300 rounded-full w-2 h-2 mt-2 mr-3"></span>
+                  <span>[Number] weekly Masses</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="bg-gray-300 rounded-full w-2 h-2 mt-2 mr-3"></span>
+                  <span>[Number] student organizations</span>
+                </li>
+              </ul>
             </div>
           </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-gray-800 rounded-xl py-8 px-6 text-gray-300">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-white font-medium mb-4">Contact Us</h3>
+              <p className="mb-2">St Malachy's Chaplaincy</p>
+              <p className="mb-2">Federal University of Technology</p>
+              <p>Minna, Niger State</p>
+            </div>
+            <div>
+              <h3 className="text-white font-medium mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/" className="hover:text-white transition-colors">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/about"
+                    className="hover:text-white transition-colors"
+                  >
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/events"
+                    className="hover:text-white transition-colors"
+                  >
+                    Events
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-medium mb-4">Connect With Us</h3>
+              <div className="flex space-x-4">
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <span className="sr-only">Facebook</span>
+                  <svg
+                    className="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-2.9h2V9.4c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.5h2.3l-.4 2.9h-1.9v7A10 10 0 0022 12z" />
+                  </svg>
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <span className="sr-only">Twitter</span>
+                  <svg
+                    className="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M8.29 20.25c7.55 0 11.67-6.25 11.67-11.67v-.53c.8-.58 1.49-1.3 2.04-2.13-.73.33-1.52.55-2.35.65.84-.5 1.49-1.3 1.8-2.23-.79.47-1.67.81-2.6 1-.75-.8-1.82-1.3-3-1.3-2.28 0-4.13 1.85-4.13 4.13 0 .32.04.63.11.93-3.44-.17-6.48-1.82-8.52-4.33-.35.6-.56 1.3-.56 2.05 0 1.43.73 2.69 1.83 3.43-.67-.02-1.3-.21-1.86-.51v.05c0 2 1.42 3.67 3.31 4.05-.35.1-.72.15-1.1.15-.27 0-.53-.03-.79-.07.53 1.65 2.07 2.85 3.9 2.88-1.43 1.13-3.23 1.8-5.19 1.8-.34 0-.67-.02-1-.06 1.82 1.17 4 1.85 6.33 1.85" />
+                  </svg>
+                </a>
+                <a
+                  href="#"
+                  className="text-gray-400 hover:text-white transition-colors"
+                >
+                  <span className="sr-only">Instagram</span>
+                  <svg
+                    className="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 2.16c2.67 0 2.99.01 4.04.05 2.64.12 3.79 1.27 3.91 3.91.04 1.05.05 1.37.05 4.04s-.01 2.99-.05 4.04c-.12 2.64-1.27 3.79-3.91 3.91-1.05.04-1.37.05-4.04.05s-2.99-.01-4.04-.05c-2.64-.12-3.79-1.27-3.91-3.91-.04-1.05-.05-1.37-.05-4.04s.01-2.99.05-4.04c.12-2.64 1.27-3.79 3.91-3.91 1.05-.04 1.37-.05 4.04-.05zm0-1.6c-2.72 0-3.07.01-4.13.06-3.61.16-5.2 1.75-5.36 5.36-.05 1.06-.06 1.41-.06 4.13s.01 3.07.06 4.13c.16 3.61 1.75 5.2 5.36 5.36 1.06.05 1.41.06 4.13.06s3.07-.01 4.13-.06c3.61-.16 5.2-1.75 5.36-5.36.05-1.06.06-1.41.06-4.13s-.01-3.07-.06-4.13c-.16-3.61-1.75-5.2-5.36-5.36-1.06-.05-1.41-.06-4.13-.06z" />
+                    <path d="M12 6.16a5.84 5.84 0 110 11.68 5.84 5.84 0 010-11.68zm0 1.6a4.24 4.24 0 100 8.48 4.24 4.24 0 000-8.48z" />
+                    <circle cx="16.8" cy="7.2" r="1.28" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
+            <p>
+              &copy; {new Date().getFullYear()} St Malachy Chaplaincy, FUTMinna.
+              All rights reserved.
+            </p>
+          </div>
         </footer>
-        <a
-          href="/"
-          className="inline-block mt-4 text-gray-400 hover:text-white text-sm underline"
-        >
-          Back to home
-        </a>
       </div>
 
       {/* Animation styles */}

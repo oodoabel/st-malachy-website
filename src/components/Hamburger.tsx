@@ -1,4 +1,5 @@
 import React from "react";
+import { FaHamburger } from "react-icons/fa";
 import {
   Sheet,
   SheetContent,
@@ -19,7 +20,7 @@ const navItems: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Memories", href: "/memories" },
-  { name: "Forums", href: "/forums" },
+  { name: "Forums", href: "/about/forums" },
   { name: "Societies", href: "/societies" },
   { name: "Events", href: "/events" },
 ];
@@ -28,13 +29,13 @@ const Hamburger: React.FC = () => {
   return (
     <div>
       <Sheet>
-        <SheetTrigger>
+        <SheetTrigger className="">
           <img
             width={28}
             height={28}
             src="https://img.icons8.com/ios-filled/50/7e7e7e/menu--v1.png"
             alt="menu"
-            className="transition-transform duration-200 hover:scale-110 cursor-pointer"
+            className="transition-transform duration-200 hover:scale-110  text-gray-100 hover:text-gray-300 hover:text-gray-300 cursor-pointer"
           />
         </SheetTrigger>
         <SheetContent className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-gray-100 shadow-2xl border-0 animate-in fade-in slide-in-from-right-8">
@@ -43,7 +44,7 @@ const Hamburger: React.FC = () => {
               St. Malachy
             </SheetTitle>
             <SheetDescription>
-              Welcome to the St. Malachy community!
+              Welcome to the St. Malachy chaplaincy!
             </SheetDescription>
             {/* Move nav and other block elements OUTSIDE of SheetDescription */}
             <nav className="w-full flex flex-col items-center gap-6 mt-4">
