@@ -5,6 +5,7 @@ import Slider from "react-slick";
 // Import slick-carousel css in your global styles or here:
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Hamburger from "./Hamburger";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -63,12 +64,11 @@ const NavbarHero: React.FC = () => {
           </ul>
 
           {/* Mobile menu button placeholder */}
-          <button
+          <div
             aria-label="Toggle menu"
-            className="md:hidden text-gray-300 focus:outline-none"
-            type="button"
+            className="md:hidden text-gray-100 focus:outline-none"
           >
-            <svg
+            {/* <svg
               className="w-7 h-7"
               fill="none"
               stroke="currentColor"
@@ -78,21 +78,23 @@ const NavbarHero: React.FC = () => {
               aria-hidden="true"
             >
               <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+            </svg> */}
+            <div className="md:hidden">
+              <Hamburger />
+            </div>
+          </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 min-h-screen bg-gray-100 flex flex-col md:flex-row items-center max-w-7xl mx-auto px-6 gap-12">
+      <section className="pt-20 min-h-screen bg-gray-100 flex flex-col md:flex-row items-center max-w-screen mx-auto px-6 gap-12">
         {/* Left Text Content */}
         <div className="md:w-1/2 space-y-8">
           <h1 className="text-5xl font-serif font-extrabold text-gray-900 leading-tight">
             Welcome to St. Malachy Chaplaincy
           </h1>
           <p className="text-lg text-gray-700 max-w-lg">
-            one family working for Christ. Join us for worship, fellowship, and
-            Mass.
+            One family working for Christ. <br /> Join us for Mass.
           </p>
           <div className="flex flex-wrap gap-6">
             <a

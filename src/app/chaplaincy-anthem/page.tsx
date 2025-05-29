@@ -1,113 +1,178 @@
 "use client";
+import { useState, useRef } from "react";
 
-// pages/chaplaincy/anthem.tsx
-import React from "react";
-import { FaMusic, FaPlayCircle, FaPauseCircle } from "react-icons/fa";
+const NFCSAnthem = () => {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-const stanzas = [
-  `NFCS Nigeria Federation of Catholic Students
+  const stanzas = [
+    `NFCS Nigeria Federation of Catholic Students
 is living the Faith.
 We are the hope of our Faith to blossom
 The dreams of the Church, hail NFCS.
 With the strength of our Youth,
 We will move our faith forward.
 And defend it whatever be the case.`,
-  `Let’s spread the good news of the Kingdom
+    `Let's spread the good news of the Kingdom
 To all people on earth, through NFCS,
 And join hands with groups of like minds.
 To evangelize the world, through NFCS
 Let the message be brought to every living soul.
 By the life we live as students`,
-  `We say no to corruption, and greed,
+    `We say no to corruption, and greed,
 Sectionalism and violence in NFCS.
 And chant down the agent of Bribery,
 Ethnicism and war in NFCS.
 With Jesus, Prince of Love and Peace,
 We pitch our tent.
 Yes the enemies will forever be shamed.`,
-];
+  ];
 
-const chorus = `When the roll is called
+  const chorus = `When the roll is called
 On the last day
-A joyful song we’ll raise
+A joyful song we'll raise
 Hail NFCS!`;
 
-const delays = ["0s", "0.15s", "0.3s", "0.45s", "0.6s"];
-
-export default function ChaplaincyAnthemPage() {
-  const [isPlaying, setIsPlaying] = React.useState(false);
+  const togglePlay = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   return (
-    <div className="min-h-screen relative bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 text-gray-100 flex flex-col items-center py-16 px-6 overflow-hidden">
-      {/* Animated music wave background */}
-      <div className="absolute inset-0 -z-10 flex justify-center items-center space-x-1 opacity-10">
-        {delays.map((delay, idx) => (
-          <span
-            key={idx}
-            className="block w-1.5 h-12 bg-gray-400 rounded-full animate-wave"
-            style={{ animationDelay: delay }}
-          />
-        ))}
-      </div>
+    <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      {/* Audio Element */}
+      <audio ref={audioRef} src="/anthem.mp3" loop />
 
-      <header className="flex items-center space-x-3 mb-12 z-10">
-        <FaMusic className="text-gray-300 text-4xl animate-pulse" />
-        <h1 className="text-5xl font-extrabold tracking-wide text-white">
-          Chaplaincy Anthem
-        </h1>
-      </header>
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3 tracking-tight">
+            NFCS Anthem
+          </h1>
+          <div className="w-24 h-1 bg-gray-300 mx-auto mb-6"></div>
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            The official anthem of the Nigeria Federation of Catholic Students
+          </p>
 
-      <section className="w-full max-w-3xl rounded-3xl bg-gray-800 bg-opacity-90 p-10 shadow-2xl border border-gray-600 backdrop-blur-sm">
-        <div className="space-y-14">
-          {stanzas.map((stanza, idx) => (
-            <div key={idx} className="space-y-6">
-              <div className="bg-gray-700 rounded-xl p-6 border border-gray-600 shadow-inner">
-                <p className="text-lg leading-relaxed whitespace-pre-line font-medium text-gray-100">
-                  {stanza}
-                </p>
+          {/* Play Button */}
+          <button
+            onClick={togglePlay}
+            className="mt-8 px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full font-medium flex items-center mx-auto transition-all duration-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`h-6 w-6 mr-2 ${isPlaying ? "hidden" : "block"}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className={`h-6 w-6 mr-2 ${isPlaying ? "block" : "hidden"}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            {isPlaying ? "Pause Anthem" : "Play Anthem"}
+          </button>
+        </div>
+
+        {/* Anthem Content */}
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          {stanzas.map((stanza, index) => (
+            <div key={index} className="group">
+              {/* Stanza */}
+              <div className="p-8 md:p-10 transition-all duration-300 hover:bg-gray-50">
+                <div className="flex items-start max-w-5xl mx-auto">
+                  <span className="text-2xl font-serif text-gray-400 mr-6 mt-1">
+                    {index + 1}.
+                  </span>
+                  <p className="text-gray-800 whitespace-pre-line leading-relaxed text-lg">
+                    {stanza}
+                  </p>
+                </div>
               </div>
-              <div className="bg-gray-900 rounded-lg p-5 border border-gray-700 italic font-semibold text-gray-300 shadow-md">
-                <p className="whitespace-pre-line">{chorus}</p>
+
+              {/* Chorus after each stanza */}
+              <div className="p-8 md:p-10 bg-gray-75 border-t border-gray-200">
+                <div className="flex items-center max-w-5xl mx-auto">
+                  <div className="mr-6 flex-shrink-0">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-8 w-8 text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1.5}
+                        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium text-gray-700 mb-2">
+                      Chorus
+                    </h3>
+                    <p className="text-gray-600 italic whitespace-pre-line leading-relaxed">
+                      {chorus}
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
         </div>
-      </section>
 
-      {/* Play/Pause Button */}
-      <button
-        onClick={() => setIsPlaying(!isPlaying)}
-        aria-label={isPlaying ? "Pause music" : "Play music"}
-        className="mt-12 flex items-center space-x-3 bg-gray-700 hover:bg-gray-600 transition rounded-full px-6 py-3 shadow-lg focus:outline-none focus:ring-4 focus:ring-gray-500"
-      >
-        {isPlaying ? (
-          <FaPauseCircle className="text-3xl text-white" />
-        ) : (
-          <FaPlayCircle className="text-3xl text-white" />
-        )}
-        <span className="text-xl font-semibold text-white">
-          {isPlaying ? "Pause Anthem" : "Play Anthem"}
-        </span>
-      </button>
-
-      {/* Animation styles */}
-      <style jsx>{`
-        @keyframes wave {
-          0%,
-          100% {
-            transform: scaleY(0.4);
-            opacity: 0.6;
-          }
-          50% {
-            transform: scaleY(1);
-            opacity: 1;
-          }
-        }
-        .animate-wave {
-          animation: wave 1.2s ease-in-out infinite;
-          transform-origin: bottom center;
-        }
-      `}</style>
+        {/* Footer */}
+        <div className="mt-16 text-center">
+          <div className="inline-flex items-center space-x-6">
+            <img
+              src="/futminna-logo.png"
+              alt="FUTMinna Logo"
+              className="h-12 opacity-80 hover:opacity-100 transition-opacity duration-300"
+            />
+            <img
+              src="/nfcs-logo.png"
+              alt="NFCS Logo"
+              className="h-12 opacity-80 hover:opacity-100 transition-opacity duration-300"
+            />
+          </div>
+          <p className="mt-6 text-gray-500">
+            © {new Date().getFullYear()} St Malachy
+          </p>
+        </div>
+      </div>
     </div>
   );
-}
+};
+
+export default NFCSAnthem;
