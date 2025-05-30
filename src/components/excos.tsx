@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 type Executive = {
   id: number;
@@ -31,23 +33,93 @@ const executives: Executive[] = [
 ];
 
 const ExecutiveCard = ({ executive }: { executive: Executive }) => {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
   return (
-    <div className="group overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-lg">
-      <div className="relative h-52 w-full overflow-hidden">
-        <Image
-          src={executive.imageUrl}
-          alt={`Portrait of ${executive.name}`}
-          fill
-          className="object-contain transition-transform duration-300 group-hover:scale-105"
-          sizes="(max-width: 640px) 100vw, 300px"
-        />
-      </div>
-      <div className="p-4 text-center">
-        <h3 className="text-lg font-semibold text-gray-800">
-          {executive.name}
-        </h3>
-        <p className="text-blue-600">{executive.position}</p>
-      </div>
+    <div>
+      {/* Executives Grid */}
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
+        {executives.map((executive) => (
+          <motion.div
+            key={executive.id}
+            variants={item}
+            whileHover={{ y: -5, transition: { duration: 0.2 } }}
+            className="group relative overflow-hidden rounded-xl shadow-lg bg-white border border-gray-200 hover:shadow-xl transition-all duration-300"
+          >
+            {/* Amber accent bar */}
+            <div className="absolute top-0 left-0 h-full w-1.5 bg-gray-500" />
+
+            <div className="p-6 flex flex-col h-full">
+              {/* Profile Image or Placeholder */}
+              <div className="mb-4 relative">
+                {executive.imageUrl ? (
+                  <motion.img
+                    src={executive.imageUrl}
+                    alt={executive.name}
+                    className="w-32 h-32 rounded-full object-cover mx-auto border-4 border-gray-200 group-hover:border-gray-300 transition-colors duration-300"
+                    whileHover={{ scale: 1.05 }}
+                  />
+                ) : (
+                  <div className="w-32 h-32 rounded-full bg-gray-200 mx-auto flex items-center justify-center border-4 border-gray-200 group-hover:border-gray-300 transition-colors duration-300">
+                    <svg
+                      className="w-16 h-16 text-gray-400"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </div>
+
+              {/* Executive Details */}
+              <div className="text-center flex-grow">
+                <motion.h3
+                  className="text-xl font-bold text-gray-800 mb-1 hover:text-gray-500"
+                  whileHover={{ color: "" }} // amber-700
+                >
+                  {executive.name}
+                </motion.h3>
+                <p className="text-gray-600 font-medium mb-2">
+                  {executive.position}
+                </p>
+              </div>
+
+              {/* Contact Button */}
+              {/* <motion.button
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="mt-4 w-full py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-lg font-medium hover:from-gray-600 hover:to-gray-700 transition-all duration-300 shadow-md hover:shadow-lg"
+                      >
+                        Contact
+                      </motion.button> */}
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
     </div>
   );
 };

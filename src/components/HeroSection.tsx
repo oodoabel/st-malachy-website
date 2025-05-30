@@ -22,6 +22,43 @@ const images = [
   "/gal3.png",
   "/gal4.png",
   "/gal5.png",
+  "/gal6.png",
+  "/gal7.png",
+  "/gal8.png",
+  "/gal9.png",
+];
+
+const massTimes = [
+  {
+    day: "Sunday (Bosso)",
+    time: "7:00 AM",
+    note: "",
+    color: "bg-gray-100 border-l-4 border-gray-500",
+  },
+  {
+    day: "Sunday (GK)",
+    time: "8:00 AM",
+    note: "",
+    color: "bg-gray-100 border-l-4 border-gray-500",
+  },
+  {
+    day: "Tuesday (Gk)",
+    time: "6:00 AM",
+    note: "",
+    color: "bg-gray-100 border-l-4 border-gray-500",
+  },
+  {
+    day: "Wednesday (Bosso)",
+    time: "6:00 PM",
+    note: "Confession by 5:00PM",
+    color: "bg-gray-100 border-l-4 border-amber-500",
+  },
+  {
+    day: "Thursday (GK)",
+    time: "6:00 PM",
+    note: "Confession by 5:00PM",
+    color: "bg-gray-100 border-l-4 border-amber-500",
+  },
 ];
 
 const NavbarHero: React.FC = () => {
@@ -47,7 +84,7 @@ const NavbarHero: React.FC = () => {
             href="/"
             className="text-2xl font-serif font-extrabold text-gray-100 hover:text-gray-300 transition"
           >
-            St. Malachy
+            NFCS FUTMINNA
           </a>
 
           <ul className="hidden md:flex space-x-10 font-medium text-gray-300">
@@ -68,17 +105,6 @@ const NavbarHero: React.FC = () => {
             aria-label="Toggle menu"
             className="md:hidden text-gray-100 focus:outline-none"
           >
-            {/* <svg
-              className="w-7 h-7"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            </svg> */}
             <div className="md:hidden">
               <Hamburger />
             </div>
@@ -87,21 +113,50 @@ const NavbarHero: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-20 min-h-screen bg-gray-100 flex flex-col md:flex-row items-center mx-auto px-6 gap-12">
+      <section className="pt-20 min-h-screen lg:px-50 bg-gray-100 flex flex-col md:flex-row items-center mx-auto px-6 gap-12">
         {/* Left Text Content */}
         <div className="md:w-1/2 space-y-8">
           <h1 className="text-5xl font-serif font-extrabold text-gray-900 leading-tight">
             Welcome to St. Malachy Chaplaincy
           </h1>
-          <p className="text-lg text-gray-700 max-w-lg">
-            One family working for Christ. <br /> Join us for Mass.
-          </p>
-          <div className="flex flex-wrap gap-6">
+
+          {/* Mass Times Section */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              Mass Schedule
+            </h2>
+            <div className="grid gap-3">
+              {massTimes.map((mass, index) => (
+                <div
+                  key={index}
+                  className={`${mass.color} p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow`}
+                >
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <span className="font-semibold text-gray-800 block">
+                        {mass.day}
+                      </span>
+                      {mass.note && (
+                        <span className="text-sm text-amber-600 mt-1 block">
+                          {mass.note}
+                        </span>
+                      )}
+                    </div>
+                    <span className="bg-white px-3 py-1 rounded-full text-md font-medium text-gray-700 shadow-inner">
+                      {mass.time}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-6 pt-4">
             <a
               href="/about"
               className="bg-gray-800 text-gray-100 px-8 py-3 rounded-md font-semibold shadow-md hover:bg-gray-700 transition"
             >
-              Learn More
+              Register as an NFCSer
             </a>
             <a
               href="/about/forums"

@@ -49,7 +49,7 @@ const PriestCard = ({ priest }: { priest: Priest }) => {
         />
       </div>
       <h3 className="text-xl font-bold text-gray-900">{priest.name}</h3>
-      <p className="text-blue-600">{priest.office}</p>
+      <p className="text-gray-600">{priest.office}</p>
     </div>
   );
 };
