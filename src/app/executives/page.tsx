@@ -14,40 +14,157 @@ const ExecutivesPage = () => {
   const executives: Executive[] = [
     {
       id: 1,
-      name: "Rev. Fr. Emmanuel Adebayo",
-      position: "Chaplain",
-      forum: "Chaplaincy Board",
-      image: "/chaplain.jpg",
+      name: "Ella Solomon Echobu",
+      position: "President",
+      forum: "Luminous Family",
+      image: "/excos/presido.png",
     },
     {
       id: 2,
-      name: "Bro. John Okafor",
-      position: "President",
-      forum: "St. Peter's Forum",
+      name: "Arome Juliet",
+      position: "VP GK",
+      forum: "Luminous",
+      image: "/excos/vp-gk.png",
     },
     {
       id: 3,
-      name: "Sis. Grace Oluwaseun",
-      position: "Vice President",
-      forum: "St. Mary's Forum",
+      name: "Mercy Ojone",
+      position: "Gen Secretary",
+      forum: "Luminous",
+      image: "/excos/sec-gk.png",
+    },
+    {
+      id: 7,
+      name: "Oodo Abel Oche",
+      position: "AGS GK",
+      forum: "Luminous",
+      image: "/excos/ags-gk.png",
     },
     {
       id: 4,
-      name: "Bro. Michael Ajayi",
-      position: "Secretary",
-      forum: "St. Paul's Forum",
+      name: "Lucy Terkula",
+      position: "Financial Secretary",
+      forum: "Luminous",
+      image: "/excos/fin-sec-gk.png",
     },
     {
       id: 5,
-      name: "Sis. Sarah Chukwu",
-      position: "Treasurer",
-      forum: "St. Theresa's Forum",
+      name: "Tresure Victor",
+      position: "Treasurer GK",
+      forum: "Luminous",
+      image: "/excos/treasurer-gk.png",
     },
     {
       id: 6,
-      name: "Bro. David Okonkwo",
-      position: "Public Relations Officer",
-      forum: "St. Jude's Forum",
+      name: "Ogbuefi Jude",
+      position: "Tresurer/Fin. Sec Bosso",
+      forum: "Luminous",
+      image: "/excos/sec-bosso.png",
+    },
+    {
+      id: 8,
+      name: "Ayuba Bitrus",
+      position: "PRO",
+      forum: "Luminous",
+      image: "/excos/pro-gk.png",
+    },
+    {
+      id: 13,
+      name: "Apaila Ugbede Vincent",
+      position: "Catechist GK",
+      forum: "",
+      image: "/excos/cate-gk.png",
+    },
+    {
+      id: 14,
+      name: "Apaa Felix",
+      position: "Asst. Catechist GK",
+      forum: "",
+      image: "/excos/asst-cate-gk.png",
+    },
+    {
+      id: 12,
+      name: "Abuh Emmanuel Alechine",
+      position: "Catechist Bosso",
+      forum: "Luminous",
+      image: "/excos/cate-bosso.png",
+    },
+    {
+      id: 9,
+      name: "Asaka Leo Jime",
+      position: "Asst. Catechist Bosso",
+      forum: "Luminous",
+      image: "/excos/asst-cate-bosso.png",
+    },
+    {
+      id: 10,
+      name: "Ogbobe Faith Ndidiamaka",
+      position: "Sisters's Cordinator GK",
+      forum: "Luminous",
+      image: "/excos/sis-cord-gk.png",
+    },
+    {
+      id: 15,
+      name: "Loveth Ufedoojo Kiara Joel",
+      position: "Assistant Sisters's Cordinator GK",
+      forum: "Luminous",
+      image: "/excos/asst-sis-cord-gk.png",
+    },
+    {
+      id: 11,
+      name: "Marachi Odoh",
+      position: "Sister's Cordinator",
+      forum: "Luminous",
+      image: "/excos/sis-cord-bosso.png",
+    },
+    {
+      id: 16,
+      name: "Akunne Emmanuel Obinna",
+      position: "Brother's Cordinator GK",
+      forum: "Luminous",
+      image: "/excos/bro-cord-gkk.png",
+    },
+    {
+      id: 17,
+      name: "Anayochukwu O. Emmanuel",
+      position: "Asst. Brother's Cordinator GK",
+      forum: "Luminous",
+      image: "/excos/asst-bro-cord-gk.png",
+    },
+    {
+      id: 18,
+      name: "Chubuike D. Kaosisochukwu",
+      position: "Tresurer Bosso",
+      forum: "Luminous",
+      image: "/excos/tresurer-gk.png",
+    },
+    {
+      id: 19,
+      name: "Uche Emmanuel Chiwendu",
+      position: "PRO Bosso",
+      forum: "Luminous",
+      image: "/excos/pro-bosso.png",
+    },
+    {
+      id: 20,
+      name: "Izuakor Chinedu",
+      position: "Mr NFCS",
+      forum: "Luminous",
+      image: "/excos/mr-nfcs.png",
+    },
+    {
+      id: 21,
+      name: "Ihemadu Ugochi Maryann",
+      position: "Miss NFCS",
+      forum: "Luminous",
+      image: "/excos/mr-nfcs.png",
+    },
+    {
+      id: 22,
+      name: "Odah Bartholomew Onyilo",
+      position: "Brothers Cordinator Bosso",
+      forum: "Luminous",
+      image: "/excos/bro-cord-bosso.png",
     },
   ];
 
@@ -68,7 +185,7 @@ const ExecutivesPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 pt-20 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Animated Header */}
         <motion.div
@@ -77,7 +194,7 @@ const ExecutivesPage = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text ">
             Chaplaincy Executive Council
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">

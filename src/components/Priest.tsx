@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 type Priest = {
   id: number;
@@ -66,6 +67,26 @@ const PriestsListing = () => {
             <PriestCard key={priest.id} priest={priest} />
           ))}
         </div>
+        <Link
+          href="/executives"
+          className="flex justify-center mt-15 items-center text-blue-600 hover:text-blue-800 transition-colors"
+        >
+          View All Executives
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="ml-1 h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </Link>
       </div>
     </section>
   );
