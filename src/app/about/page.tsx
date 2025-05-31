@@ -1,12 +1,13 @@
 "use client";
 
+import MassSchedule from "@/components/MassSchedule";
 import Link from "next/link";
 import React from "react";
 import { FaChurch, FaUserFriends, FaHandsHelping } from "react-icons/fa";
 
 const AboutPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-200 text-gray-800 py-16 px-6 md:px-12 lg:px-24 font-sans">
+    <div className="min-h-screen bg-gradient-to-br mt-10 from-gray-100 to-gray-200 text-gray-800 py-16 px-6 md:px-12 lg:px-24 font-sans">
       <div className="max-w-6xl mx-auto space-y-16">
         {/* Header */}
         <header className="text-center animate-fade-in-down">
@@ -122,45 +123,7 @@ const AboutPage = () => {
 
         {/* History Section */}
         <section className="bg-white rounded-xl p-10 shadow-md border border-gray-200 animate-fade-in-up delay-300">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            Our Heritage
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Established in [Year], the Catholic Chaplaincy at FUTMinna has
-                served as a spiritual anchor for generations of students. Our
-                rich history reflects the enduring presence of Catholic values
-                in academic excellence.
-              </p>
-              <p className="text-gray-700 leading-relaxed">
-                From humble beginnings to our current vibrant community, we
-                continue to uphold the traditions of faith while embracing the
-                challenges of modern campus life.
-              </p>
-            </div>
-            <div className="bg-gray-100 rounded-lg p-6 border border-gray-200">
-              <h3 className="font-semibold text-gray-800 mb-3">Quick Facts</h3>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start">
-                  <span className="bg-gray-300 rounded-full w-2 h-2 mt-2 mr-3"></span>
-                  <span>Serving FUTMinna since [Year]</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-gray-300 rounded-full w-2 h-2 mt-2 mr-3"></span>
-                  <span>[Number] active members</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-gray-300 rounded-full w-2 h-2 mt-2 mr-3"></span>
-                  <span>[Number] weekly Masses</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-gray-300 rounded-full w-2 h-2 mt-2 mr-3"></span>
-                  <span>[Number] student organizations</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <MassSchedule />
         </section>
 
         {/* Footer */}

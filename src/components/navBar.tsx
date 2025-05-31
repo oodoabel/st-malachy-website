@@ -53,7 +53,7 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <div className="flex items-center justify-between text-gray-800 font-extrabold p-4 lg:p-6 lg:text-3xl  bg-white/80 backdrop-blur-sm fixed z-10 w-screen">
+      <div className=" hidden  items-center justify-between text-gray-800 font-extrabold p-4 lg:p-6 lg:text-3xl  bg-white/80 backdrop-blur-sm fixed z-10 w-screen">
         <Link href="/" className=" lg:flex">
           St Malachy
         </Link>
