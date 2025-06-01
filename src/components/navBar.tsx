@@ -23,9 +23,9 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <a
             href="/"
-            className="text-2xl font-serif font-extrabold text-gray-100 hover:text-gray-300 transition"
+            className="text-2xl font-serif font-extrabold  text-gray-300 hover:text-gray-300 transition"
           >
-            NFCS FUTMINNA
+            NFCS
           </a>
 
           <ul className="hidden md:flex space-x-10 font-medium text-gray-300">

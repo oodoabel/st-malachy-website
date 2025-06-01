@@ -157,7 +157,7 @@ const ExecutivesPage = () => {
       name: "Ihemadu Ugochi Maryann",
       position: "Miss NFCS",
       forum: "Luminous",
-      image: "/excos/mr-nfcs.png",
+      image: "/excos/miss-nfcs.png",
     },
     {
       id: 22,
@@ -194,7 +194,7 @@ const ExecutivesPage = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text ">
+          <h1 className="text-4xl font-bold text-gray-800 sm:text-5xl bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text ">
             Chaplaincy Executive Council
           </h1>
           <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">

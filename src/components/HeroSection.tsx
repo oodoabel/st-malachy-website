@@ -51,7 +51,7 @@ const NavbarHero: React.FC = () => {
             href="/"
             className="text-2xl font-serif font-extrabold text-gray-100 hover:text-gray-300 transition"
           >
-            NFCS FUTMINNA
+            NFCS
           </a>
 
           <ul className="hidden md:flex space-x-10 font-medium text-gray-300">
