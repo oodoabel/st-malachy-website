@@ -12,8 +12,7 @@ const navItems = [
   { name: "About", href: "/about" },
   { name: "Memories", href: "/about/forums" },
   { name: "Forums", href: "/about/forums" },
-  { name: "Societies", href: "/about/forums" },
-  { name: "Events", href: "/events" },
+  { name: "Societies", href: "/societies" },
 ];
 
 const Navbar = () => {

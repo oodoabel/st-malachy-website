@@ -22,7 +22,6 @@ const navItems: NavItem[] = [
   { name: "Memories", href: "/memories" },
   { name: "Forums", href: "/about/forums" },
   { name: "Societies", href: "/societies" },
-  { name: "Events", href: "/events" },
 ];
 
 const Hamburger: React.FC = () => {
@@ -53,7 +52,7 @@ const Hamburger: React.FC = () => {
                   <li key={name}>
                     <Link
                       href={href}
-                      className="block px-6 py-3 rounded-lg text-lg font-medium bg-gray-800 hover:bg-gray-700 focus:bg-gray-600 transition-colors duration-200 shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
+                      className="block px-6 py-3 rounded-lg text-lg font-medium bg-transparent hover:bg-gray-700 focus:bg-gray-600 transition-colors duration-200 shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
                     >
                       {name}
                     </Link>

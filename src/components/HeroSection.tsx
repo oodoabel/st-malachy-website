@@ -88,7 +88,7 @@ const NavbarHero: React.FC = () => {
 
           <div className="flex flex-wrap gap-6 pt-4">
             <a
-              href="/about"
+              href="/auth/register"
               className="bg-gray-800 text-gray-100 px-8 py-3 rounded-md font-semibold shadow-md hover:bg-gray-700 transition"
             >
               Register as an NFCSer

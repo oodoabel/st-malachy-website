@@ -55,7 +55,7 @@ const MassSchedule = () => {
                     </span>
                   )}
                 </div>
-                <span className="bg-white px-3 py-1 rounded-full text-md font-medium text-gray-700 shadow-inner">
+                <span className="text-center bg-white px-3 py-1 rounded-full text-md font-medium text-gray-700 shadow-inner">
                   {mass.time}
                 </span>
               </div>
