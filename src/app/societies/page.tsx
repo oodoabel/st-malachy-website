@@ -107,7 +107,7 @@ const societies = [
     schedule: [{ day: "", time: "" }],
   },
   {
-    name: "Media",
+    name: "Media Team",
     image: "/images",
     about: "Capture and document moments/events in the chaplaincy",
     schedule: [{ day: "", time: "" }],
