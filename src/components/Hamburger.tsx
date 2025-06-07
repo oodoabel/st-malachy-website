@@ -59,9 +59,11 @@ const Hamburger: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <Button className="h-10 w-full bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 text-gray-100 font-semibold rounded-lg shadow hover:from-gray-600 hover:to-gray-700 transition-all duration-200 mt-4">
-                Sign in
-              </Button>
+              <a href="/login">
+                <Button className="h-10 w-full bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 text-gray-100 font-semibold rounded-lg shadow hover:from-gray-600 hover:to-gray-700 transition-all duration-200 mt-4">
+                  Sign in
+                </Button>
+              </a>
               <div className="flex justify-center items-center gap-6 pt-6">
                 <img
                   className="h-12 w-auto grayscale hover:grayscale-0 transition duration-300"

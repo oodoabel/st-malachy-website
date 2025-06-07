@@ -21,7 +21,7 @@ const LoginPage = () => {
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
       // On successful login
-      router.push("/dashboard");
+      router.push("/");
     } catch (err) {
       setError("Invalid email or password");
     } finally {
@@ -123,7 +123,7 @@ const LoginPage = () => {
           <p className="text-gray-600">
             Don't have an account?{" "}
             <a
-              href="/auth/register"
+              href="/register"
               className="font-medium text-gray-800 hover:text-gray-600 transition"
             >
               Register here

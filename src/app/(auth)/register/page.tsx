@@ -370,7 +370,7 @@ const RegisterPage = () => {
           <p className="text-gray-600">
             Already have an account?{" "}
             <a
-              href="/auth/login"
+              href="/login"
               className="font-medium text-gray-800 hover:text-gray-600 transition"
             >
               Sign in

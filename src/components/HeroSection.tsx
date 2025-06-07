@@ -79,7 +79,7 @@ const NavbarHero: React.FC = () => {
         </div>
       </nav>
       {/* Hero Section */}
-      <section className="pt-15 min-h-screen lg:px-50 bg-gray-100 flex flex-col md:flex-row items-center mx-auto px-6 gap-12">
+      <section className="pt-10 min-h-screen lg:px-50 bg-gray-100 flex flex-col md:flex-row items-center mx-auto px-6 gap-12">
         {/* Left Text Content */}
         <div className="md:w-1/2 space-y-8">
           <h1 className="text-5xl font-serif font-extrabold text-gray-900 leading-tight">
@@ -88,7 +88,7 @@ const NavbarHero: React.FC = () => {
 
           <div className="flex flex-wrap gap-6 pt-4">
             <a
-              href="/auth/register"
+              href="/register"
               className="bg-gray-800 text-gray-100 px-8 py-3 rounded-md font-semibold shadow-md hover:bg-gray-700 transition"
             >
               Register as an NFCSer
@@ -103,7 +103,7 @@ const NavbarHero: React.FC = () => {
         </div>
 
         {/* Right Image Slider */}
-        <div className="md:w-1/2 w-full rounded-lg overflow-hidden shadow-lg">
+        <div className="md:w-3/4 w-full rounded-lg overflow-hidden shadow-lg">
           <Slider {...sliderSettings}>
             {images.map((src, idx) => (
               <div key={idx} className="h-96 md:h-[500px] relative">
