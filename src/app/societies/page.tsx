@@ -106,6 +106,12 @@ const societies = [
       "Maintains security and provides support during major chaplaincy events.",
     schedule: [{ day: "", time: "" }],
   },
+  {
+    name: "Media",
+    image: "/images",
+    about: "Capture and document moments/events in the chaplaincy",
+    schedule: [{ day: "", time: "" }],
+  },
 ];
 
 const cardVariants = {

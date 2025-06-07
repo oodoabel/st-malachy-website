@@ -12,8 +12,8 @@ const navItems = [
   { name: "About", href: "/about" },
   { name: "Memories", href: "/about/forums" },
   { name: "Forums", href: "/about/forums" },
-  { name: "Societies", href: "/about/forums" },
-  { name: "Events", href: "/events" },
+  { name: "Societies", href: "/societies" },
+  { name: "Events", href: "/event" },
 ];
 
 const images = [
@@ -79,9 +79,9 @@ const NavbarHero: React.FC = () => {
         </div>
       </nav>
       {/* Hero Section */}
-      <section className="pt-10 min-h-screen lg:px-50 bg-gray-100 flex flex-col md:flex-row items-center mx-auto px-6 gap-12">
+      <section className="pt-10 min-h-screen lg:px-50 bg-gray-100 flex flex-col lg:flex-row items-center mx-auto px-6 gap-12">
         {/* Left Text Content */}
-        <div className="md:w-1/2 space-y-8">
+        <div className="lg:w-1/2  space-y-8">
           <h1 className="text-5xl font-serif font-extrabold text-gray-900 leading-tight">
             Welcome to St. Malachy Chaplaincy
           </h1>
@@ -103,7 +103,7 @@ const NavbarHero: React.FC = () => {
         </div>
 
         {/* Right Image Slider */}
-        <div className="md:w-3/4 w-full rounded-lg overflow-hidden shadow-lg">
+        <div className="md:w-full w-full rounded-lg overflow-hidden shadow-lg">
           <Slider {...sliderSettings}>
             {images.map((src, idx) => (
               <div key={idx} className="h-96 md:h-[500px] relative">

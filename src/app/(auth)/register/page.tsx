@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { auth } from "@/app/firebase/config";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import {
   FaUser,
   FaEnvelope,
@@ -10,8 +12,12 @@ import {
   FaCalendarAlt,
   FaIdCard,
 } from "react-icons/fa";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const RegisterPage = () => {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -27,8 +33,10 @@ const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [registrationFee] = useState(5000); // Example fee in Naira
   const router = useRouter();
+  const [createUserWithEmailAndPassword] =
+    useCreateUserWithEmailAndPassword(auth);
 
-  const handleChange = (
+  const handleChange = async (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
@@ -64,14 +72,14 @@ const RegisterPage = () => {
     setIsLoading(true);
 
     try {
-      // Simulate API call for registration
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const res = await createUserWithEmailAndPassword(
+        formData.email,
+        formData.password
+      );
+      console.log({ res });
+      setFormData((data) => ({ ...data, email: "", password: "" }));
 
-      // Simulate payment processing
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // On successful registration
-      router.push("/dashboard");
+      // router.push("/");
     } catch (err) {
       setErrors({ ...errors, form: "Registration failed. Please try again." });
     } finally {

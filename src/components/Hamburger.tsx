@@ -22,6 +22,7 @@ const navItems: NavItem[] = [
   { name: "Memories", href: "/memories" },
   { name: "Forums", href: "/about/forums" },
   { name: "Societies", href: "/societies" },
+  { name: "Events", href: "/event" },
 ];
 
 const Hamburger: React.FC = () => {
