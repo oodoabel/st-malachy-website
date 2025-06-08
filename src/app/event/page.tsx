@@ -51,11 +51,11 @@ const EventPage = () => {
     },
     {
       id: 4,
-      title: "FYB Send Forth 2025",
+      title: "FYB Send Forth 2024",
       date: "September 2024",
       description:
         "Discussion on building bridges between different faith traditions.",
-      imageUrl: "/events/interfaith.jpg",
+      imageUrl: "/events/noctis-gractia.jpg",
       location: "Indoor sport Complex",
       isPastEvent: true,
     },
