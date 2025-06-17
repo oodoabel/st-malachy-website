@@ -31,7 +31,7 @@ const RegisterPage = () => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isLoading, setIsLoading] = useState(false);
-  const [registrationFee] = useState(5000); // Example fee in Naira
+  const [registrationFee] = useState(2000); // Example fee in Naira
   const router = useRouter();
   const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
@@ -66,6 +66,7 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log(formData);
 
     if (!validateForm()) return;
 
@@ -296,16 +297,25 @@ const RegisterPage = () => {
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <FaUser className="text-gray-400" />
               </div>
-              <input
-                type="text"
-                name="forumName"
-                placeholder="Forum Name (e.g., Triumphant Family)"
+              <select
+                name="Select forum"
                 className={`w-full pl-10 pr-4 py-3 bg-gray-50 border ${
-                  errors.forumName ? "border-red-500" : "border-gray-300"
-                } rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition duration-300`}
+                  errors.gender ? "border-red-500" : "border-gray-300"
+                } rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition duration-300 appearance-none`}
                 value={formData.forumName}
                 onChange={handleChange}
-              />
+              >
+                <option value="">Select Forum</option>
+                <option value="triumphantFamily">Trimphant Family</option>
+                <option value="foldenPhoenixFamily">
+                  Golden Phoenix Family
+                </option>
+                <option value="luminusFamily">Luminous Family</option>
+                <option value="excellersInChristFamily">
+                  Excellers in Christ
+                </option>
+                <option value="exquisiteFamily">Exquisite Family</option>
+              </select>
               {errors.forumName && (
                 <p className="mt-1 text-sm text-red-500">{errors.forumName}</p>
               )}
@@ -318,7 +328,7 @@ const RegisterPage = () => {
               <div>
                 <h4 className="font-medium text-gray-800">Registration Fee</h4>
                 <p className="text-gray-600 text-sm">
-                  Covers membership for the academic session
+                  Pay once and be registred for life
                 </p>
               </div>
               <div className="text-xl font-bold text-gray-800">
