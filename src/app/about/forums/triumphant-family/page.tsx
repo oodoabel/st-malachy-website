@@ -23,12 +23,23 @@ type Prayer = {
   createdAt: string;
 };
 
-const coordinator = {
-  name: "Rev. Fr. Michael Adebayo",
-  position: "Forum Chaplain",
-  phone: "+2348012345678",
-  email: "chaplain@futminna.edu.ng",
-};
+const executives = [
+  {
+    name: "Rev. Fr. Michael Adebayo",
+    position: "Cordinator",
+    phone: "+2348012345678",
+  },
+  {
+    name: "Rev. Fr. Michael Adebayo",
+    position: "General Secretry",
+    phone: "+2348012345678",
+  },
+  {
+    name: "Rev. Fr. Michael Adebayo",
+    position: "Public Relations Officer",
+    phone: "+2348012345678",
+  },
+];
 
 const galleryImages: string[] = [
   "/gallery/1.jpg",
@@ -160,27 +171,26 @@ const TriumphantFamilyPage: React.FC = () => {
         {/* Coordinator Contact */}
         <section className="mb-16 bg-gray-800 text-white rounded-xl p-8 shadow-lg animate-fade-in-up">
           <h2 className="text-2xl font-bold mb-6 text-gray-100 border-b border-gray-600 pb-2">
-            Contact Coordinator
+            Contact Coordinators
           </h2>
           <div className="flex flex-col md:flex-row gap-8 items-center">
-            <div className="bg-gray-700 p-4 rounded-full">
-              <FaUser className="text-4xl text-gray-300" />
-            </div>
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-indigo-300">
-                {coordinator.name}
-              </h3>
-              <p className="text-gray-400 mb-4">{coordinator.position}</p>
-              <div className="space-y-2">
-                <p className="flex items-center gap-2 text-gray-300">
-                  <FaPhoneAlt className="text-indigo-400" />
-                  {coordinator.phone}
+              <p className="text-gray-400 mb-4">
+                <p className="flex  flex-col items-center gap-9 text-gray-300">
+                  {executives.map((executive) => (
+                    <div>
+                      <p className="text-xl font-semibold text-indigo-300">
+                        {executive.name}
+                      </p>
+                      <p>{executive.position}</p>
+                      <p className="border-b border-gray-600 pb-3">
+                        {executive.phone}
+                      </p>
+                    </div>
+                  ))}
                 </p>
-                <p className="flex items-center gap-2 text-gray-300">
-                  <FaEnvelope className="text-indigo-400" />
-                  {coordinator.email}
-                </p>
-              </div>
+              </p>
+              <div className="space-y-2"></div>
             </div>
           </div>
         </section>

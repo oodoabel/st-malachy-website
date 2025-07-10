@@ -33,8 +33,6 @@ const RegisterPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [registrationFee] = useState(2000); // Example fee in Naira
   const router = useRouter();
-  const [createUserWithEmailAndPassword] =
-    useCreateUserWithEmailAndPassword(auth);
 
   const handleChange = async (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -64,25 +62,22 @@ const RegisterPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const [createUserWithEmailAndPassword] =
+    useCreateUserWithEmailAndPassword(auth);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
-
     if (!validateForm()) return;
-
     setIsLoading(true);
 
     try {
-      const res = await createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         formData.email,
         formData.password
       );
-      console.log({ res });
-      setFormData((data) => ({ ...data, email: "", password: "" }));
-
-      // router.push("/");
-    } catch (err) {
-      setErrors({ ...errors, form: "Registration failed. Please try again." });
+      console.log("Created with SDK:", userCredential);
+    } catch (error: any) {
+      console.error("SDK error:", error);
     } finally {
       setIsLoading(false);
     }
@@ -294,28 +289,30 @@ const RegisterPage = () => {
             </h3>
 
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <FaUser className="text-gray-400" />
+              <div className="relative flex">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <FaUser className="text-gray-400" />
+                </div>
+                <select
+                  name="forumName"
+                  className={`w-full pl-10 pr-4 py-3 bg-gray-50 border ${
+                    errors.gender ? "border-red-500" : "border-gray-300"
+                  } rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition duration-300 appearance-none`}
+                  value={formData.forumName}
+                  onChange={handleChange}
+                >
+                  <option value="">Select Forum</option>
+                  <option value="Triumphant Family">Trimphant Family</option>
+                  <option value="Golden Phoenix Family">
+                    Golden Phoenix Family
+                  </option>
+                  <option value="LuminusFamily">Luminous Family</option>
+                  <option value="Excellers In Christ Family">
+                    Excellers in Christ
+                  </option>
+                  <option value="Exquisite Family">Exquisite Family</option>
+                </select>
               </div>
-              <select
-                name="Select forum"
-                className={`w-full pl-10 pr-4 py-3 bg-gray-50 border ${
-                  errors.gender ? "border-red-500" : "border-gray-300"
-                } rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-transparent transition duration-300 appearance-none`}
-                value={formData.forumName}
-                onChange={handleChange}
-              >
-                <option value="">Select Forum</option>
-                <option value="triumphantFamily">Trimphant Family</option>
-                <option value="foldenPhoenixFamily">
-                  Golden Phoenix Family
-                </option>
-                <option value="luminusFamily">Luminous Family</option>
-                <option value="excellersInChristFamily">
-                  Excellers in Christ
-                </option>
-                <option value="exquisiteFamily">Exquisite Family</option>
-              </select>
               {errors.forumName && (
                 <p className="mt-1 text-sm text-red-500">{errors.forumName}</p>
               )}
@@ -327,32 +324,12 @@ const RegisterPage = () => {
             <div className="flex justify-between items-center">
               <div>
                 <h4 className="font-medium text-gray-800">Registration Fee</h4>
-                <p className="text-gray-600 text-sm">
+                <p className="text-gray-600 text-[10px] md:text-sm">
                   Pay once and be registred for life
                 </p>
               </div>
               <div className="text-xl font-bold text-gray-800">
                 ₦{registrationFee.toLocaleString()}
-              </div>
-            </div>
-
-            <div className="mt-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Payment Method
-              </label>
-              <div className="grid grid-cols-2 gap-4">
-                <button
-                  type="button"
-                  className="py-2 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 transition"
-                >
-                  Bank Transfer
-                </button>
-                <button
-                  type="button"
-                  className="py-2 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 transition"
-                >
-                  Card Payment
-                </button>
               </div>
             </div>
           </div>
