@@ -1,93 +1,80 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Slider from "react-slick";
-
-// Import slick-carousel css in your global styles or here:
+"use client";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Hamburger from "./Hamburger";
 
-const navItems = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Memories", href: "/about/forums" },
-  { name: "Forums", href: "/about/forums" },
-  { name: "Societies", href: "/societies" },
+import React from "react";
+import { Home, User, Info, MessageSquare, Users, Calendar } from "lucide-react";
+// import useAppContext from "@/context";
+
+type IconProps = React.SVGProps<SVGSVGElement>;
+
+export interface NavItem {
+  icon: React.ReactElement<IconProps>;
+  label: string;
+  href: string;
+}
+
+export const navItems: NavItem[] = [
+  { icon: <Home className="w-5 h-5 mx-2" />, label: "Home", href: "/" },
+  { icon: <Info className="w-5 h-5 mx-2" />, label: "About", href: "/about" },
+  {
+    icon: <MessageSquare className="w-5 h-5 mx-2" />,
+    label: "Forums",
+    href: "/about/forums",
+  },
+  {
+    icon: <Users className="w-5 h-5 mx-2" />,
+    label: "Societies",
+    href: "/societies",
+  },
+  {
+    icon: <Calendar className="w-5 h-5 mx-2" />,
+    label: "Events",
+    href: "/event",
+  },
+  {
+    icon: <User className="w-5 h-5 mx-2" />,
+    label: "",
+    href: "/login",
+  },
 ];
 
 const Navbar = () => {
   return (
-    <div>
-      <nav className="fixed top-0 w-full bg-gray-800 bg-opacity-95 backdrop-blur-sm shadow-lg z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a
-            href="/"
-            className="text-2xl font-serif font-extrabold  text-gray-300 hover:text-gray-300 transition"
-          >
-            NFCS
-          </a>
+    <nav className="fixed top-0 mb-10 w-full bg-gray-800 bg-opacity-95 backdrop-blur-sm shadow-lg z-50">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <a
+          href="/"
+          className="md:text-xl text-lg font-extrabold text-gray-100 hover:text-gray-300 transition"
+        >
+          St Malachy's Chaplaincy
+        </a>
 
-          <ul className="hidden md:flex space-x-10 font-medium text-gray-300">
-            {navItems.map(({ name, href }) => (
-              <li key={name}>
-                <a
-                  href={href}
-                  className="hover:text-gray-100 transition-colors duration-300"
-                >
-                  {name}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <ul className="hidden md:flex space-x-10 text-sm font-sans text-gray-300">
+          {navItems.map(({ icon, href, label }) => (
+            <li key={href} className="ml-2">
+              <a
+                href={href}
+                className="hover:text-gray-100 flex space-x-1 transition-colors duration-300"
+              >
+                {icon} {label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-          {/* Mobile menu button placeholder */}
-          <div
-            aria-label="Toggle menu"
-            className="md:hidden text-gray-100 focus:outline-none"
-          >
-            <div className="md:hidden">
-              <Hamburger />
-            </div>
+        {/* Mobile menu button placeholder */}
+        <div
+          aria-label="Toggle menu"
+          className="md:hidden text-gray-100 focus:outline-none"
+        >
+          <div className="md:hidden">
+            <Hamburger />
           </div>
         </div>
-      </nav>
-
-      <div className=" hidden  items-center justify-between text-gray-800 font-extrabold p-4 lg:p-6 lg:text-3xl  bg-white/80 backdrop-blur-sm fixed z-10 w-screen">
-        <Link href="/" className=" lg:flex">
-          St Malachy
-        </Link>
-        <div className="hidden md:flex font-light text-sm items-center ">
-          <Link className="md:px-5" href="#">
-            About
-          </Link>
-          <Link className="md:px-5" href="#">
-            Contact us
-          </Link>
-          <Link className="md:px-5" href="#">
-            Gallery
-          </Link>
-          <Link className="md:px-5" href="#">
-            Executives
-          </Link>
-          <Link className="md:px-5" href="#">
-            Mission
-          </Link>
-          <Link className="md:px-5" href="#">
-            Vision
-          </Link>
-          <Link className="md:px-5" href="#">
-            Forums
-          </Link>
-          <Link className="md:px-5" href="#">
-            Societies
-          </Link>
-          <Button className="h-7 w-15 md:w-20 md:h-9">Sign in</Button>
-        </div>
-        <div className="md:hidden">
-          <Hamburger />
-        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

@@ -11,6 +11,12 @@ type Executive = {
 
 const executives: Executive[] = [
   {
+    id: 4,
+    name: "Prof. H.A Makun",
+    position: "Chaplaincy Chairman",
+    imageUrl: "/chaplaincyChairman.png",
+  },
+  {
     id: 1,
     name: "Ella Solomon Echobu",
     position: "President",

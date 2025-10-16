@@ -5,16 +5,7 @@ import Slider from "react-slick";
 // Import slick-carousel css in your global styles or here:
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Hamburger from "./Hamburger";
-
-const navItems = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Memories", href: "/about/forums" },
-  { name: "Forums", href: "/about/forums" },
-  { name: "Societies", href: "/societies" },
-  { name: "Events", href: "/event" },
-];
+import Navbar from "./navBar";
 
 const images = [
   "/gal1.png",
@@ -44,40 +35,7 @@ const NavbarHero: React.FC = () => {
 
   return (
     <>
-      Navbar
-      <nav className="fixed top-0 w-full bg-gray-800 bg-opacity-95 backdrop-blur-sm shadow-lg z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a
-            href="/"
-            className="text-2xl font-serif font-extrabold text-gray-100 hover:text-gray-300 transition"
-          >
-            NFCS
-          </a>
-
-          <ul className="hidden md:flex space-x-10 font-medium text-gray-300">
-            {navItems.map(({ name, href }) => (
-              <li key={name}>
-                <a
-                  href={href}
-                  className="hover:text-gray-100 transition-colors duration-300"
-                >
-                  {name}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          {/* Mobile menu button placeholder */}
-          <div
-            aria-label="Toggle menu"
-            className="md:hidden text-gray-100 focus:outline-none"
-          >
-            <div className="md:hidden">
-              <Hamburger />
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
       {/* Hero Section */}
       <section className="pt-10 min-h-screen lg:px-50 bg-gray-100 flex flex-col lg:flex-row items-center mx-auto px-6 gap-12">
         {/* Left Text Content */}

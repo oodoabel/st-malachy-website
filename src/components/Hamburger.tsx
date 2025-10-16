@@ -16,14 +16,7 @@ interface NavItem {
   href: string;
 }
 
-const navItems: NavItem[] = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Memories", href: "/memories" },
-  { name: "Forums", href: "/about/forums" },
-  { name: "Societies", href: "/societies" },
-  { name: "Events", href: "/event" },
-];
+import { navItems } from "./navBar";
 
 const Hamburger: React.FC = () => {
   return (
@@ -49,22 +42,22 @@ const Hamburger: React.FC = () => {
             {/* Move nav and other block elements OUTSIDE of SheetDescription */}
             <nav className="w-full flex flex-col items-center gap-6 mt-4">
               <ul className="flex flex-col gap-2 w-full">
-                {navItems.map(({ name, href }) => (
-                  <li key={name}>
+                {navItems.map(({ icon, href, label }) => (
+                  <li key={href}>
                     <Link
                       href={href}
-                      className="block px-6 py-3 rounded-lg text-lg font-medium bg-transparent hover:bg-gray-700 focus:bg-gray-600 transition-colors duration-200 shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
+                      className="flex items-center px-6 py-3 rounded-lg text-lg font-medium bg-transparent hover:bg-gray-700 focus:bg-gray-600 transition-colors duration-200 shadow hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
                     >
-                      {name}
+                      {icon} {label}
                     </Link>
                   </li>
                 ))}
               </ul>
-              <a href="/login">
+              {/* <a href="/login">
                 <Button className="h-10 w-full bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 text-gray-100 font-semibold rounded-lg shadow hover:from-gray-600 hover:to-gray-700 transition-all duration-200 mt-4">
                   Sign in
                 </Button>
-              </a>
+              </a> */}
               <div className="flex justify-center items-center gap-6 pt-6">
                 <img
                   className="h-12 w-auto grayscale hover:grayscale-0 transition duration-300"

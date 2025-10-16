@@ -2,15 +2,14 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/app/firebase/config";
+import { createClient } from "@/utils/supabase/client";
+import Link from "next/link";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -18,14 +17,21 @@ const SignInPage = () => {
     setIsLoading(true);
     setError("");
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.push("/dashboard"); // Change to wherever you want to redirect
-    } catch (err: any) {
-      setError(err.message || "Login failed");
-    } finally {
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      setError(error.message);
       setIsLoading(false);
+      return;
     }
+
+    // Redirect to profile on success
+    router.push("/profile");
+    setIsLoading(false);
   };
 
   return (
@@ -45,6 +51,8 @@ const SignInPage = () => {
           <div>
             <input
               type="email"
+              name="email"
+              id="email"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -56,6 +64,8 @@ const SignInPage = () => {
           <div>
             <input
               type="password"
+              id="password"
+              name="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -79,12 +89,12 @@ const SignInPage = () => {
 
         <p className="text-center text-sm text-gray-600 mt-4">
           Don’t have an account?{" "}
-          <a
+          <Link
             href="/register"
             className="text-gray-800 font-semibold hover:underline"
           >
             Register
-          </a>
+          </Link>
         </p>
       </div>
     </div>

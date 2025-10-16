@@ -67,7 +67,7 @@ const AboutPage = () => {
               and commitment to academic excellence and spiritual growth.
             </p>
             <Link
-              href="/about/forums"
+              href="/about"
               className="text-gray-700 hover:text-gray-900 font-medium inline-flex items-center transition-colors"
             >
               Explore forums
