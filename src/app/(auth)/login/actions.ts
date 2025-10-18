@@ -16,8 +16,8 @@ export async function login({
 }) {
   const supabase = await createClient();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
+  const { isUserLoggedIn, setIsUserLoggedIn } = useAppContext();
+
   const credentials = {
     email: email,
     password: password,
@@ -28,8 +28,9 @@ export async function login({
   if (error) {
     redirect("/error");
   }
-  console.log(data);
-
+  if (data) {
+    setIsUserLoggedIn(true);
+  }
   revalidatePath("/", "layout");
   redirect("/profile");
 }

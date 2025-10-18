@@ -10,15 +10,9 @@ import {
 } from "@/components/ui/sheet";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { NavItem } from "./navBar";
 
-interface NavItem {
-  name: string;
-  href: string;
-}
-
-import { navItems } from "./navBar";
-
-const Hamburger: React.FC = () => {
+const Hamburger: React.FC<{ navItems: NavItem[] }> = ({ navItems }) => {
   return (
     <div>
       <Sheet>
@@ -28,7 +22,7 @@ const Hamburger: React.FC = () => {
             height={28}
             src="https://img.icons8.com/ios-filled/50/7e7e7e/menu--v1.png"
             alt="menu"
-            className="transition-transform duration-200 hover:scale-110  text-gray-100 hover:text-gray-300 hover:text-gray-300 cursor-pointer"
+            className="transition-transform duration-200 hover:scale-110  text-gray-100 hover:text-gray-300 cursor-pointer"
           />
         </SheetTrigger>
         <SheetContent className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 text-gray-100 shadow-2xl border-0 animate-in fade-in slide-in-from-right-8">

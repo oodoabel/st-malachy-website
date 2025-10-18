@@ -1,16 +1,97 @@
 "use client";
 
 import MassSchedule from "@/components/MassSchedule";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { FaChurch, FaUserFriends, FaHandsHelping } from "react-icons/fa";
 
+const cardData = [
+  {
+    icon: <FaChurch className="text-2xl text-gray-700" />,
+    title: "Our Mission",
+    description:
+      "To nurture spiritual growth through sacraments, formation programs, and service opportunities rooted in Catholic tradition.",
+    link: "/chaplaincy-anthem",
+    linkText: "View NFCS anthem",
+  },
+  {
+    icon: <FaUserFriends className="text-2xl text-gray-700" />,
+    title: "Our Community",
+    description:
+      "A diverse family of Catholic students united in faith, fellowship, and commitment to academic excellence and spiritual growth.",
+    link: "/about/forums",
+    linkText: "Explore forums",
+  },
+  {
+    icon: <FaHandsHelping className="text-2xl text-gray-700" />,
+    title: "Our Impact",
+    description:
+      "Transforming campus life through outreach programs, leadership development, and service initiatives that make a lasting difference.",
+    link: "/events",
+    linkText: "View events",
+  },
+];
+
+const InfoCard = ({
+  icon,
+  title,
+  description,
+  link,
+  linkText,
+}: (typeof cardData)[0]) => (
+  <motion.div
+    whileHover={{
+      y: -5,
+      boxShadow:
+        "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+    }}
+    className="bg-white rounded-xl p-8 shadow-md border border-gray-200 transition-shadow duration-300"
+  >
+    <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+      {icon}
+    </div>
+    <h2 className="text-xl font-semibold mb-3 text-gray-800">{title}</h2>
+    <p className="text-gray-600 mb-4">{description}</p>
+    <Link
+      href={link}
+      className="text-gray-700 hover:text-gray-900 font-medium inline-flex items-center transition-colors"
+    >
+      {linkText}
+      <ArrowRight className="w-4 h-4 ml-1" />
+    </Link>
+  </motion.div>
+);
+
 const AboutPage = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br mt-10 from-gray-100 to-gray-200 text-gray-800 py-16 px-6 md:px-12 lg:px-24 font-sans">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <div className="min-h-screen bg-gradient-to-br mt-10 from-gray-100 to-gray-200 text-gray-800 py-16 px-4 sm:px-6 lg:px-8 font-sans">
+      <motion.div
+        className="max-w-6xl mx-auto space-y-16"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
         {/* Header */}
-        <header className="text-center animate-fade-in-down">
+        <motion.header className="text-center" variants={itemVariants}>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
             About Our Chaplaincy
           </h1>
@@ -19,115 +100,44 @@ const AboutPage = () => {
             Discover the vibrant Catholic community at the Federal University of
             Technology, Minna - where faith, knowledge, and service converge.
           </p>
-        </header>
+        </motion.header>
+
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <motion.section
+            className="bg-white rounded-xl p-8 shadow-md border border-gray-200"
+            variants={itemVariants}
+          >
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+              Announcements
+            </h2>
+            <p className="text-gray-600">
+              Announcements will be displayed here.
+            </p>
+          </motion.section>
+          <motion.section
+            className="bg-white rounded-xl p-8 shadow-md border border-gray-200"
+            variants={itemVariants}
+          >
+            <MassSchedule />
+          </motion.section>
+        </div>
 
         {/* Mission, Community, Impact */}
-        <section className="grid md:grid-cols-3 gap-8 animate-fade-in-up delay-200">
-          <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300">
-            <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-              <FaChurch className="text-2xl text-gray-700" />
-            </div>
-            <h2 className="text-xl font-semibold mb-3 text-gray-800">
-              Our Mission
-            </h2>
-            <p className="text-gray-600 mb-4">
-              To nurture spiritual growth through sacraments, formation
-              programs, and service opportunities rooted in Catholic tradition.
-            </p>
-            <Link
-              href="/chaplaincy-anthem"
-              className="text-gray-700 hover:text-gray-900 font-medium inline-flex items-center transition-colors"
-            >
-              View NFCS anthem
-              <svg
-                className="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </Link>
-          </div>
-
-          <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300">
-            <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-              <FaUserFriends className="text-2xl text-gray-700" />
-            </div>
-            <h2 className="text-xl font-semibold mb-3 text-gray-800">
-              Our Community
-            </h2>
-            <p className="text-gray-600 mb-4">
-              A diverse family of Catholic students united in faith, fellowship,
-              and commitment to academic excellence and spiritual growth.
-            </p>
-            <Link
-              href="/about"
-              className="text-gray-700 hover:text-gray-900 font-medium inline-flex items-center transition-colors"
-            >
-              Explore forums
-              <svg
-                className="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </Link>
-          </div>
-
-          <div className="bg-white rounded-xl p-8 shadow-md border border-gray-200 hover:shadow-lg transition-all duration-300">
-            <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-              <FaHandsHelping className="text-2xl text-gray-700" />
-            </div>
-            <h2 className="text-xl font-semibold mb-3 text-gray-800">
-              Our Impact
-            </h2>
-            <p className="text-gray-600 mb-4">
-              Transforming campus life through outreach programs, leadership
-              development, and service initiatives that make a lasting
-              difference.
-            </p>
-            <Link
-              href="/events"
-              className="text-gray-700 hover:text-gray-900 font-medium inline-flex items-center transition-colors"
-            >
-              View events
-              <svg
-                className="w-4 h-4 ml-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </Link>
-          </div>
-        </section>
-
-        {/* History Section */}
-        <section className="bg-white rounded-xl p-10 shadow-md border border-gray-200 animate-fade-in-up delay-300">
-          <MassSchedule />
-        </section>
+        <motion.section
+          className="grid md:grid-cols-3 gap-8"
+          variants={itemVariants}
+        >
+          {cardData.map((card) => (
+            <InfoCard key={card.title} {...card} />
+          ))}
+        </motion.section>
 
         {/* Footer */}
-        <footer className="bg-gray-800 rounded-xl py-8 px-6 text-gray-300">
+        <motion.footer
+          className="bg-gray-800 rounded-xl py-8 px-6 sm:px-8 text-gray-300"
+          variants={itemVariants}
+        >
           <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-white font-medium mb-4">Contact Us</h3>
@@ -208,55 +218,8 @@ const AboutPage = () => {
               </div>
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm">
-            <p>
-              &copy; {new Date().getFullYear()} St Malachy Chaplaincy, FUTMinna.
-              All rights reserved.
-            </p>
-          </div>
-        </footer>
-      </div>
-
-      {/* Animation styles */}
-      <style jsx>{`
-        @keyframes fade-in-down {
-          0% {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fade-in-up {
-          0% {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in-down {
-          animation: fade-in-down 0.6s ease-out both;
-        }
-
-        .animate-fade-in-up {
-          animation: fade-in-up 0.6s ease-out both;
-        }
-
-        .delay-200 {
-          animation-delay: 0.2s;
-        }
-
-        .delay-300 {
-          animation-delay: 0.3s;
-        }
-      `}</style>
+        </motion.footer>
+      </motion.div>
     </div>
   );
 };

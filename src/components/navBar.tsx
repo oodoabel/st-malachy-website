@@ -2,10 +2,9 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Hamburger from "./Hamburger";
-
 import React from "react";
 import { Home, User, Info, MessageSquare, Users, Calendar } from "lucide-react";
-// import useAppContext from "@/context";
+import useAppContext from "@/context";
 
 type IconProps = React.SVGProps<SVGSVGElement>;
 
@@ -15,32 +14,34 @@ export interface NavItem {
   href: string;
 }
 
-export const navItems: NavItem[] = [
-  { icon: <Home className="w-5 h-5 mx-2" />, label: "Home", href: "/" },
-  { icon: <Info className="w-5 h-5 mx-2" />, label: "About", href: "/about" },
-  {
-    icon: <MessageSquare className="w-5 h-5 mx-2" />,
-    label: "Forums",
-    href: "/about/forums",
-  },
-  {
-    icon: <Users className="w-5 h-5 mx-2" />,
-    label: "Societies",
-    href: "/societies",
-  },
-  {
-    icon: <Calendar className="w-5 h-5 mx-2" />,
-    label: "Events",
-    href: "/event",
-  },
-  {
-    icon: <User className="w-5 h-5 mx-2" />,
-    label: "",
-    href: "/login",
-  },
-];
-
 const Navbar = () => {
+  const { userIsLoggedIn } = useAppContext();
+
+  const navItems: NavItem[] = [
+    { icon: <Home className="w-5 h-5 mx-2" />, label: "Home", href: "/" },
+    { icon: <Info className="w-5 h-5 mx-2" />, label: "About", href: "/about" },
+    {
+      icon: <MessageSquare className="w-5 h-5 mx-2" />,
+      label: "Forums",
+      href: "/about/forums",
+    },
+    {
+      icon: <Users className="w-5 h-5 mx-2" />,
+      label: "Societies",
+      href: "/societies",
+    },
+    {
+      icon: <Calendar className="w-5 h-5 mx-2" />,
+      label: "Events",
+      href: "/event",
+    },
+    {
+      icon: <User className="w-5 h-5 mx-2" />,
+      label: userIsLoggedIn ? "Profile" : "Login",
+      href: userIsLoggedIn ? "/profile" : "/login",
+    },
+  ];
+
   return (
     <nav className="fixed top-0 mb-10 w-full bg-gray-800 bg-opacity-95 backdrop-blur-sm shadow-lg z-50">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -70,7 +71,7 @@ const Navbar = () => {
           className="md:hidden text-gray-100 focus:outline-none"
         >
           <div className="md:hidden">
-            <Hamburger />
+            <Hamburger navItems={navItems} />
           </div>
         </div>
       </div>
