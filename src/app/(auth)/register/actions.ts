@@ -50,5 +50,8 @@ export async function signup(formData: FormData) {
   }
 
   revalidatePath("/", "layout");
+  alert(
+    "Registration successful! Please check your email to verify your account."
+  );
   redirect("/login");
 }

@@ -11,8 +11,18 @@ import {
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { NavItem } from "./navBar";
+import useAppContext from "@/context";
+import { createClient } from "@/utils/supabase/client";
+
+const supabase = createClient();
+
+const handleLogout = () => {
+  supabase.auth.signOut();
+  window.location.href = "/";
+};
 
 const Hamburger: React.FC<{ navItems: NavItem[] }> = ({ navItems }) => {
+  const { userIsLoggedIn } = useAppContext();
   return (
     <div>
       <Sheet>
@@ -47,11 +57,17 @@ const Hamburger: React.FC<{ navItems: NavItem[] }> = ({ navItems }) => {
                   </li>
                 ))}
               </ul>
-              {/* <a href="/login">
-                <Button className="h-10 w-full bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 text-gray-100 font-semibold rounded-lg shadow hover:from-gray-600 hover:to-gray-700 transition-all duration-200 mt-4">
-                  Sign in
+
+              {/* Show logout button if user is logged in */}
+              {userIsLoggedIn && (
+                <Button
+                  onClick={handleLogout}
+                  className="h-10 w-full bg-gradient-to-r from-gray-700 via-gray-600 to-gray-800 text-gray-100 font-semibold rounded-lg shadow hover:from-gray-600 hover:to-gray-700 transition-all duration-200 mt-4"
+                >
+                  Sign out
                 </Button>
-              </a> */}
+              )}
+
               <div className="flex justify-center items-center gap-6 pt-6">
                 <img
                   className="h-12 w-auto grayscale hover:grayscale-0 transition duration-300"

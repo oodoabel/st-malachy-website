@@ -126,6 +126,18 @@ export default function ProfilePage() {
     setIsEditing(false);
   }
 
+  async function handleLogout() {
+    const supabase = createClient();
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error("Error logging out:", error);
+      setErrorModal("Failed to log out. Please try again.");
+    } else {
+      setUserIsLoggedIn(false);
+      router.push("/login");
+    }
+  }
+
   // Handlers for input changes
   const handleChange = (field: keyof typeof form, value: string) => {
     setForm((f) => ({ ...f, [field]: value }));
@@ -318,34 +330,42 @@ export default function ProfilePage() {
           </div>
 
           {/* Buttons */}
-          <div className="flex space-x-4 pt-4 border-t">
-            {isEditing ? (
-              <>
+          <div className="flex justify-between items-center pt-4 border-t">
+            <div>
+              {isEditing ? (
+                <div className="flex space-x-4">
+                  <button
+                    onClick={handleSave}
+                    disabled={saving}
+                    className="px-6 py-2 bg-[#37445A] text-white rounded-lg font-semibold shadow-lg hover:bg-[#283240] transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {saving ? "Saving..." : "Save Changes"}
+                  </button>
+                  <button
+                    onClick={() => {
+                      setIsEditing(false);
+                      // Reload form data from user state if needed (not implemented here)
+                    }}
+                    className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg font-semibold shadow-md hover:bg-gray-400 transition duration-200"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              ) : (
                 <button
-                  onClick={handleSave}
-                  disabled={saving}
-                  className="px-6 py-2 bg-[#37445A] text-white rounded-lg font-semibold shadow-lg hover:bg-[#283240] transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                  onClick={() => setIsEditing(true)}
+                  className="px-6 py-2 bg-[#37445A] text-white rounded-lg font-semibold shadow-lg hover:bg-[#283240] transition duration-200"
                 >
-                  {saving ? "Saving..." : "Save Changes"}
+                  Edit Profile
                 </button>
-                <button
-                  onClick={() => {
-                    setIsEditing(false);
-                    // Reload form data from user state if needed (not implemented here)
-                  }}
-                  className="px-6 py-2 bg-gray-300 text-gray-700 rounded-lg font-semibold shadow-md hover:bg-gray-400 transition duration-200"
-                >
-                  Cancel
-                </button>
-              </>
-            ) : (
-              <button
-                onClick={() => setIsEditing(true)}
-                className="px-6 py-2 bg-[#37445A] text-white rounded-lg font-semibold shadow-lg hover:bg-[#283240] transition duration-200"
-              >
-                Edit Profile
-              </button>
-            )}
+              )}
+            </div>
+            <button
+              onClick={handleLogout}
+              className="px-6 py-2 bg-red-600 text-white rounded-lg font-semibold shadow-lg hover:bg-red-700 transition duration-200"
+            >
+              Log Out
+            </button>
           </div>
         </div>
       </div>
