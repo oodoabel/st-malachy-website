@@ -1,12 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useAppContext } from "@/context";
 import { signup } from "./actions";
 
 const RegisterPage = () => {
-  // const { name, setName } = useAppContext();
   const [formData, setFormData] = useState({
     fullname: "",
     phone: "",

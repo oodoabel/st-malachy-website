@@ -38,6 +38,7 @@ export async function signup(formData: FormData) {
       data: {
         fullName: formData.get("fullname") as string,
         phone: formData.get("phone"),
+        paymentStatus: "unpaid",
       },
     },
   };
@@ -47,11 +48,8 @@ export async function signup(formData: FormData) {
 
   if (error) {
     redirect("/error");
+  } else {
   }
-
   revalidatePath("/", "layout");
-  alert(
-    "Registration successful! Please check your email to verify your account."
-  );
   redirect("/login");
 }

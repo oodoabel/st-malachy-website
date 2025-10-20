@@ -6,8 +6,8 @@ import { User as SupabaseUser } from "@supabase/supabase-js";
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import useAppContext from "@/context";
+import { PaystackButton } from "react-paystack";
 
-// --- Custom Modal Component for Alert Replacement ---
 interface ModalProps {
   message: string;
   onClose: () => void;
@@ -32,17 +32,29 @@ const AlertModal: React.FC<ModalProps> = ({ message, onClose }) => (
   </div>
 );
 
+interface ProfileFormState {
+  full_name: string;
+  phone: string;
+  department: string;
+  forum: string;
+  address: string;
+  paymentStatus: string;
+}
+
 export default function ProfilePage() {
   const router = useRouter();
   // Using the renamed type SupabaseUser
   const [user, setUser] = useState<SupabaseUser | null>(null);
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<ProfileFormState>({
     full_name: "",
     phone: "",
     department: "",
     forum: "",
     address: "",
+    paymentStatus: "",
   });
+  const amount = 200000; // Amount in kobo (e.g., 200000 kobo = 2000 NGN)
+  const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY || "";
   const { setUserIsLoggedIn } = useAppContext();
   const [isEditing, setIsEditing] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -70,11 +82,12 @@ export default function ProfilePage() {
         setUser(u);
         setUserIsLoggedIn(true);
         setForm({
-          full_name: (u.user_metadata as any)?.fullName || "",
+          full_name: (u.user_metadata as any)?.full_name || "",
           phone: (u.user_metadata as any)?.phone || "",
           address: (u.user_metadata as any)?.address || "",
           department: (u.user_metadata as any)?.department || "",
           forum: (u.user_metadata as any)?.forum || "",
+          paymentStatus: (u.user_metadata as any)?.paymentStatus || "",
         });
       } catch (err) {
         console.error("Unexpected error in loadUser:", err);
@@ -97,6 +110,7 @@ export default function ProfilePage() {
         address: form.address,
         department: form.department,
         forum: form.forum,
+        paymentStatus: form.paymentStatus,
       },
     });
 
@@ -113,6 +127,9 @@ export default function ProfilePage() {
       full_name: form.full_name,
       phone: form.phone,
       address: form.address,
+      department: form.department,
+      forum: form.forum,
+      paymentStatus: form.paymentStatus,
     });
 
     if (dbErr) {
@@ -125,6 +142,19 @@ export default function ProfilePage() {
     setSaving(false);
     setIsEditing(false);
   }
+
+  const componentProps = {
+    email: user?.email || "",
+    amount,
+    publicKey,
+    text: "Pay Now",
+    onSuccess: () => {
+      setForm((f) => ({ ...f, paymentStatus: "paid ✅✅" }));
+      handleSave();
+      alert("Payment successful! Thank you for your payment.");
+    },
+    onClose: () => alert("Wait! You need this oil, don't go!!!!"),
+  };
 
   async function handleLogout() {
     const supabase = createClient();
@@ -157,44 +187,63 @@ export default function ProfilePage() {
         <AlertModal message={errorModal} onClose={() => setErrorModal(null)} />
       )}
 
-      <div className="max-w-3xl mx-auto p-6 sm:p-8 md:p-10 mt-13">
-        <h1 className="text-4xl font-extrabold text-[#37445A] mb-8 border-b pb-2">
-          User Settings
+      <div className="max-w-4xl mx-auto p-4 sm:p-6 md:p-10 mt-8 sm:mt-12">
+        <h1 className="text-3xl font-extrabold text-[#37445A] mb-6 sm:mb-8 border-b pb-4">
+          My Profile
         </h1>
 
         <div className="bg-white shadow-2xl rounded-xl p-6 md:p-8 space-y-8">
-          {/* Avatar + change button */}
-          <div className="flex items-center space-x-6 border-b pb-6">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gray-200 overflow-hidden border-4 border-gray-100 shadow-inner">
-              {user.user_metadata?.avatar_url ? (
-                <img
-                  src={user.user_metadata.avatar_url as string}
-                  alt="Avatar"
-                  className="w-full h-full object-cover"
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src =
-                      "https://placehold.co/112x112/A1A1AA/000000?text=User";
-                  }}
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full w-full text-gray-500 bg-gray-100">
-                  {/* Lucide User icon is used here */}
-                  <User className="w-10 h-10" />
-                </div>
+          {/* --- Header Section --- */}
+          <div className="flex flex-col sm:flex-row items-center gap-6 border-b pb-6">
+            <div className="flex items-center gap-4">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gray-200 overflow-hidden border-4 border-gray-100 shadow-inner flex-shrink-0">
+                {user.user_metadata?.avatar_url ? (
+                  <img
+                    src={user.user_metadata.avatar_url as string}
+                    alt="Avatar"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src =
+                        "https://placehold.co/112x112/A1A1AA/000000?text=User";
+                    }}
+                  />
+                ) : (
+                  <div className="flex items-center justify-center h-full w-full text-gray-500 bg-gray-100">
+                    <User className="w-10 h-10" />
+                  </div>
+                )}
+              </div>
+              <button
+                aria-label="Change Picture"
+                onClick={() => {
+                  // handle file upload or pick avatar logic
+                }}
+                className="p-3 bg-[#4CAF50] text-white rounded-full shadow-md hover:bg-[#388E3C] transition duration-200"
+              >
+                <PencilLine className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="flex flex-col justify-center items-center sm:items-end sm:ml-auto text-center sm:text-right">
+              <h3 className="font-semibold text-gray-700">
+                Payment Status:{" "}
+                <span className="font-bold text-[#37445A]">
+                  {form.paymentStatus || "N/A"}
+                </span>
+              </h3>
+              {form.paymentStatus === "unpaid" && (
+                <PaystackButton
+                  {...componentProps}
+                  className="mt-2 px-6 py-2 bg-[#4CAF50] text-white text-md font-medium rounded-lg shadow-md hover:bg-[#388E3C] transition duration-200"
+                >
+                  Make Payment
+                </PaystackButton>
               )}
             </div>
-            <button
-              onClick={() => {
-                // handle file upload or pick avatar logic
-              }}
-              className="px-4 py-2 bg-[#4CAF50] text-white text-md font-medium rounded-lg shadow-md hover:bg-[#388E3C] transition duration-200"
-            >
-              Change Picture
-            </button>
           </div>
 
-          {/* Form fields */}
+          {/* --- Form Fields --- */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Full Name */}
             <label className="block">
@@ -329,8 +378,8 @@ export default function ProfilePage() {
             </label>
           </div>
 
-          {/* Buttons */}
-          <div className="flex justify-between items-center pt-4 border-t">
+          {/* --- Action Buttons --- */}
+          <div className="flex flex-col-reverse sm:flex-row sm:justify-between items-center gap-4 pt-6 border-t">
             <div>
               {isEditing ? (
                 <div className="flex space-x-4">
