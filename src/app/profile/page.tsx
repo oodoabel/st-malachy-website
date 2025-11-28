@@ -37,6 +37,7 @@ interface ProfileFormState {
   phone: string;
   department: string;
   forum: string;
+  level: string;
   address: string;
   paymentStatus: string;
 }
@@ -45,11 +46,21 @@ export default function ProfilePage() {
   const router = useRouter();
   // Using the renamed type SupabaseUser
   const [user, setUser] = useState<SupabaseUser | null>(null);
+  const [formFromDb, setFormFromDb] = useState<ProfileFormState>({
+    full_name: "",
+    phone: "",
+    department: "",
+    forum: "",
+    level: "",
+    address: "",
+    paymentStatus: "",
+  });
   const [form, setForm] = useState<ProfileFormState>({
     full_name: "",
     phone: "",
     department: "",
     forum: "",
+    level: "",
     address: "",
     paymentStatus: "",
   });
@@ -61,6 +72,27 @@ export default function ProfilePage() {
   const [errorModal, setErrorModal] = useState<string | null>(null); // State for custom alert
 
   // Load user data and form state
+  useEffect(() => {
+    async function loadProfileFromDb(email?: string, id?: string) {
+      if (!email && !id) return;
+      const q = email
+        ? `?email=${encodeURIComponent(email)}`
+        : `?id=${encodeURIComponent(id as string)}`;
+      const res = await fetch(`/api/profile${q}`);
+      if (!res.ok) {
+        console.error("Failed to load profile", await res.text());
+        return;
+      }
+      const profile = await res.json();
+      setFormFromDb((f) => ({ ...f, ...profile }));
+    }
+    loadProfileFromDb(user?.email, user?.id);
+  }, [user]);
+  useEffect(() => {
+    if (formFromDb.paymentStatus === "Paid") {
+      handleSave();
+    }
+  }, [formFromDb.paymentStatus]);
   useEffect(() => {
     async function loadUser() {
       try {
@@ -87,6 +119,7 @@ export default function ProfilePage() {
           address: (u.user_metadata as any)?.address || "",
           department: (u.user_metadata as any)?.department || "",
           forum: (u.user_metadata as any)?.forum || "",
+          level: (u.user_metadata as any)?.level || "",
           paymentStatus: (u.user_metadata as any)?.paymentStatus || "",
         });
       } catch (err) {
@@ -101,7 +134,6 @@ export default function ProfilePage() {
     setSaving(true);
     // Assuming createClient() now correctly returns a client-side Supabase instance.
     const supabase = createClient();
-
     // 1. Update Auth Metadata
     const { error: authErr } = await supabase.auth.updateUser({
       data: {
@@ -121,22 +153,23 @@ export default function ProfilePage() {
       return;
     }
 
-    // 2. Update Database Profile Table
-    const { error: dbErr } = await supabase.from("profiles").upsert({
-      id: user.id,
-      full_name: form.full_name,
-      phone: form.phone,
-      address: form.address,
-      department: form.department,
-      forum: form.forum,
-      paymentStatus: form.paymentStatus,
+    // call server route to upsert DB record
+    const res = await fetch("/api/profile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: user.id,
+        email: user.email,
+        ...form,
+      }),
     });
 
-    if (dbErr) {
-      console.error("Error writing to profiles table:", dbErr);
-      setErrorModal(
-        "Profile saved, but an error occurred updating the database table."
-      );
+    if (!res.ok) {
+      setErrorModal("Failed to save profile to database.");
+      setSaving(false);
+      return;
+    } else {
+      alert("Succesfully saved profile to database");
     }
 
     setSaving(false);
@@ -148,12 +181,46 @@ export default function ProfilePage() {
     amount,
     publicKey,
     text: "Pay Now",
-    onSuccess: () => {
-      setForm((f) => ({ ...f, paymentStatus: "paid ✅✅" }));
-      handleSave();
-      alert("Payment successful! Thank you for your payment.");
+    metadata: {
+      name: form.full_name,
+      phone: form.phone,
+      // Pass additional user details to be available on the receipt
+      custom_fields: [
+        {
+          display_name: "Full Name",
+          variable_name: "full_name",
+          value: form.full_name,
+        },
+        { display_name: "Level", variable_name: "level", value: form.level },
+        { display_name: "Forum", variable_name: "forum", value: form.forum },
+      ],
     },
-    onClose: () => alert("Wait! You need this oil, don't go!!!!"),
+    onSuccess: (reference: any) => {
+      // 1. Update payment status in the form state
+      setForm((f) => ({ ...f, paymentStatus: "Paid" }));
+
+      // 2. Prepare all data for the receipt page
+      const receiptData = {
+        ...reference,
+        full_name: form.full_name,
+        level: form.level,
+        forum: form.forum,
+        email: user?.email || "",
+      };
+
+      // 3. Construct the URL for the receipt page with all details
+      const query = new URLSearchParams(receiptData).toString();
+      const receiptUrl = `/receipt?${query}`;
+
+      // 4. Redirect to the receipt page
+      router.push(receiptUrl);
+    },
+    onClose: () => {
+      // You can use the custom modal here for a better UX
+      setErrorModal(
+        "Payment window closed. You can try again from your profile."
+      );
+    },
   };
 
   async function handleLogout() {
@@ -196,7 +263,7 @@ export default function ProfilePage() {
           {/* --- Header Section --- */}
           <div className="flex flex-col sm:flex-row items-center gap-6 border-b pb-6">
             <div className="flex items-center gap-4">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gray-200 overflow-hidden border-4 border-gray-100 shadow-inner flex-shrink-0">
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gray-200 overflow-hidden border-4 border-gray-100 shadow-inner flex-shrink-0 mx-auto sm:mx-0">
                 {user.user_metadata?.avatar_url ? (
                   <img
                     src={user.user_metadata.avatar_url as string}
@@ -210,35 +277,41 @@ export default function ProfilePage() {
                   />
                 ) : (
                   <div className="flex items-center justify-center h-full w-full text-gray-500 bg-gray-100">
-                    <User className="w-10 h-10" />
+                    <User className="w-10 h-10 sm:w-12 sm:h-12" />
                   </div>
                 )}
+
+                {/* Floating edit button (always visible on corner) */}
+                <button
+                  aria-label="Change Picture"
+                  onClick={() => {
+                    // handle file upload or pick avatar logic
+                  }}
+                  className="absolute bottom-1 right-1 p-2 sm:p-2.5 bg-[#4CAF50] text-white rounded-full shadow-md hover:bg-[#388E3C] transition duration-200"
+                >
+                  <PencilLine className="w-4 h-4 sm:w-5 sm:h-5" />
+                </button>
               </div>
-              <button
-                aria-label="Change Picture"
-                onClick={() => {
-                  // handle file upload or pick avatar logic
-                }}
-                className="p-3 bg-[#4CAF50] text-white rounded-full shadow-md hover:bg-[#388E3C] transition duration-200"
-              >
-                <PencilLine className="w-5 h-5" />
-              </button>
             </div>
 
             <div className="flex flex-col justify-center items-center sm:items-end sm:ml-auto text-center sm:text-right">
-              <h3 className="font-semibold text-gray-700">
+              {/* <h3 className="font-semibold text-gray-700">
                 Payment Status:{" "}
                 <span className="font-bold text-[#37445A]">
                   {form.paymentStatus || "N/A"}
                 </span>
-              </h3>
-              {form.paymentStatus === "unpaid" && (
+              </h3> */}
+              {form.paymentStatus !== "Paid" ? (
                 <PaystackButton
                   {...componentProps}
                   className="mt-2 px-6 py-2 bg-[#4CAF50] text-white text-md font-medium rounded-lg shadow-md hover:bg-[#388E3C] transition duration-200"
                 >
                   Make Payment
                 </PaystackButton>
+              ) : (
+                <div className="mt-2 px-6 py-2 text-green-600 font-semibold border-2 border-green-500 rounded-lg bg-green-50">
+                  Payment Confirmed
+                </div>
               )}
             </div>
           </div>
@@ -342,11 +415,43 @@ export default function ProfilePage() {
                   }`}
                 >
                   <option value="">Select a Forum</option>
-                  <option value="option1">Freshman</option>
-                  <option value="option2">Triumphant Family</option>
-                  <option value="option3">Golden Phoenix Family</option>
-                  <option value="option4">Luminous Family</option>
-                  <option value="option5">Excellers in Christ</option>
+                  <option value="Freshman">Freshman</option>
+                  <option value="Triumphant Family">Triumphant Family</option>
+                  <option value="Golden Phoenix Family">
+                    Golden Phoenix Family
+                  </option>
+                  <option value="Luminous Family">Luminous Family</option>
+                  <option value="Excellers in Christ">
+                    Excellers in Christ
+                  </option>
+                </select>
+                {isEditing && (
+                  <PencilLine className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                )}
+              </div>
+            </label>
+            {/* Level */}
+            <label className="block">
+              <span className="text-sm font-medium text-gray-700 mb-1 block">
+                Level
+              </span>
+              <div className="relative">
+                <select
+                  value={form.level}
+                  disabled={!isEditing}
+                  onChange={(e) => handleChange("level", e.target.value)}
+                  className={`block w-full rounded-lg border-2 transition-all duration-150 px-4 py-2 text-gray-800 ${
+                    isEditing
+                      ? "border-[#37445A] focus:ring-2 focus:ring-[#37445A]/50 bg-white"
+                      : "border-gray-200 bg-gray-50 cursor-not-allowed"
+                  }`}
+                >
+                  <option value="">Select a Level</option>
+                  <option value="100 Level">100 Level</option>
+                  <option value="200 Level">200 Level</option>
+                  <option value="300 Level">300 Level</option>
+                  <option value="400 Level">400 Level</option>
+                  <option value="500 Level">500 Level</option>
                 </select>
                 {isEditing && (
                   <PencilLine className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
