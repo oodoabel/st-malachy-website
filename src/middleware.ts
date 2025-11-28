@@ -3,11 +3,11 @@ import { updateSession } from "@/utils/supabase/middleware";
 
 export async function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  
-  if (pathname === "/_not-found") {
-    return;
-  }
-  
+
+  // if (pathname === "/_not-found") {
+  //   return;
+  // }
+
   return await updateSession(request);
 }
 
