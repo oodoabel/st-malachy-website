@@ -36,16 +36,16 @@ const massTimes = [
 
 const MassSchedule = () => {
   return (
-    <section className="w-full py-20 bg-[var(--primary-navy)] border-t border-white/5">
+    <section className="w-full py-20 bg-white border-t border-[var(--border-color)]">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div>
             <h2 className="text-[var(--primary-red)] font-bold tracking-widest uppercase text-sm mb-3">
               Worship With Us
             </h2>
-            <h3 className="text-4xl font-bold text-white">Mass Schedule</h3>
+            <h3 className="text-4xl font-bold text-[var(--text-primary)]">Mass Schedule</h3>
           </div>
-          <p className="text-[var(--accent-silver)] max-w-md text-right md:text-left">
+          <p className="text-[var(--text-secondary)] max-w-md">
             Join us in the celebration of the Holy Eucharist.
           </p>
         </div>
@@ -54,16 +54,16 @@ const MassSchedule = () => {
           {massTimes.map((mass, index) => (
             <div
               key={index}
-              className="group relative bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 transition-all duration-300"
+              className="group relative bg-gradient-to-br from-white to-[var(--secondary-bg)] border-2 border-[var(--border-color)] rounded-xl p-6 hover:border-[var(--primary-red)]/50 hover:shadow-lg hover:shadow-[var(--primary-red)]/10 transition-all duration-300"
             >
               <div className="flex justify-between items-start mb-4">
-                <span className="text-white font-bold text-lg">{mass.day}</span>
-                <span className="px-3 py-1 rounded-full bg-[var(--primary-red)]/20 text-[var(--primary-red)] text-xs font-bold uppercase tracking-wider">
+                <span className="text-[var(--text-primary)] font-bold text-lg">{mass.day}</span>
+                <span className="px-3 py-1 rounded-full bg-[var(--primary-red)] text-white text-xs font-bold uppercase tracking-wider shadow-md">
                   {mass.time}
                 </span>
               </div>
 
-              <div className="flex items-center gap-2 text-[var(--accent-silver)] text-sm mb-2">
+              <div className="flex items-center gap-2 text-[var(--text-secondary)] text-sm mb-2">
                 <MapPin className="w-4 h-4" />
                 {mass.location}
               </div>

@@ -102,38 +102,38 @@ const NavbarHero: React.FC = () => {
             </div>
 
             {/* Right Column: Floating Visuals (5 cols) */}
-            <div className="lg:col-span-5 relative h-[500px] lg:h-[600px] flex items-center justify-center perspective-1000">
-              {/* Abstract Background Shapes */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-30 group-hover:opacity-10 transition-opacity duration-700" />
+            <div className="lg:col-span-5 relative h-[600px] lg:h-[700px] flex items-center justify-center">
+              {/* Decorative gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-red)]/5 via-transparent to-blue-50 rounded-3xl blur-3xl"></div>
 
               {/* Floating Image Deck */}
               <div className="relative w-full h-full">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentImage}
-                    initial={{ opacity: 0, x: 50, rotateY: -10 }}
-                    animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                    exit={{ opacity: 0, x: -50, rotateY: 10 }}
-                    transition={{ duration: 0.8, ease: "circOut" }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
                     className="absolute inset-0 z-20"
                   >
-                    <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-xl border-4 border-[var(--border-color)] group-hover:border-[var(--primary-red)]/30 transition-all duration-700">
+                    <div className="relative h-full w-full rounded-3xl overflow-hidden shadow-2xl border border-[var(--border-color)] hover:shadow-[var(--primary-red)]/20 hover:border-[var(--primary-red)]/30 transition-all duration-700 group">
                       <img
                         src={images[currentImage]}
                         alt="Chaplaincy Life"
-                        className="w-full h-full object-cover transition-transform duration-[3000ms] ease-in-out group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-[5000ms] ease-in-out group-hover:scale-105"
                       />
+                      {/* Subtle overlay for text readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60"></div>
+
                       {/* Image Overlay Info */}
-                      <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-8">
-                        <p className="text-white/80 text-sm uppercase tracking-widest mb-1">Featured Gallery</p>
-                        <p className="text-white text-xl font-bold">Community Moments {currentImage + 1}</p>
+                      <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-8">
+                        <p className="text-white/90 text-sm uppercase tracking-widest mb-1 font-bold">Featured Gallery</p>
+                        <p className="text-white text-2xl font-bold">Community Moments</p>
                       </div>
                     </div>
                   </motion.div>
                 </AnimatePresence>
-
-                {/* Decorative Frame Behind */}
-                <div className="absolute top-8 -right-8 w-full h-full border-2 border-[var(--primary-red)]/30 z-10 hidden md:block"></div>
               </div>
             </div>
           </div>

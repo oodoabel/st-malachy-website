@@ -38,7 +38,7 @@ const Hamburger: React.FC<{ navItems: NavItem[] }> = ({ navItems }) => {
                   <li key={href}>
                     <Link
                       href={href}
-                      className="flex items-center gap-4 px-4 py-4 rounded-lg text-sm font-bold uppercase tracking-widest text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--secondary-bg)] transition-all duration-300 group">
+                      className="flex items-center gap-4 px-4 py-4 rounded-lg text-sm font-bold uppercase tracking-widest text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--secondary-bg)] transition-all duration-300 group"
                     >
                       <span className="text-[var(--primary-red)] group-hover:scale-110 transition-transform">
                         {icon}

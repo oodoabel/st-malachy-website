@@ -33,19 +33,19 @@ const priests: Priest[] = [
 
 const PriestCard = ({ priest }: { priest: Priest }) => {
   return (
-    <div className="group relative">
-      <div className="relative h-[400px] w-full overflow-hidden rounded-xl bg-white/5 grayscale transition-all duration-500 group-hover:grayscale-0">
+    <div className="group relative bg-white border-2 border-[var(--border-color)] rounded-2xl overflow-hidden hover:border-[var(--primary-red)]/50 shadow-lg hover:shadow-xl hover:shadow-[var(--primary-red)]/10 transition-all duration-500">
+      <div className="relative h-[400px] w-full overflow-hidden transition-all duration-500">
         <Image
           src={priest.imageUrl}
           alt={`Portrait of ${priest.name}`}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, 400px"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary-navy)] via-transparent to-transparent opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
 
-        <div className="absolute bottom-0 left-0 w-full p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-          <p className="text-[var(--primary-red)] text-xs font-bold uppercase tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+        <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/90 to-transparent">
+          <p className="text-[var(--primary-red)] text-xs font-bold uppercase tracking-widest mb-2">
             {priest.office}
           </p>
           <h3 className="text-2xl font-bold text-white leading-tight">
@@ -59,13 +59,9 @@ const PriestCard = ({ priest }: { priest: Priest }) => {
 
 const PriestsListing = () => {
   return (
-    <section className="bg-[var(--primary-navy)] py-24 relative overflow-hidden">
-      {/* Background Text */}
-      <div className="absolute top-10 right-0 pointer-events-none select-none opacity-5">
-        <h2 className="text-[10vw] font-black text-white leading-none text-right">
-          LEADERS<br />GUIDES
-        </h2>
-      </div>
+    <section className="bg-gradient-to-b from-white to-[var(--secondary-bg)] py-24 relative overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute top-10 right-0 w-96 h-96 bg-gradient-to-br from-[var(--primary-red)]/5 to-transparent rounded-full blur-3xl"></div>
 
       <div className="mx-auto max-w-[1400px] px-6 relative z-10">
         <div className="mb-16">
@@ -73,7 +69,7 @@ const PriestsListing = () => {
             <span className="w-8 h-[2px] bg-[var(--primary-red)]"></span>
             Our Shepherds
           </h2>
-          <h3 className="text-4xl md:text-5xl font-bold text-white">
+          <h3 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)]">
             Spiritual Leadership
           </h3>
         </div>
