@@ -78,7 +78,7 @@ const AboutPage = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as any },
     },
   };
 
@@ -91,7 +91,7 @@ const AboutPage = () => {
         variants={containerVariants}
       >
         {/* Header */}
-        <motion.header className="text-center" variants={itemVariants}>
+        <motion.header className="text-center" variants={itemVariants as any}>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
             About Our Chaplaincy
           </h1>
@@ -220,7 +220,7 @@ const AboutPage = () => {
           </div>
         </motion.footer>
       </motion.div>
-    </div>
+    </div >
   );
 };
 

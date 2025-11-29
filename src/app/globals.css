@@ -45,24 +45,33 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+
+  /* Premium Catholic Color Scheme */
+  --primary-burgundy: #8B1538;
+  --primary-gold: #D4AF37;
+  --accent-cream: #FAF9F6;
+  --dark-navy: #1A1F2E;
+  --highlight-blue: #4A90E2;
+
+  /* Light Theme Colors */
+  --background: oklch(0.99 0.005 85);
+  --foreground: oklch(0.15 0.02 20);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.15 0.02 20);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.15 0.02 20);
+  --primary: oklch(0.35 0.15 15);
+  --primary-foreground: oklch(0.99 0.005 85);
+  --secondary: oklch(0.75 0.08 45);
+  --secondary-foreground: oklch(0.15 0.02 20);
+  --muted: oklch(0.96 0.005 85);
+  --muted-foreground: oklch(0.45 0.02 20);
+  --accent: oklch(0.75 0.08 45);
+  --accent-foreground: oklch(0.15 0.02 20);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.90 0.005 85);
+  --input: oklch(0.90 0.005 85);
+  --ring: oklch(0.35 0.15 15);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -70,52 +79,53 @@
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary: oklch(0.35 0.15 15);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar-accent: oklch(0.96 0.005 85);
+  --sidebar-accent-foreground: oklch(0.15 0.02 20);
+  --sidebar-border: oklch(0.90 0.005 85);
+  --sidebar-ring: oklch(0.35 0.15 15);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: oklch(0.15 0.02 20);
+  --foreground: oklch(0.99 0.005 85);
+  --card: oklch(0.20 0.02 20);
+  --card-foreground: oklch(0.99 0.005 85);
+  --popover: oklch(0.20 0.02 20);
+  --popover-foreground: oklch(0.99 0.005 85);
+  --primary: oklch(0.75 0.08 45);
+  --primary-foreground: oklch(0.15 0.02 20);
+  --secondary: oklch(0.30 0.02 20);
+  --secondary-foreground: oklch(0.99 0.005 85);
+  --muted: oklch(0.30 0.02 20);
+  --muted-foreground: oklch(0.70 0.02 20);
+  --accent: oklch(0.75 0.08 45);
+  --accent-foreground: oklch(0.15 0.02 20);
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --ring: oklch(0.75 0.08 45);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar: oklch(0.20 0.02 20);
+  --sidebar-foreground: oklch(0.99 0.005 85);
+  --sidebar-primary: oklch(0.75 0.08 45);
+  --sidebar-primary-foreground: oklch(0.15 0.02 20);
+  --sidebar-accent: oklch(0.30 0.02 20);
+  --sidebar-accent-foreground: oklch(0.99 0.005 85);
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: oklch(0.75 0.08 45);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -123,4 +133,98 @@
 
 .hover-effect {
   @apply before:scale-3d;
+}
+
+/* Premium Glassmorphism */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-card-dark {
+  background: rgba(26, 31, 46, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Premium Gradients */
+.gradient-burgundy {
+  background: linear-gradient(135deg, #8B1538 0%, #5A0E24 100%);
+}
+
+.gradient-gold {
+  background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
+}
+
+.gradient-overlay {
+  background: linear-gradient(135deg, rgba(139, 21, 56, 0.85) 0%, rgba(26, 31, 46, 0.7) 100%);
+}
+
+/* Smooth Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Premium Button Styles */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.btn-premium:hover::before {
+  width: 300px;
+  height: 300px;
 }
