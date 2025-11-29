@@ -46,16 +46,22 @@
 :root {
   --radius: 0.625rem;
 
-  /* Modern Premium Color Scheme */
-  --primary-navy: #0F172A;
-  /* Deep Navy - Base Background */
+  /* Modern Premium Light Theme Color Scheme */
+  --primary-bg: #FFFFFF;
+  /* White - Base Background */
+  --secondary-bg: #F8FAFC;
+  /* Very Light Gray - Secondary Background */
+  --tertiary-bg: #F1F5F9;
+  /* Light Gray - Tertiary Background */
   --primary-red: #E11D48;
   /* Vibrant Red - Strategic Accent */
-  --accent-silver: #E2E8F0;
-  /* Cool Silver - Secondary Text/Borders */
-  --text-white: #F8FAFC;
-  /* Crisp White - Primary Text */
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-primary: #1E293B;
+  /* Dark Gray - Primary Text */
+  --text-secondary: #64748B;
+  /* Medium Gray - Secondary Text */
+  --border-color: #E2E8F0;
+  /* Light Gray - Borders */
+  --glass-border: rgba(0, 0, 0, 0.08);
 
   /* Light Theme Colors (kept for compatibility, but focus is dark mode) */
   --background: oklch(0.99 0.005 85);
@@ -139,21 +145,21 @@
   @apply before:scale-3d;
 }
 
-/* Modern Glassmorphism */
+/* Modern Glassmorphism - Light Theme */
 .glass-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .glass-card-dark {
-  background: rgba(15, 23, 42, 0.6);
-  /* Navy base */
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
 }
 
 /* Premium Gradients */

@@ -35,19 +35,19 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 transition-all duration-300 bg-[var(--primary-navy)]/80 backdrop-blur-md border-b border-white/5">
+    <nav className="fixed top-0 w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-[var(--border-color)]">
       <div className="max-w-[1400px] mx-auto px-6 h-20 flex justify-between items-center">
         {/* Logo Area */}
         <a
           href="/"
           className="group flex items-center gap-3"
         >
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 group-hover:border-[var(--primary-red)]/50 transition-colors">
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-[var(--secondary-bg)] border border-[var(--border-color)] group-hover:border-[var(--primary-red)]/50 transition-colors">
             <span className="text-xl text-[var(--primary-red)] font-serif">✝</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-white font-bold tracking-wider text-sm uppercase leading-none">St. Malachy's</span>
-            <span className="text-[var(--accent-silver)] text-[10px] tracking-[0.2em] uppercase leading-none mt-1 group-hover:text-[var(--primary-red)] transition-colors">Chaplaincy</span>
+            <span className="text-[var(--text-primary)] font-bold tracking-wider text-sm uppercase leading-none">St. Malachy's</span>
+            <span className="text-[var(--text-secondary)] text-[10px] tracking-[0.2em] uppercase leading-none mt-1 group-hover:text-[var(--primary-red)] transition-colors">Chaplaincy</span>
           </div>
         </a>
 
@@ -59,7 +59,7 @@ const Navbar = () => {
                 href={href}
                 className="relative group flex items-center gap-2 py-2"
               >
-                <span className="text-[var(--accent-silver)] group-hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">
+                <span className="text-[var(--text-secondary)] group-hover:text-[var(--text-primary)] text-xs font-bold uppercase tracking-widest transition-colors">
                   {label}
                 </span>
                 <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--primary-red)] transition-all duration-300 group-hover:w-full"></span>

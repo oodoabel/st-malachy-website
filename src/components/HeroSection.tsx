@@ -24,11 +24,20 @@ const NavbarHero: React.FC = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const stats = [
+    { value: "500+", label: "Active Members" },
+    { value: "14", label: "Active Societies" },
+    { value: "Weekly", label: "Mass & Events" },
+  ];
+
   return (
     <>
       <Navbar />
 
-      <section className="relative min-h-screen w-full bg-[var(--primary-navy)] overflow-hidden pt-20">
+      <section className="relative min-h-screen w-full overflow-hidden bg-[var(--primary-bg)]">
+        {/* Background Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-red)]/3 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-[var(--secondary-bg)] to-transparent pointer-events-none" />
         {/* Noise Texture Overlay */}
         <div className="absolute inset-0 z-0 bg-noise opacity-30 pointer-events-none mix-blend-overlay"></div>
 
@@ -63,30 +72,28 @@ const NavbarHero: React.FC = () => {
                   <span className="text-[var(--primary-red)] font-bold tracking-widest uppercase text-sm">Est. 2005</span>
                 </div>
 
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.9] tracking-tight mb-8">
-                  One Family <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">
-                    Working for
-                  </span> <br />
-                  <span className="text-[var(--primary-red)] italic font-serif">Christ.</span>
+                <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-[var(--text-primary)] leading-none mb-6">
+                  Welcome to <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-red)] to-[var(--primary-red)]/70">
+                    St. Malachy's
+                  </span>
                 </h1>
-
-                <p className="text-lg text-gray-400 max-w-xl leading-relaxed mb-10 border-l border-white/10 pl-6">
-                  The Nigerian Federation of Catholic Students (NFCS) at FUTMinna is a vibrant community dedicated to spiritual growth, academic excellence, and selfless service.
+                <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-8 max-w-2xl leading-relaxed">
+                  One Family Working for Christ - Building Faith, Fellowship, and
+                  Excellence
                 </p>
 
                 <div className="flex flex-wrap gap-6">
                   <Link href="/register">
-                    <button className="group relative px-8 py-4 bg-[var(--primary-red)] text-white font-bold text-lg tracking-wide overflow-hidden transition-transform hover:scale-105">
+                    <button className="group px-8 py-4 bg-[var(--primary-red)] text-white rounded-full font-bold text-lg hover:bg-[var(--primary-red)]/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[var(--primary-red)]/20">
                       <span className="relative z-10 flex items-center gap-3">
                         Join the Family <ArrowRight className="w-5 h-5" />
                       </span>
-                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
                     </button>
                   </Link>
 
                   <Link href="/about">
-                    <button className="group flex items-center gap-3 px-8 py-4 border border-white/20 text-white font-medium hover:bg-white/5 transition-colors">
+                    <button className="group flex items-center gap-3 px-8 py-4 bg-white border-2 border-[var(--border-color)] text-[var(--text-primary)] rounded-full font-bold text-lg hover:bg-[var(--secondary-bg)] transition-all duration-300 hover:scale-105">
                       <Play className="w-4 h-4 fill-current" /> Watch Video
                     </button>
                   </Link>
@@ -97,7 +104,7 @@ const NavbarHero: React.FC = () => {
             {/* Right Column: Floating Visuals (5 cols) */}
             <div className="lg:col-span-5 relative h-[500px] lg:h-[600px] flex items-center justify-center perspective-1000">
               {/* Abstract Background Shapes */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-[var(--primary-red)]/20 to-transparent rounded-full blur-[100px] animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-30 group-hover:opacity-10 transition-opacity duration-700" />
 
               {/* Floating Image Deck */}
               <div className="relative w-full h-full">
@@ -110,11 +117,11 @@ const NavbarHero: React.FC = () => {
                     transition={{ duration: 0.8, ease: "circOut" }}
                     className="absolute inset-0 z-20"
                   >
-                    <div className="relative w-full h-full rounded-none overflow-hidden shadow-2xl border-4 border-white/5">
+                    <div className="relative h-[500px] w-full rounded-2xl overflow-hidden shadow-xl border-4 border-[var(--border-color)] group-hover:border-[var(--primary-red)]/30 transition-all duration-700">
                       <img
                         src={images[currentImage]}
                         alt="Chaplaincy Life"
-                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-110"
+                        className="w-full h-full object-cover transition-transform duration-[3000ms] ease-in-out group-hover:scale-110"
                       />
                       {/* Image Overlay Info */}
                       <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-8">
@@ -135,20 +142,21 @@ const NavbarHero: React.FC = () => {
           <div className="w-full border-t border-white/10 py-6 mt-auto">
             <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-white/60 text-sm font-medium uppercase tracking-widest">
               <div className="flex items-center gap-12">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl font-bold text-white">500+</span>
-                  <span className="text-xs">Active<br />Members</span>
-                </div>
-                <div className="w-[1px] h-8 bg-white/10"></div>
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl font-bold text-white">14</span>
-                  <span className="text-xs">Active<br />Societies</span>
-                </div>
-                <div className="w-[1px] h-8 bg-white/10"></div>
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl font-bold text-white">Weekly</span>
-                  <span className="text-xs">Mass &<br />Events</span>
-                </div>
+                {stats.map((stat, index) => (
+                  <React.Fragment key={stat.label}>
+                    <div className="text-center">
+                      <div className="text-4xl font-black text-[var(--primary-red)] mb-2">
+                        {stat.value}
+                      </div>
+                      <div className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider">
+                        {stat.label}
+                      </div>
+                    </div>
+                    {index < stats.length - 1 && (
+                      <div className="w-[1px] h-8 bg-white/10 hidden md:block"></div>
+                    )}
+                  </React.Fragment>
+                ))}
               </div>
 
               <Link href="/societies" className="flex items-center gap-2 hover:text-[var(--primary-red)] transition-colors group">
