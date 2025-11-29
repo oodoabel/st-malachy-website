@@ -35,41 +35,42 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 mb-10 w-full glass-card-dark shadow-lg z-50 border-b border-[var(--primary-gold)]/20">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav className="fixed top-0 w-full z-50 transition-all duration-300 bg-[var(--primary-navy)]/80 backdrop-blur-md border-b border-white/5">
+      <div className="max-w-[1400px] mx-auto px-6 h-20 flex justify-between items-center">
+        {/* Logo Area */}
         <a
           href="/"
-          className="md:text-xl text-lg font-extrabold text-[var(--primary-gold)] hover:text-[var(--primary-gold)]/80 transition-colors duration-300 flex items-center gap-2"
+          className="group flex items-center gap-3"
         >
-          <span className="text-2xl">✝</span>
-          St Malachy's Chaplaincy
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 group-hover:border-[var(--primary-red)]/50 transition-colors">
+            <span className="text-xl text-[var(--primary-red)] font-serif">✝</span>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-white font-bold tracking-wider text-sm uppercase leading-none">St. Malachy's</span>
+            <span className="text-[var(--accent-silver)] text-[10px] tracking-[0.2em] uppercase leading-none mt-1 group-hover:text-[var(--primary-red)] transition-colors">Chaplaincy</span>
+          </div>
         </a>
 
-        <ul className="hidden md:flex space-x-8 text-sm font-medium text-gray-200">
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex items-center gap-8">
           {navItems.map(({ icon, href, label }) => (
-            <li key={href} className="ml-2">
+            <li key={href}>
               <a
                 href={href}
-                className="hover:text-[var(--primary-gold)] flex items-center space-x-1 transition-all duration-300 group relative"
+                className="relative group flex items-center gap-2 py-2"
               >
-                <span className="group-hover:scale-110 transition-transform duration-300">
-                  {icon}
+                <span className="text-[var(--accent-silver)] group-hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">
+                  {label}
                 </span>
-                <span>{label}</span>
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--primary-gold)] transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[var(--primary-red)] transition-all duration-300 group-hover:w-full"></span>
               </a>
             </li>
           ))}
         </ul>
 
         {/* Mobile menu button */}
-        <div
-          aria-label="Toggle menu"
-          className="md:hidden text-[var(--primary-gold)] focus:outline-none"
-        >
-          <div className="md:hidden">
-            <Hamburger navItems={navItems} />
-          </div>
+        <div className="md:hidden">
+          <Hamburger navItems={navItems} />
         </div>
       </div>
     </nav>

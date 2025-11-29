@@ -1,13 +1,8 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
-import Slider from "react-slick";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Play, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-
-// Import slick-carousel css
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import Navbar from "./navBar";
 
 const images = [
@@ -17,209 +12,151 @@ const images = [
   "/gal4.png",
   "/gal5.png",
   "/gal6.png",
-  "/gal7.png",
-  "/gal8.png",
-  "/gal9.png",
 ];
 
 const NavbarHero: React.FC = () => {
-  const sliderSettings = {
-    dots: false,
-    infinite: true,
-    speed: 1000,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    arrows: false,
-    pauseOnHover: false,
-    fade: true,
-    cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
-  };
+  const [currentImage, setCurrentImage] = useState(0);
 
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.4, 0, 0.2, 1] as any,
-      },
-    },
-  } as any;
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <>
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[var(--accent-cream)]">
-        {/* Background Image Slider with Overlay */}
-        <div className="absolute inset-0 z-0">
-          <Slider {...sliderSettings}>
-            {images.map((src, idx) => (
-              <div key={idx} className="relative h-screen">
-                <img
-                  src={src}
-                  alt={`St. Malachy Chaplaincy ${idx + 1}`}
-                  className="h-full w-full object-cover"
-                  loading={idx === 0 ? "eager" : "lazy"}
-                />
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 gradient-overlay" />
-              </div>
-            ))}
-          </Slider>
+      <section className="relative min-h-screen w-full bg-[var(--primary-navy)] overflow-hidden pt-20">
+        {/* Noise Texture Overlay */}
+        <div className="absolute inset-0 z-0 bg-noise opacity-30 pointer-events-none mix-blend-overlay"></div>
+
+        {/* Background Editorial Typography */}
+        <div className="absolute top-1/4 left-0 w-full overflow-hidden pointer-events-none z-0 select-none">
+          <h1 className="text-[15vw] leading-none font-black text-outline opacity-10 whitespace-nowrap animate-[shimmer_60s_linear_infinite]">
+            FAITH • SERVICE • COMMUNITY • FAITH • SERVICE • COMMUNITY
+          </h1>
         </div>
 
-        {/* Decorative Pattern Overlay */}
-        <div className="absolute inset-0 z-10 opacity-5">
-          <div
-            className="h-full w-full"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-              backgroundSize: "30px 30px",
-            }}
-          />
-        </div>
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 h-full flex flex-col justify-between min-h-[calc(100vh-80px)]">
+          {/* Main Grid Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center flex-grow py-12">
 
-        {/* Main Content */}
-        <div className="relative z-20 flex min-h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl w-full">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-col items-center text-center"
-            >
-              {/* Chaplaincy Badge */}
+            {/* Left Column: Content (7 cols) */}
+            <div className="lg:col-span-7 flex flex-col justify-center relative">
+              {/* Decorative Line */}
               <motion.div
-                variants={itemVariants}
-                className="mb-6 inline-flex items-center gap-2 rounded-full glass-card-dark px-6 py-2 text-sm font-medium text-[var(--primary-gold)] shadow-lg"
+                initial={{ height: 0 }}
+                animate={{ height: "100px" }}
+                transition={{ duration: 1, ease: "circOut" }}
+                className="absolute -left-8 top-0 w-[2px] bg-[var(--primary-red)] hidden lg:block"
+              ></motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--primary-gold)] opacity-75"></span>
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--primary-gold)]"></span>
-                </span>
-                NFCS FUTMinna
+                <div className="flex items-center gap-3 mb-6">
+                  <span className="h-[1px] w-12 bg-[var(--primary-red)]"></span>
+                  <span className="text-[var(--primary-red)] font-bold tracking-widest uppercase text-sm">Est. 2005</span>
+                </div>
+
+                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.9] tracking-tight mb-8">
+                  One Family <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">
+                    Working for
+                  </span> <br />
+                  <span className="text-[var(--primary-red)] italic font-serif">Christ.</span>
+                </h1>
+
+                <p className="text-lg text-gray-400 max-w-xl leading-relaxed mb-10 border-l border-white/10 pl-6">
+                  The Nigerian Federation of Catholic Students (NFCS) at FUTMinna is a vibrant community dedicated to spiritual growth, academic excellence, and selfless service.
+                </p>
+
+                <div className="flex flex-wrap gap-6">
+                  <Link href="/register">
+                    <button className="group relative px-8 py-4 bg-[var(--primary-red)] text-white font-bold text-lg tracking-wide overflow-hidden transition-transform hover:scale-105">
+                      <span className="relative z-10 flex items-center gap-3">
+                        Join the Family <ArrowRight className="w-5 h-5" />
+                      </span>
+                      <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+                    </button>
+                  </Link>
+
+                  <Link href="/about">
+                    <button className="group flex items-center gap-3 px-8 py-4 border border-white/20 text-white font-medium hover:bg-white/5 transition-colors">
+                      <Play className="w-4 h-4 fill-current" /> Watch Video
+                    </button>
+                  </Link>
+                </div>
               </motion.div>
+            </div>
 
-              {/* Main Headline */}
-              <motion.h1
-                variants={itemVariants}
-                className="mb-6 text-4xl font-extrabold leading-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
-              >
-                Welcome to{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 bg-gradient-to-r from-[var(--primary-gold)] to-yellow-300 bg-clip-text text-transparent">
-                    St. Malachy's
-                  </span>
-                  <span className="absolute -bottom-2 left-0 h-3 w-full bg-[var(--primary-gold)] opacity-20 blur-sm"></span>
-                </span>
-                <br />
-                Chaplaincy
-              </motion.h1>
+            {/* Right Column: Floating Visuals (5 cols) */}
+            <div className="lg:col-span-5 relative h-[500px] lg:h-[600px] flex items-center justify-center perspective-1000">
+              {/* Abstract Background Shapes */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-[var(--primary-red)]/20 to-transparent rounded-full blur-[100px] animate-pulse"></div>
 
-              {/* Subtitle */}
-              <motion.p
-                variants={itemVariants}
-                className="mb-8 max-w-2xl text-lg font-medium text-gray-100 sm:text-xl md:text-2xl"
-              >
-                One Family Working for Christ
-              </motion.p>
-
-              {/* Description */}
-              <motion.p
-                variants={itemVariants}
-                className="mb-12 max-w-3xl text-base text-gray-200 sm:text-lg"
-              >
-                Join a vibrant community of Catholic students dedicated to
-                spiritual growth, fellowship, and service at the Federal
-                University of Technology Minna.
-              </motion.p>
-
-              {/* CTA Buttons */}
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-col gap-4 sm:flex-row sm:gap-6"
-              >
-                <Link href="/register">
-                  <button className="group relative overflow-hidden rounded-lg bg-[var(--primary-gold)] px-8 py-4 font-semibold text-[var(--dark-navy)] shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] btn-premium">
-                    <span className="relative z-10 flex items-center gap-2">
-                      Register as an NFCSer
-                      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </button>
-                </Link>
-
-                <Link href="/about/forums">
-                  <button className="group relative overflow-hidden rounded-lg border-2 border-[var(--primary-gold)] bg-transparent px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:bg-[var(--primary-gold)] hover:text-[var(--dark-navy)] btn-premium">
-                    <span className="relative z-10 flex items-center gap-2">
-                      Explore Our Forums
-                      <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                    </span>
-                  </button>
-                </Link>
-              </motion.div>
-
-              {/* Stats Section */}
-              <motion.div
-                variants={itemVariants}
-                className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-8"
-              >
-                {[
-                  { label: "Active Members", value: "500+" },
-                  { label: "Societies", value: "14" },
-                  { label: "Weekly Events", value: "10+" },
-                  { label: "Years Active", value: "20+" },
-                ].map((stat, idx) => (
-                  <div
-                    key={idx}
-                    className="glass-card-dark rounded-xl px-6 py-4 text-center"
+              {/* Floating Image Deck */}
+              <div className="relative w-full h-full">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentImage}
+                    initial={{ opacity: 0, x: 50, rotateY: -10 }}
+                    animate={{ opacity: 1, x: 0, rotateY: 0 }}
+                    exit={{ opacity: 0, x: -50, rotateY: 10 }}
+                    transition={{ duration: 0.8, ease: "circOut" }}
+                    className="absolute inset-0 z-20"
                   >
-                    <div className="text-3xl font-bold text-[var(--primary-gold)] sm:text-4xl">
-                      {stat.value}
+                    <div className="relative w-full h-full rounded-none overflow-hidden shadow-2xl border-4 border-white/5">
+                      <img
+                        src={images[currentImage]}
+                        alt="Chaplaincy Life"
+                        className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-110"
+                      />
+                      {/* Image Overlay Info */}
+                      <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/90 to-transparent p-8">
+                        <p className="text-white/80 text-sm uppercase tracking-widest mb-1">Featured Gallery</p>
+                        <p className="text-white text-xl font-bold">Community Moments {currentImage + 1}</p>
+                      </div>
                     </div>
-                    <div className="mt-1 text-sm text-gray-300 sm:text-base">
-                      {stat.label}
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </motion.div>
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Decorative Frame Behind */}
+                <div className="absolute top-8 -right-8 w-full h-full border-2 border-[var(--primary-red)]/30 z-10 hidden md:block"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Stats Ticker */}
+          <div className="w-full border-t border-white/10 py-6 mt-auto">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-white/60 text-sm font-medium uppercase tracking-widest">
+              <div className="flex items-center gap-12">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl font-bold text-white">500+</span>
+                  <span className="text-xs">Active<br />Members</span>
+                </div>
+                <div className="w-[1px] h-8 bg-white/10"></div>
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl font-bold text-white">14</span>
+                  <span className="text-xs">Active<br />Societies</span>
+                </div>
+                <div className="w-[1px] h-8 bg-white/10"></div>
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl font-bold text-white">Weekly</span>
+                  <span className="text-xs">Mass &<br />Events</span>
+                </div>
+              </div>
+
+              <Link href="/societies" className="flex items-center gap-2 hover:text-[var(--primary-red)] transition-colors group">
+                Explore All Societies <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 1,
-            delay: 1.5,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2"
-        >
-          <div className="flex flex-col items-center gap-2 text-white">
-            <span className="text-sm font-medium">Scroll to explore</span>
-            <ChevronDown className="h-6 w-6 animate-bounce" />
-          </div>
-        </motion.div>
       </section>
     </>
   );
