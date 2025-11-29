@@ -1,20 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { signup } from "./actions";
+import { motion } from "framer-motion";
+import { Mail, Phone, User, Building2, BookOpen, Users } from "lucide-react";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
     fullname: "",
     phone: "",
     email: "",
-    password: "",
-    confirmPassword: "",
+    department: "",
+    level: "",
+    forum: "",
   });
 
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [registrationFee] = useState(2000);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -23,150 +23,212 @@ const RegisterPage = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-    if (!formData.fullname) newErrors.fullname = "Full name is required";
-    if (!formData.phone) newErrors.phone = "Phone number is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
-    if (formData.password !== formData.confirmPassword)
-      newErrors.confirmPassword = "Passwords do not match";
-    return Object.keys(newErrors).length === 0;
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // For now, just show success message
+    // In the future, this can be connected to a backend API
+    setSubmitted(true);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-    setIsLoading(true);
-  };
+  if (submitted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--accent-cream)] via-gray-100 to-gray-200 p-4 mt-5 md:mt-15">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="w-full max-w-2xl bg-white shadow-2xl rounded-2xl p-8 text-center"
+        >
+          <div className="mb-6">
+            <div className="w-20 h-20 bg-gradient-to-br from-[var(--primary-burgundy)] to-[var(--primary-gold)] rounded-full mx-auto flex items-center justify-center">
+              <svg
+                className="w-10 h-10 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+          </div>
+          <h2 className="text-3xl font-bold text-[var(--primary-burgundy)] mb-4">
+            Thank You for Your Interest!
+          </h2>
+          <p className="text-lg text-gray-700 mb-6">
+            We've received your information. Our registration system will be
+            available soon.
+          </p>
+          <p className="text-gray-600 mb-8">
+            In the meantime, feel free to explore our chaplaincy activities and
+            connect with us on social media.
+          </p>
+          <a
+            href="/"
+            className="inline-block bg-gradient-to-r from-[var(--primary-burgundy)] to-[var(--primary-gold)] text-white px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-transform"
+          >
+            Return to Homepage
+          </a>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300 p-4 mt-5 md:mt-15">
-      <div className="w-full max-w-2xl bg-white shadow-lg rounded-xl p-6">
-        <h1 className="text-2xl font-bold text-center mb-1 text-gray-800">
-          Student Registration
-        </h1>
-        <p className="text-center text-gray-500 mb-6">
-          Join the chaplaincy community
-        </p>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--accent-cream)] via-gray-100 to-gray-200 p-4 mt-5 md:mt-15">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="w-full max-w-2xl bg-white shadow-2xl rounded-2xl p-8"
+      >
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-[var(--primary-burgundy)] mb-2">
+            Join Our Community
+          </h1>
+          <p className="text-gray-600">
+            Express your interest in becoming part of St. Malachy's Chaplaincy
+          </p>
+        </div>
 
-        {errors.form && (
-          <div className="bg-red-100 text-red-700 px-4 py-2 rounded mb-4">
-            {errors.form}
-          </div>
-        )}
-
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Full Name */}
           <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              <User className="inline w-4 h-4 mr-2" />
+              Full Name
+            </label>
             <input
               type="text"
               name="fullname"
-              placeholder="Full Name"
-              className="w-full p-3 border rounded-md focus:ring-2 focus:ring-gray-500"
+              placeholder="Enter your full name"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
               value={formData.fullname}
               onChange={handleChange}
+              required
             />
-            {errors.fullname && (
-              <p className="text-sm text-red-500">{errors.fullname}</p>
-            )}
           </div>
-          {/* Phone Number */}
-          <div>
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone Number"
-              className="w-full p-3 border rounded-md focus:ring-2 focus:ring-gray-500"
-              value={formData.phone}
-              onChange={handleChange}
-            />
-            {errors.phone && (
-              <p className="text-sm text-red-500">{errors.phone}</p>
-            )}
-          </div>
+
           {/* Email */}
           <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              <Mail className="inline w-4 h-4 mr-2" />
+              Email Address
+            </label>
             <input
               type="email"
               name="email"
-              placeholder="Email Address"
-              className="w-full p-3 border rounded-md focus:ring-2 focus:ring-gray-500"
+              placeholder="your.email@example.com"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
               value={formData.email}
               onChange={handleChange}
+              required
             />
-            {errors.email && (
-              <p className="text-sm text-red-500">{errors.email}</p>
-            )}
           </div>
 
-          {/* Password */}
+          {/* Phone Number */}
           <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              <Phone className="inline w-4 h-4 mr-2" />
+              Phone Number
+            </label>
             <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              className="w-full p-3 border rounded-md focus:ring-2 focus:ring-gray-500"
-              value={formData.password}
+              type="tel"
+              name="phone"
+              placeholder="+234 XXX XXX XXXX"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
+              value={formData.phone}
               onChange={handleChange}
+              required
             />
-            {errors.password && (
-              <p className="text-sm text-red-500">{errors.password}</p>
-            )}
           </div>
 
-          {/* Confirm Password */}
+          {/* Department */}
           <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              <Building2 className="inline w-4 h-4 mr-2" />
+              Department
+            </label>
             <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              className="w-full p-3 border rounded-md focus:ring-2 focus:ring-gray-500"
-              value={formData.confirmPassword}
+              type="text"
+              name="department"
+              placeholder="e.g., Computer Science"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
+              value={formData.department}
               onChange={handleChange}
             />
-            {errors.confirmPassword && (
-              <p className="text-sm text-red-500">{errors.confirmPassword}</p>
-            )}
           </div>
-          {/* Payment Summary */}
-          <div className="p-4 border rounded bg-gray-50 flex items-center justify-between">
-            <div>
-              <h4 className="font-medium text-gray-800">Registration Fee</h4>
-              <p className="text-sm text-gray-500">
-                Pay once and be registered for life
-              </p>
-            </div>
-            <span className="font-bold text-xl text-gray-700">
-              ₦{registrationFee.toLocaleString()}
-            </span>
+
+          {/* Level */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              <BookOpen className="inline w-4 h-4 mr-2" />
+              Level
+            </label>
+            <select
+              name="level"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
+              value={formData.level}
+              onChange={handleChange}
+            >
+              <option value="">Select your level</option>
+              <option value="100">100 Level</option>
+              <option value="200">200 Level</option>
+              <option value="300">300 Level</option>
+              <option value="400">400 Level</option>
+              <option value="500">500 Level</option>
+              <option value="PG">Postgraduate</option>
+            </select>
+          </div>
+
+          {/* Forum Interest */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              <Users className="inline w-4 h-4 mr-2" />
+              Forum of Interest (Optional)
+            </label>
+            <select
+              name="forum"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
+              value={formData.forum}
+              onChange={handleChange}
+            >
+              <option value="">Select a forum</option>
+              <option value="bosso">Bosso Forum</option>
+              <option value="gidan-kwano">Gidan Kwano Forum</option>
+            </select>
+          </div>
+
+          {/* Info Box */}
+          <div className="p-4 bg-gradient-to-r from-[var(--primary-burgundy)]/10 to-[var(--primary-gold)]/10 rounded-lg border border-[var(--primary-gold)]/30">
+            <p className="text-sm text-gray-700">
+              <strong>Note:</strong> This is an interest form. Full registration
+              with payment will be available soon. We'll contact you when the
+              system is ready.
+            </p>
           </div>
 
           {/* Submit Button */}
           <button
-            formAction={signup}
             type="submit"
-            disabled={isLoading}
-            className={`w-full py-3 text-white rounded-md font-semibold transition ${
-              isLoading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-gray-800 hover:bg-gray-700"
-            }`}
+            className="w-full py-4 bg-gradient-to-r from-[var(--primary-burgundy)] to-[var(--primary-gold)] text-white rounded-lg font-semibold text-lg shadow-lg hover:scale-105 transition-transform duration-300"
           >
-            {isLoading ? "Processing..." : "Continue Registration & Pay"}
+            Submit Interest
           </button>
         </form>
 
         <p className="text-center text-sm text-gray-600 mt-6">
-          Already have an account?{" "}
+          Already a member?{" "}
           <a
-            href="/login"
-            className="text-gray-800 font-semibold hover:underline"
+            href="/"
+            className="text-[var(--primary-burgundy)] font-semibold hover:underline"
           >
-            Login
+            Return to Homepage
           </a>
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 };
