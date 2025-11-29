@@ -12,7 +12,7 @@ import { FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0B1120] text-white pt-20 pb-10 border-t border-white/5">
+    <footer className="bg-[var(--tertiary-bg)] text-[var(--text-primary)] pt-20 pb-10 border-t border-[var(--border-color)]">
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
 
@@ -21,11 +21,11 @@ const Footer = () => {
             <div className="flex items-center gap-3 mb-6">
               <span className="text-2xl text-[var(--primary-red)] font-serif">✝</span>
               <div className="flex flex-col">
-                <span className="font-bold tracking-wider text-lg uppercase leading-none">St. Malachy's</span>
-                <span className="text-[var(--accent-silver)] text-xs tracking-[0.2em] uppercase leading-none mt-1">Chaplaincy</span>
+                <span className="font-bold tracking-wider text-lg uppercase leading-none text-[var(--text-primary)]">St. Malachy's</span>
+                <span className="text-[var(--text-secondary)] text-xs tracking-[0.2em] uppercase leading-none mt-1">Chaplaincy</span>
               </div>
             </div>
-            <p className="text-[var(--accent-silver)] leading-relaxed max-w-sm mb-8">
+            <p className="text-[var(--text-secondary)] leading-relaxed max-w-sm mb-8">
               Building a vibrant community of Catholic students, grounded in faith, excellence, and service to humanity.
             </p>
             <a
@@ -38,8 +38,8 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="md:col-span-4">
-            <h3 className="text-white font-bold uppercase tracking-widest mb-6">Contact Us</h3>
-            <ul className="space-y-4 text-[var(--accent-silver)]">
+            <h3 className="text-[var(--text-primary)] font-bold uppercase tracking-widest mb-6">Contact Us</h3>
+            <ul className="space-y-4 text-[var(--text-secondary)]">
               <li className="flex items-start gap-4">
                 <MapPin className="w-5 h-5 text-[var(--primary-red)] shrink-0 mt-1" />
                 <span>Federal University of Technology Minna,<br />Niger State, Nigeria.</span>
@@ -57,7 +57,7 @@ const Footer = () => {
 
           {/* Social Media */}
           <div className="md:col-span-3">
-            <h3 className="text-white font-bold uppercase tracking-widest mb-6">Connect</h3>
+            <h3 className="text-[var(--text-primary)] font-bold uppercase tracking-widest mb-6">Connect</h3>
             <div className="flex flex-wrap gap-4">
               {[
                 { icon: <Facebook className="w-5 h-5" />, href: "https://www.facebook.com/NFCSFUTMinna/" },
@@ -71,7 +71,7 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[var(--primary-red)] hover:text-white transition-all duration-300"
+                  className="w-10 h-10 rounded-full bg-[var(--secondary-bg)] border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--primary-red)] hover:text-white hover:border-[var(--primary-red)] transition-all duration-300"
                 >
                   {social.icon}
                 </a>
@@ -81,7 +81,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[var(--accent-silver)] uppercase tracking-wider">
+        <div className="pt-8 border-t border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[var(--text-secondary)] uppercase tracking-wider">
           <p>&copy; {new Date().getFullYear()} NFCS St. Malachy's Chaplaincy.</p>
           <p>All Rights Reserved.</p>
         </div>
