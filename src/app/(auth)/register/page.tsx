@@ -2,232 +2,231 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, User, Building2, BookOpen, Users } from "lucide-react";
+import { Mail, Lock, User, ArrowRight, Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
-    fullname: "",
-    phone: "",
+    firstName: "",
+    lastName: "",
     email: "",
-    department: "",
-    level: "",
-    forum: "",
+    password: "",
   });
 
+  const [showPassword, setShowPassword] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // For now, just show success message
-    // In the future, this can be connected to a backend API
-    setSubmitted(true);
+    // Simulate API call
+    setTimeout(() => {
+      setSubmitted(true);
+    }, 1000);
   };
 
   if (submitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--accent-cream)] via-gray-100 to-gray-200 p-4 mt-5 md:mt-15">
+      <div className="min-h-screen flex items-center justify-center bg-[var(--primary-bg)] relative overflow-hidden p-4">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--secondary-bg)] via-white to-[var(--secondary-bg)] -z-20"></div>
+        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-[var(--primary-red)]/5 rounded-full blur-[100px] -z-10"></div>
+        <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-[var(--primary-red)]/5 rounded-full blur-[100px] -z-10"></div>
+
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-2xl bg-white shadow-2xl rounded-2xl p-8 text-center"
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md bg-white/80 backdrop-blur-xl shadow-2xl shadow-[var(--primary-red)]/10 rounded-3xl p-8 text-center border border-white/50"
         >
-          <div className="mb-6">
-            <div className="w-20 h-20 bg-gradient-to-br from-[var(--primary-burgundy)] to-[var(--primary-gold)] rounded-full mx-auto flex items-center justify-center">
-              <svg
-                className="w-10 h-10 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            </div>
+          <div className="w-20 h-20 bg-green-100 rounded-full mx-auto flex items-center justify-center mb-6">
+            <svg
+              className="w-10 h-10 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
           </div>
-          <h2 className="text-3xl font-bold text-[var(--primary-burgundy)] mb-4">
-            Thank You for Your Interest!
+          <h2 className="text-3xl font-black text-[var(--text-primary)] mb-4">
+            Welcome Aboard!
           </h2>
-          <p className="text-lg text-gray-700 mb-6">
-            We've received your information. Our registration system will be
-            available soon.
+          <p className="text-[var(--text-secondary)] mb-8">
+            Your account has been successfully created. You can now access all member features.
           </p>
-          <p className="text-gray-600 mb-8">
-            In the meantime, feel free to explore our chaplaincy activities and
-            connect with us on social media.
-          </p>
-          <a
-            href="/"
-            className="inline-block bg-gradient-to-r from-[var(--primary-burgundy)] to-[var(--primary-gold)] text-white px-8 py-3 rounded-lg font-semibold hover:scale-105 transition-transform"
-          >
-            Return to Homepage
-          </a>
+          <Link href="/login">
+            <button className="w-full py-4 bg-[var(--primary-red)] text-white rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-[var(--primary-red)]/20 transition-all transform hover:-translate-y-1">
+              Continue to Login
+            </button>
+          </Link>
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[var(--accent-cream)] via-gray-100 to-gray-200 p-4 mt-5 md:mt-15">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--primary-bg)] relative overflow-hidden p-4">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[var(--secondary-bg)] via-white to-[var(--secondary-bg)] -z-20"></div>
+      <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-[var(--primary-red)]/5 rounded-full blur-[100px] -z-10"></div>
+      <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-[var(--primary-red)]/5 rounded-full blur-[100px] -z-10"></div>
+
+      {/* Noise Texture */}
+      <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none -z-10"></div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-2xl bg-white shadow-2xl rounded-2xl p-8"
+        transition={{ duration: 0.6 }}
+        className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 bg-white shadow-2xl shadow-[var(--primary-red)]/5 rounded-[2.5rem] overflow-hidden border border-[var(--border-color)]"
       >
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-[var(--primary-burgundy)] mb-2">
-            Join Our Community
-          </h1>
-          <p className="text-gray-600">
-            Express your interest in becoming part of St. Malachy's Chaplaincy
-          </p>
-        </div>
+        {/* Left Side - Visual */}
+        <div className="relative hidden lg:flex flex-col justify-between p-12 bg-[var(--primary-red)] text-white overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10 z-0"></div> {/* Optional pattern */}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Full Name */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              <User className="inline w-4 h-4 mr-2" />
-              Full Name
-            </label>
-            <input
-              type="text"
-              name="fullname"
-              placeholder="Enter your full name"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
-              value={formData.fullname}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          {/* Abstract Shapes */}
+          <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-white/10 rounded-full blur-3xl z-0"></div>
+          <div className="absolute bottom-[-10%] left-[-10%] w-64 h-64 bg-black/10 rounded-full blur-3xl z-0"></div>
 
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              <Mail className="inline w-4 h-4 mr-2" />
-              Email Address
-            </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="your.email@example.com"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <div className="relative z-20">
+            <div className="flex items-center gap-2 mb-8">
+              <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                <span className="text-[var(--primary-red)] font-bold">nfcs</span>
+              </div>
+              <span className="font-bold tracking-wider text-sm opacity-80">ST. MALACHY'S</span>
+            </div>
 
-          {/* Phone Number */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              <Phone className="inline w-4 h-4 mr-2" />
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              placeholder="+234 XXX XXX XXXX"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          {/* Department */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              <Building2 className="inline w-4 h-4 mr-2" />
-              Department
-            </label>
-            <input
-              type="text"
-              name="department"
-              placeholder="e.g., Computer Science"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
-              value={formData.department}
-              onChange={handleChange}
-            />
-          </div>
-
-          {/* Level */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              <BookOpen className="inline w-4 h-4 mr-2" />
-              Level
-            </label>
-            <select
-              name="level"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
-              value={formData.level}
-              onChange={handleChange}
-            >
-              <option value="">Select your level</option>
-              <option value="100">100 Level</option>
-              <option value="200">200 Level</option>
-              <option value="300">300 Level</option>
-              <option value="400">400 Level</option>
-              <option value="500">500 Level</option>
-              <option value="PG">Postgraduate</option>
-            </select>
-          </div>
-
-          {/* Forum Interest */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              <Users className="inline w-4 h-4 mr-2" />
-              Forum of Interest (Optional)
-            </label>
-            <select
-              name="forum"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-burgundy)] focus:border-transparent transition"
-              value={formData.forum}
-              onChange={handleChange}
-            >
-              <option value="">Select a forum</option>
-              <option value="bosso">Bosso Forum</option>
-              <option value="gidan-kwano">Gidan Kwano Forum</option>
-            </select>
-          </div>
-
-          {/* Info Box */}
-          <div className="p-4 bg-gradient-to-r from-[var(--primary-burgundy)]/10 to-[var(--primary-gold)]/10 rounded-lg border border-[var(--primary-gold)]/30">
-            <p className="text-sm text-gray-700">
-              <strong>Note:</strong> This is an interest form. Full registration
-              with payment will be available soon. We'll contact you when the
-              system is ready.
+            <h1 className="text-5xl font-black leading-tight mb-6">
+              Join Our <br /> Community <br /> of Faith.
+            </h1>
+            <p className="text-lg text-white/80 max-w-sm leading-relaxed">
+              Connect with fellow students, grow spiritually, and make a lasting impact on campus.
             </p>
           </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full py-4 bg-gradient-to-r from-[var(--primary-burgundy)] to-[var(--primary-gold)] text-white rounded-lg font-semibold text-lg shadow-lg hover:scale-105 transition-transform duration-300"
-          >
-            Submit Interest
-          </button>
-        </form>
+          <div className="relative z-20">
+            <div className="flex items-center gap-4 text-sm font-medium text-white/60">
+              <span>© 2025 NFCS</span>
+              <span className="w-1 h-1 bg-white/40 rounded-full"></span>
+              <span>Privacy Policy</span>
+              <span className="w-1 h-1 bg-white/40 rounded-full"></span>
+              <span>Terms</span>
+            </div>
+          </div>
+        </div>
 
-        <p className="text-center text-sm text-gray-600 mt-6">
-          Already a member?{" "}
-          <a
-            href="/"
-            className="text-[var(--primary-burgundy)] font-semibold hover:underline"
-          >
-            Return to Homepage
-          </a>
-        </p>
+        {/* Right Side - Form */}
+        <div className="p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
+          <div className="mb-10">
+            <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-2">Create Account</h2>
+            <p className="text-[var(--text-secondary)]">
+              Already have an account?{" "}
+              <Link href="/login" className="text-[var(--primary-red)] font-bold hover:underline">
+                Log in
+              </Link>
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {/* First Name */}
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-[var(--text-primary)] ml-1">First Name</label>
+                <div className="relative group">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-secondary)] group-focus-within:text-[var(--primary-red)] transition-colors" />
+                  <input
+                    type="text"
+                    name="firstName"
+                    placeholder="John"
+                    className="w-full pl-12 pr-4 py-4 bg-[var(--secondary-bg)] border border-transparent rounded-xl focus:bg-white focus:border-[var(--primary-red)]/20 focus:ring-4 focus:ring-[var(--primary-red)]/5 outline-none transition-all font-medium text-[var(--text-primary)] placeholder:text-gray-400"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* Last Name */}
+              <div className="space-y-2">
+                <label className="text-sm font-bold text-[var(--text-primary)] ml-1">Last Name</label>
+                <div className="relative group">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-secondary)] group-focus-within:text-[var(--primary-red)] transition-colors" />
+                  <input
+                    type="text"
+                    name="lastName"
+                    placeholder="Doe"
+                    className="w-full pl-12 pr-4 py-4 bg-[var(--secondary-bg)] border border-transparent rounded-xl focus:bg-white focus:border-[var(--primary-red)]/20 focus:ring-4 focus:ring-[var(--primary-red)]/5 outline-none transition-all font-medium text-[var(--text-primary)] placeholder:text-gray-400"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-[var(--text-primary)] ml-1">Email Address</label>
+              <div className="relative group">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-secondary)] group-focus-within:text-[var(--primary-red)] transition-colors" />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="john.doe@example.com"
+                  className="w-full pl-12 pr-4 py-4 bg-[var(--secondary-bg)] border border-transparent rounded-xl focus:bg-white focus:border-[var(--primary-red)]/20 focus:ring-4 focus:ring-[var(--primary-red)]/5 outline-none transition-all font-medium text-[var(--text-primary)] placeholder:text-gray-400"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Password */}
+            <div className="space-y-2">
+              <label className="text-sm font-bold text-[var(--text-primary)] ml-1">Password</label>
+              <div className="relative group">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--text-secondary)] group-focus-within:text-[var(--primary-red)] transition-colors" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="••••••••"
+                  className="w-full pl-12 pr-12 py-4 bg-[var(--secondary-bg)] border border-transparent rounded-xl focus:bg-white focus:border-[var(--primary-red)]/20 focus:ring-4 focus:ring-[var(--primary-red)]/5 outline-none transition-all font-medium text-[var(--text-primary)] placeholder:text-gray-400"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
+            </div>
+
+            <div className="pt-4">
+              <button
+                type="submit"
+                className="w-full py-4 bg-[var(--primary-red)] text-white rounded-xl font-bold text-lg hover:shadow-lg hover:shadow-[var(--primary-red)]/20 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 group"
+              >
+                Create Account
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </form>
+        </div>
       </motion.div>
     </div>
   );
