@@ -4,13 +4,13 @@ import { Target, Lightbulb } from "lucide-react";
 
 const MissionVision: React.FC = () => {
   return (
-    <section className="relative w-full py-24 bg-gradient-to-b from-[var(--secondary-bg)] to-white overflow-hidden">
+    <section className="relative w-full py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-[var(--secondary-bg)] to-white overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-50 to-transparent pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[var(--border-color)] to-transparent"></div>
 
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
 
           {/* Header Area */}
           <div className="relative">
@@ -18,13 +18,13 @@ const MissionVision: React.FC = () => {
               <span className="w-8 h-[2px] bg-[var(--primary-red)]"></span>
               Our Purpose
             </h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-8 leading-tight">
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-6 sm:mb-8 leading-tight">
               Guided by Faith, <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-red)] to-pink-600">
                 Driven by Service.
               </span>
             </h3>
-            <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-md border-l-4 border-[var(--primary-red)] pl-6">
+            <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed max-w-md border-l-4 border-[var(--primary-red)] pl-4 sm:pl-6">
               We exist to nurture the spiritual, academic, and social lives of Catholic students, creating a holistic environment for growth.
             </p>
           </div>
@@ -32,7 +32,7 @@ const MissionVision: React.FC = () => {
           {/* Cards Area */}
           <div className="grid gap-8">
             {/* Mission Card */}
-            <div className="group relative p-8 rounded-2xl bg-white border-2 border-[var(--border-color)] hover:border-[var(--primary-red)]/50 shadow-lg hover:shadow-xl hover:shadow-[var(--primary-red)]/10 transition-all duration-500 hover:-translate-y-2">
+            <div className="group relative p-6 sm:p-8 rounded-2xl bg-white border-2 border-[var(--border-color)] hover:border-[var(--primary-red)]/50 shadow-lg hover:shadow-xl hover:shadow-[var(--primary-red)]/10 transition-all duration-500 hover:-translate-y-2">
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-red)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
               <div className="relative z-10">
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[var(--primary-red)] to-pink-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
@@ -46,7 +46,7 @@ const MissionVision: React.FC = () => {
             </div>
 
             {/* Vision Card */}
-            <div className="group relative p-8 rounded-2xl bg-white border-2 border-[var(--border-color)] hover:border-blue-500/50 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2 ml-0 lg:ml-12">
+            <div className="group relative p-6 sm:p-8 rounded-2xl bg-white border-2 border-[var(--border-color)] hover:border-blue-500/50 shadow-lg hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-500 hover:-translate-y-2 ml-0 lg:ml-12 mt-8 lg:mt-0">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
               <div className="relative z-10">
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">

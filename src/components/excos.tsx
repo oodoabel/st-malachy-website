@@ -65,14 +65,14 @@ const ExecutiveCard = ({ executive }: { executive: Executive }) => {
 
 const ExecutiveTeam = () => {
   return (
-    <section className="py-24 bg-gradient-to-b from-[var(--secondary-bg)] to-white relative">
-      <div className="mx-auto max-w-[1400px] px-6">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-24 bg-gradient-to-b from-[var(--secondary-bg)] to-white relative">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 sm:mb-12 gap-4 sm:gap-6">
           <div>
             <h2 className="text-[var(--primary-red)] font-bold tracking-widest uppercase text-sm mb-3">
               Student Leadership
             </h2>
-            <h3 className="text-3xl md:text-4xl font-bold text-[var(--text-primary)]">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[var(--text-primary)]">
               Executive Council
             </h3>
           </div>
@@ -86,7 +86,7 @@ const ExecutiveTeam = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {executives.map((executive) => (
             <ExecutiveCard key={executive.id} executive={executive} />
           ))}

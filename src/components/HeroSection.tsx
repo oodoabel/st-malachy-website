@@ -48,9 +48,9 @@ const NavbarHero: React.FC = () => {
           </h1>
         </div>
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 h-full flex flex-col justify-between min-h-[calc(100vh-80px)]">
+        <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 h-full flex flex-col justify-between min-h-[calc(100vh-80px)]">
           {/* Main Grid Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center flex-grow py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center flex-grow py-8 sm:py-12">
 
             {/* Left Column: Content (7 cols) */}
             <div className="lg:col-span-7 flex flex-col justify-center relative">
@@ -72,20 +72,20 @@ const NavbarHero: React.FC = () => {
                   <span className="text-[var(--primary-red)] font-bold tracking-widest uppercase text-sm">Est. 2005</span>
                 </div>
 
-                <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-[var(--text-primary)] leading-none mb-6">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-[var(--text-primary)] leading-[1.1] mb-4 sm:mb-6">
                   Welcome to <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary-red)] to-[var(--primary-red)]/70">
                     St. Malachy's
                   </span>
                 </h1>
-                <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-8 max-w-2xl leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[var(--text-secondary)] mb-6 sm:mb-8 max-w-2xl leading-relaxed">
                   One Family Working for Christ - Building Faith, Fellowship, and
                   Excellence
                 </p>
 
-                <div className="flex flex-wrap gap-6">
+                <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-6">
                   <Link href="/register">
-                    <button className="group px-8 py-4 bg-[var(--primary-red)] text-white rounded-full font-bold text-lg hover:bg-[var(--primary-red)]/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[var(--primary-red)]/20">
+                    <button className="group w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[var(--primary-red)] text-white rounded-full font-bold text-base sm:text-lg hover:bg-[var(--primary-red)]/90 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[var(--primary-red)]/20">
                       <span className="relative z-10 flex items-center gap-3">
                         Join the Family <ArrowRight className="w-5 h-5" />
                       </span>
@@ -93,7 +93,7 @@ const NavbarHero: React.FC = () => {
                   </Link>
 
                   <Link href="/about">
-                    <button className="group flex items-center gap-3 px-8 py-4 bg-white border-2 border-[var(--border-color)] text-[var(--text-primary)] rounded-full font-bold text-lg hover:bg-[var(--secondary-bg)] transition-all duration-300 hover:scale-105">
+                    <button className="group w-full sm:w-auto flex items-center justify-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white border-2 border-[var(--border-color)] text-[var(--text-primary)] rounded-full font-bold text-base sm:text-lg hover:bg-[var(--secondary-bg)] transition-all duration-300 hover:scale-105">
                       <Play className="w-4 h-4 fill-current" /> Watch Video
                     </button>
                   </Link>
@@ -102,7 +102,7 @@ const NavbarHero: React.FC = () => {
             </div>
 
             {/* Right Column: Floating Visuals (5 cols) */}
-            <div className="lg:col-span-5 relative h-[600px] lg:h-[700px] flex items-center justify-center">
+            <div className="lg:col-span-5 relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] flex items-center justify-center mt-8 lg:mt-0">
               {/* Decorative gradient background */}
               <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-red)]/5 via-transparent to-blue-50 rounded-3xl blur-3xl"></div>
 

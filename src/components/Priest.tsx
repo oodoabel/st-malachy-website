@@ -59,22 +59,22 @@ const PriestCard = ({ priest }: { priest: Priest }) => {
 
 const PriestsListing = () => {
   return (
-    <section className="bg-gradient-to-b from-white to-[var(--secondary-bg)] py-24 relative overflow-hidden">
+    <section className="bg-gradient-to-b from-white to-[var(--secondary-bg)] py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden">
       {/* Background Decoration */}
       <div className="absolute top-10 right-0 w-96 h-96 bg-gradient-to-br from-[var(--primary-red)]/5 to-transparent rounded-full blur-3xl"></div>
 
-      <div className="mx-auto max-w-[1400px] px-6 relative z-10">
-        <div className="mb-16">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 relative z-10">
+        <div className="mb-12 sm:mb-16">
           <h2 className="text-[var(--primary-red)] font-bold tracking-widest uppercase text-sm mb-4 flex items-center gap-3">
             <span className="w-8 h-[2px] bg-[var(--primary-red)]"></span>
             Our Shepherds
           </h2>
-          <h3 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)]">
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--text-primary)]">
             Spiritual Leadership
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-24">
           {priests.map((priest) => (
             <PriestCard key={priest.id} priest={priest} />
           ))}

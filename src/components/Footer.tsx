@@ -12,9 +12,9 @@ import { FaWhatsapp } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-[var(--tertiary-bg)] text-[var(--text-primary)] pt-20 pb-10 border-t border-[var(--border-color)]">
-      <div className="max-w-[1400px] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+    <footer className="bg-[var(--tertiary-bg)] text-[var(--text-primary)] pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 border-t border-[var(--border-color)]">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-12 mb-12 sm:mb-16">
 
           {/* Brand Column */}
           <div className="md:col-span-5">
@@ -25,7 +25,7 @@ const Footer = () => {
                 <span className="text-[var(--text-secondary)] text-xs tracking-[0.2em] uppercase leading-none mt-1">Chaplaincy</span>
               </div>
             </div>
-            <p className="text-[var(--text-secondary)] leading-relaxed max-w-sm mb-8">
+            <p className="text-[var(--text-secondary)] leading-relaxed max-w-sm mb-6 sm:mb-8">
               Building a vibrant community of Catholic students, grounded in faith, excellence, and service to humanity.
             </p>
             <a
@@ -58,7 +58,7 @@ const Footer = () => {
           {/* Social Media */}
           <div className="md:col-span-3">
             <h3 className="text-[var(--text-primary)] font-bold uppercase tracking-widest mb-6">Connect</h3>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-3 sm:gap-4">
               {[
                 { icon: <Facebook className="w-5 h-5" />, href: "https://www.facebook.com/NFCSFUTMinna/" },
                 { icon: <Instagram className="w-5 h-5" />, href: "https://instagram.com/nfcs_futminna/" },
@@ -71,7 +71,7 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-[var(--secondary-bg)] border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--primary-red)] hover:text-white hover:border-[var(--primary-red)] transition-all duration-300"
+                  className="w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-[var(--secondary-bg)] border border-[var(--border-color)] flex items-center justify-center hover:bg-[var(--primary-red)] hover:text-white hover:border-[var(--primary-red)] transition-all duration-300"
                 >
                   {social.icon}
                 </a>
@@ -81,7 +81,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[var(--text-secondary)] uppercase tracking-wider">
+        <div className="pt-6 sm:pt-8 border-t border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4 text-xs text-[var(--text-secondary)] uppercase tracking-wider text-center md:text-left">
           <p>&copy; {new Date().getFullYear()} NFCS St. Malachy's Chaplaincy.</p>
           <p>All Rights Reserved.</p>
         </div>
