@@ -114,29 +114,37 @@ const AboutPage = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-24 sm:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-red-600 -z-10"></div>
+      <section className="py-24 sm:py-32 bg-[var(--secondary-bg)] px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative bg-white rounded-[2.5rem] p-8 sm:p-16 md:p-20 text-center overflow-hidden border border-[var(--border-color)] shadow-2xl shadow-[var(--primary-red)]/5">
+            {/* Background Decor */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+              <div className="absolute top-[-10%] right-[-10%] w-64 h-64 bg-[var(--primary-red)]/5 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-[-10%] left-[-10%] w-64 h-64 bg-[var(--primary-red)]/5 rounded-full blur-3xl"></div>
+            </div>
 
-        <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-transparent -z-10"></div>
+            <div className="relative z-10">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text-primary)] mb-6 leading-tight">
+                Ready to Join the Family?
+              </h2>
+              <p className="text-lg sm:text-xl text-[var(--text-secondary)] mb-10 max-w-2xl mx-auto leading-relaxed">
+                Whether you're a new student or looking to reconnect with your faith, there's a place for you here.
+              </p>
 
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center text-white">
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-8">
-            Ready to Join the Family?
-          </h2>
-          <p className="text-xl sm:text-2xl text-white/90 mb-12 max-w-2xl mx-auto">
-            Whether you're a new student or looking to reconnect with your faith, there's a place for you here.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <Link href="/register">
-              <button className="px-10 py-5 bg-white text-[var(--primary-red)] rounded-full font-bold text-xl hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl">
-                Become a Member
-              </button>
-            </Link>
-            <Link href="/events">
-              <button className="px-10 py-5 bg-transparent border-2 border-white text-white rounded-full font-bold text-xl hover:bg-white/10 transition-all flex items-center justify-center gap-3">
-                See Upcoming Events <ArrowUpRight className="w-6 h-6" />
-              </button>
-            </Link>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Link href="/register" className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto px-8 py-4 bg-[var(--primary-red)] text-white rounded-full font-bold text-lg hover:shadow-lg hover:shadow-[var(--primary-red)]/20 transition-all transform hover:-translate-y-1">
+                    Become a Member
+                  </button>
+                </Link>
+                <Link href="/events" className="w-full sm:w-auto">
+                  <button className="w-full sm:w-auto px-8 py-4 bg-white border border-[var(--border-color)] text-[var(--text-primary)] rounded-full font-bold text-lg hover:bg-[var(--secondary-bg)] hover:border-[var(--primary-red)]/30 transition-all flex items-center justify-center gap-2 group">
+                    See Upcoming Events
+                    <ArrowUpRight className="w-5 h-5 group-hover:text-[var(--primary-red)] transition-colors" />
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
