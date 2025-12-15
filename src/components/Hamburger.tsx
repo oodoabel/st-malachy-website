@@ -49,6 +49,16 @@ const Hamburger: React.FC<{ navItems: NavItem[] }> = ({ navItems }) => {
                 ))}
               </ul>
 
+              {/* Mobile Auth Buttons */}
+              <div className="flex flex-col gap-3 mt-6 pt-6 border-t border-[var(--border-color)]">
+                <Link href="/login" className="w-full py-3 text-center text-[var(--text-secondary)] font-bold uppercase tracking-widest text-sm hover:text-[var(--text-primary)] transition-colors">
+                  Log In
+                </Link>
+                <Link href="/register" className="w-full py-3 bg-[var(--primary-red)] text-white rounded-xl font-bold uppercase tracking-widest text-sm text-center shadow-lg shadow-[var(--primary-red)]/20">
+                  Join Us
+                </Link>
+              </div>
+
               <div className="flex justify-center items-center gap-6 pt-12 mt-auto border-t border-white/5">
                 <img
                   className="h-10 w-auto opacity-50 hover:opacity-100 transition duration-300 grayscale"

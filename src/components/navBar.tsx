@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Hamburger from "./Hamburger";
 import React from "react";
 import { Home, Info, MessageSquare, Users, Calendar } from "lucide-react";
+import Link from "next/link";
 
 type IconProps = React.SVGProps<SVGSVGElement>;
 
@@ -67,6 +68,16 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
+
+        {/* Auth Buttons (Desktop) */}
+        <div className="hidden md:flex items-center gap-4 ml-8">
+          <Link href="/login" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] font-bold text-sm transition-colors">
+            Log In
+          </Link>
+          <Link href="/register" className="px-5 py-2.5 bg-[var(--primary-red)] text-white rounded-full font-bold text-sm hover:shadow-lg hover:shadow-[var(--primary-red)]/20 transition-all transform hover:-translate-y-0.5">
+            Join Us
+          </Link>
+        </div>
 
         {/* Mobile menu button */}
         <div className="md:hidden">
