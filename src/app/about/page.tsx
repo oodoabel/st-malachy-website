@@ -12,7 +12,7 @@ const cardData = [
     icon: <FaChurch className="text-2xl text-gray-700" />,
     title: "Our Mission",
     description:
-      "To nurture spiritual growth through sacraments, formation programs, and service opportunities rooted in Catholic tradition.",
+      "To be a rallying point for Catholic students, fostering spiritual maturity, academic success, and social responsibility, integrating faith into all aspects of campus life and beyond.",
     link: "/chaplaincy-anthem",
     linkText: "View NFCS anthem",
   },
@@ -145,37 +145,12 @@ const AboutPage = () => {
               <p className="mb-2">Federal University of Technology</p>
               <p>Minna, Niger State</p>
             </div>
-            <div>
-              <h3 className="text-white font-medium mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/" className="hover:text-white transition-colors">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="hover:text-white transition-colors"
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/events"
-                    className="hover:text-white transition-colors"
-                  >
-                    Events
-                  </Link>
-                </li>
-              </ul>
-            </div>
+
             <div>
               <h3 className="text-white font-medium mb-4">Connect With Us</h3>
               <div className="flex space-x-4">
                 <a
-                  href="#"
+                  href="https://www.facebook.com/NFCSFUTMinna/"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <span className="sr-only">Facebook</span>
@@ -187,21 +162,9 @@ const AboutPage = () => {
                     <path d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-2.9h2V9.4c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.5h2.3l-.4 2.9h-1.9v7A10 10 0 0022 12z" />
                   </svg>
                 </a>
+
                 <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <span className="sr-only">Twitter</span>
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M8.29 20.25c7.55 0 11.67-6.25 11.67-11.67v-.53c.8-.58 1.49-1.3 2.04-2.13-.73.33-1.52.55-2.35.65.84-.5 1.49-1.3 1.8-2.23-.79.47-1.67.81-2.6 1-.75-.8-1.82-1.3-3-1.3-2.28 0-4.13 1.85-4.13 4.13 0 .32.04.63.11.93-3.44-.17-6.48-1.82-8.52-4.33-.35.6-.56 1.3-.56 2.05 0 1.43.73 2.69 1.83 3.43-.67-.02-1.3-.21-1.86-.51v.05c0 2 1.42 3.67 3.31 4.05-.35.1-.72.15-1.1.15-.27 0-.53-.03-.79-.07.53 1.65 2.07 2.85 3.9 2.88-1.43 1.13-3.23 1.8-5.19 1.8-.34 0-.67-.02-1-.06 1.82 1.17 4 1.85 6.33 1.85" />
-                  </svg>
-                </a>
-                <a
-                  href="#"
+                  href="https://www.instagram.com/nfcs_futminna"
                   className="text-gray-400 hover:text-white transition-colors"
                 >
                   <span className="sr-only">Instagram</span>
@@ -220,7 +183,7 @@ const AboutPage = () => {
           </div>
         </motion.footer>
       </motion.div>
-    </div >
+    </div>
   );
 };
 

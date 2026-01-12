@@ -43,7 +43,9 @@ const MassSchedule = () => {
             <h2 className="text-[var(--primary-red)] font-bold tracking-widest uppercase text-sm mb-3">
               Worship With Us
             </h2>
-            <h3 className="text-4xl font-bold text-[var(--text-primary)]">Mass Schedule</h3>
+            <h3 className="text-4xl font-bold text-[var(--text-primary)]">
+              Mass Schedule
+            </h3>
           </div>
           <p className="text-[var(--text-secondary)] max-w-md">
             Join us in the celebration of the Holy Eucharist.
@@ -56,8 +58,10 @@ const MassSchedule = () => {
               key={index}
               className="group relative bg-gradient-to-br from-white to-[var(--secondary-bg)] border-2 border-[var(--border-color)] rounded-xl p-6 hover:border-[var(--primary-red)]/50 hover:shadow-lg hover:shadow-[var(--primary-red)]/10 transition-all duration-300"
             >
-              <div className="flex justify-between items-start mb-4">
-                <span className="text-[var(--text-primary)] font-bold text-lg">{mass.day}</span>
+              <div className="flex justify-between text-center md:flex-col items-start mb-4">
+                <span className="text-[var(--text-primary)] font-bold text-lg">
+                  {mass.day}
+                </span>
                 <span className="px-3 py-1 rounded-full bg-[var(--primary-red)] text-white text-xs font-bold uppercase tracking-wider shadow-md">
                   {mass.time}
                 </span>

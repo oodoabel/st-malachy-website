@@ -32,9 +32,9 @@ const NavbarHero: React.FC = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
-      <section className="relative min-h-screen w-full overflow-hidden bg-[var(--primary-bg)]">
+      <section className="relative min-h-screen w-full overflow-hidden bg-[var(--primary-bg)] pt-5">
         {/* Background Gradient Overlays */}
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-red)]/3 via-transparent to-transparent pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-[var(--secondary-bg)] to-transparent pointer-events-none" />
@@ -51,7 +51,6 @@ const NavbarHero: React.FC = () => {
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 h-full flex flex-col justify-between min-h-[calc(100vh-80px)]">
           {/* Main Grid Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center flex-grow py-12">
-
             {/* Left Column: Content (7 cols) */}
             <div className="lg:col-span-7 flex flex-col justify-center relative">
               {/* Decorative Line */}
@@ -69,7 +68,9 @@ const NavbarHero: React.FC = () => {
               >
                 <div className="flex items-center gap-3 mb-6">
                   <span className="h-[1px] w-12 bg-[var(--primary-red)]"></span>
-                  <span className="text-[var(--primary-red)] font-bold tracking-widest uppercase text-sm">Est. 2005</span>
+                  <span className="text-[var(--primary-red)] font-bold tracking-widest uppercase text-sm">
+                    Est. 1956
+                  </span>
                 </div>
 
                 <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-[var(--text-primary)] leading-none mb-6">
@@ -79,8 +80,8 @@ const NavbarHero: React.FC = () => {
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-[var(--text-secondary)] mb-8 max-w-2xl leading-relaxed">
-                  One Family Working for Christ - Building Faith, Fellowship, and
-                  Excellence
+                  One Family Working for Christ - Building Faith, Fellowship,
+                  and Excellence
                 </p>
 
                 <div className="flex flex-wrap gap-6">
@@ -128,8 +129,12 @@ const NavbarHero: React.FC = () => {
 
                       {/* Image Overlay Info */}
                       <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-8">
-                        <p className="text-white/90 text-sm uppercase tracking-widest mb-1 font-bold">Featured Gallery</p>
-                        <p className="text-white text-2xl font-bold">Community Moments</p>
+                        <p className="text-white/90 text-sm uppercase tracking-widest mb-1 font-bold">
+                          Featured Gallery
+                        </p>
+                        <p className="text-white text-2xl font-bold">
+                          Community Moments
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -159,8 +164,12 @@ const NavbarHero: React.FC = () => {
                 ))}
               </div>
 
-              <Link href="/societies" className="flex items-center gap-2 hover:text-[var(--primary-red)] transition-colors group">
-                Explore All Societies <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+              <Link
+                href="/societies"
+                className="flex items-center gap-2 hover:text-[var(--primary-red)] transition-colors group"
+              >
+                Explore All Societies{" "}
+                <ArrowUpRight className="w-4 h-4 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>
