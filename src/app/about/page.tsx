@@ -7,62 +7,29 @@ import Link from "next/link";
 import React from "react";
 import { FaChurch, FaUserFriends, FaHandsHelping } from "react-icons/fa";
 
-const cardData = [
+const announcements = [
   {
-    icon: <FaChurch className="text-2xl text-gray-700" />,
-    title: "Our Mission",
+    id: 1,
+    date: "January 15, 2026",
+    title: "Rosary Procession",
     description:
-      "To be a rallying point for Catholic students, fostering spiritual maturity, academic success, and social responsibility, integrating faith into all aspects of campus life and beyond.",
-    link: "/chaplaincy-anthem",
-    linkText: "View NFCS anthem",
+      "Join us for the Rosary Procession this Sunday at 10:00 AM. All students are invited to celebrate the new semester together.",
   },
   {
-    icon: <FaUserFriends className="text-2xl text-gray-700" />,
-    title: "Our Community",
+    id: 2,
+    date: "January 12, 2026",
+    title: "Bible Study Sessions",
     description:
-      "A diverse family of Catholic students united in faith, fellowship, and commitment to academic excellence and spiritual growth.",
-    link: "/about/forums",
-    linkText: "Explore forums",
+      "Weekly Bible study sessions resume this Wednesday at 6:00 PM in the Chaplaincy Hall. Come deepen your faith with fellow students.",
   },
   {
-    icon: <FaHandsHelping className="text-2xl text-gray-700" />,
-    title: "Our Impact",
+    id: 3,
+    date: "January 10, 2026",
+    title: "Outreach Program",
     description:
-      "Transforming campus life through outreach programs, leadership development, and service initiatives that make a lasting difference.",
-    link: "/events",
-    linkText: "View events",
+      "Volunteer for our community outreach program. Registration is now open for students interested in serving the local community.",
   },
 ];
-
-const InfoCard = ({
-  icon,
-  title,
-  description,
-  link,
-  linkText,
-}: (typeof cardData)[0]) => (
-  <motion.div
-    whileHover={{
-      y: -5,
-      boxShadow:
-        "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
-    }}
-    className="bg-white rounded-xl p-8 shadow-md border border-gray-200 transition-shadow duration-300"
-  >
-    <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-      {icon}
-    </div>
-    <h2 className="text-xl font-semibold mb-3 text-gray-800">{title}</h2>
-    <p className="text-gray-600 mb-4">{description}</p>
-    <Link
-      href={link}
-      className="text-gray-700 hover:text-gray-900 font-medium inline-flex items-center transition-colors"
-    >
-      {linkText}
-      <ArrowRight className="w-4 h-4 ml-1" />
-    </Link>
-  </motion.div>
-);
 
 const AboutPage = () => {
   const containerVariants = {
@@ -108,12 +75,29 @@ const AboutPage = () => {
             className="bg-white rounded-xl p-8 shadow-md border border-gray-200"
             variants={itemVariants}
           >
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6">
               Announcements
             </h2>
-            <p className="text-gray-600">
-              Announcements will be displayed here.
-            </p>
+            <div className="space-y-4 max-h-96 overflow-y-auto">
+              {announcements.map((announcement) => (
+                <div
+                  key={announcement.id}
+                  className="border-l-4 border-gray-400 pl-4 py-2 hover:bg-gray-50 transition-colors rounded-r"
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                      {announcement.date}
+                    </span>
+                  </div>
+                  <h3 className="font-semibold text-gray-800 mb-1">
+                    {announcement.title}
+                  </h3>
+                  <p className="text-sm text-gray-600">
+                    {announcement.description}
+                  </p>
+                </div>
+              ))}
+            </div>
           </motion.section>
           <motion.section
             className="bg-white rounded-xl p-8 shadow-md border border-gray-200"
@@ -122,66 +106,6 @@ const AboutPage = () => {
             <MassSchedule />
           </motion.section>
         </div>
-
-        {/* Mission, Community, Impact */}
-        <motion.section
-          className="grid md:grid-cols-3 gap-8"
-          variants={itemVariants}
-        >
-          {cardData.map((card) => (
-            <InfoCard key={card.title} {...card} />
-          ))}
-        </motion.section>
-
-        {/* Footer */}
-        <motion.footer
-          className="bg-gray-800 rounded-xl py-8 px-6 sm:px-8 text-gray-300"
-          variants={itemVariants}
-        >
-          <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-white font-medium mb-4">Contact Us</h3>
-              <p className="mb-2">St Malachy's Chaplaincy</p>
-              <p className="mb-2">Federal University of Technology</p>
-              <p>Minna, Niger State</p>
-            </div>
-
-            <div>
-              <h3 className="text-white font-medium mb-4">Connect With Us</h3>
-              <div className="flex space-x-4">
-                <a
-                  href="https://www.facebook.com/NFCSFUTMinna/"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <span className="sr-only">Facebook</span>
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M22 12a10 10 0 10-11.5 9.9v-7h-2v-2.9h2V9.4c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2v1.5h2.3l-.4 2.9h-1.9v7A10 10 0 0022 12z" />
-                  </svg>
-                </a>
-
-                <a
-                  href="https://www.instagram.com/nfcs_futminna"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  <span className="sr-only">Instagram</span>
-                  <svg
-                    className="w-6 h-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2.16c2.67 0 2.99.01 4.04.05 2.64.12 3.79 1.27 3.91 3.91.04 1.05.05 1.37.05 4.04s-.01 2.99-.05 4.04c-.12 2.64-1.27 3.79-3.91 3.91-1.05.04-1.37.05-4.04.05s-2.99-.01-4.04-.05c-2.64-.12-3.79-1.27-3.91-3.91-.04-1.05-.05-1.37-.05-4.04s.01-2.99.05-4.04c.12-2.64 1.27-3.79 3.91-3.91 1.05-.04 1.37-.05 4.04-.05zm0-1.6c-2.72 0-3.07.01-4.13.06-3.61.16-5.2 1.75-5.36 5.36-.05 1.06-.06 1.41-.06 4.13s.01 3.07.06 4.13c.16 3.61 1.75 5.2 5.36 5.36 1.06.05 1.41.06 4.13.06s3.07-.01 4.13-.06c3.61-.16 5.2-1.75 5.36-5.36.05-1.06.06-1.41.06-4.13s-.01-3.07-.06-4.13c-.16-3.61-1.75-5.2-5.36-5.36-1.06-.05-1.41-.06-4.13-.06z" />
-                    <path d="M12 6.16a5.84 5.84 0 110 11.68 5.84 5.84 0 010-11.68zm0 1.6a4.24 4.24 0 100 8.48 4.24 4.24 0 000-8.48z" />
-                    <circle cx="16.8" cy="7.2" r="1.28" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </motion.footer>
       </motion.div>
     </div>
   );

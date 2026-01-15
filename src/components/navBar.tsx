@@ -18,9 +18,14 @@ const Navbar = () => {
     { icon: <Home className="w-5 h-5 mx-2" />, label: "Home", href: "/" },
     { icon: <Info className="w-5 h-5 mx-2" />, label: "About", href: "/about" },
     {
+      icon: <Info className="w-5 h-5 mx-2" />,
+      label: "Anthem",
+      href: "/chaplaincy-anthem",
+    },
+    {
       icon: <MessageSquare className="w-5 h-5 mx-2" />,
       label: "Forums",
-      href: "/about/forums",
+      href: "/forums",
     },
     {
       icon: <Users className="w-5 h-5 mx-2" />,
@@ -38,16 +43,19 @@ const Navbar = () => {
     <nav className="fixed top-0 w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md border-b border-[var(--border-color)]">
       <div className="max-w-[1400px] mx-auto px-6 h-20 flex justify-between items-center">
         {/* Logo Area */}
-        <a
-          href="/"
-          className="group flex items-center gap-3"
-        >
+        <a href="/" className="group flex items-center gap-3">
           <div className="relative flex items-center justify-center w-10 h-10 rounded-full bg-[var(--secondary-bg)] border border-[var(--border-color)] group-hover:border-[var(--primary-red)]/50 transition-colors">
-            <span className="text-xl text-[var(--primary-red)] font-serif">✝</span>
+            <span className="text-xl text-[var(--primary-red)] font-serif">
+              ✝
+            </span>
           </div>
           <div className="flex flex-col">
-            <span className="text-[var(--text-primary)] font-bold tracking-wider text-sm uppercase leading-none">St. Malachy's</span>
-            <span className="text-[var(--text-secondary)] text-[10px] tracking-[0.2em] uppercase leading-none mt-1 group-hover:text-[var(--primary-red)] transition-colors">Chaplaincy</span>
+            <span className="text-[var(--text-primary)] font-bold tracking-wider text-sm uppercase leading-none">
+              St. Malachy's
+            </span>
+            <span className="text-[var(--text-secondary)] text-[10px] tracking-[0.2em] uppercase leading-none mt-1 group-hover:text-[var(--primary-red)] transition-colors">
+              Chaplaincy
+            </span>
           </div>
         </a>
 

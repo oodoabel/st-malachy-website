@@ -10,11 +10,9 @@ export default function Home() {
   return (
     <div className="bg-white min-h-screen">
       <NavbarHero />
-      {/* <MissionVision /> */}
       <MassSchedule />
       <PriestsListing />
       <ExecutiveTeam />
-      <Footer />
     </div>
   );
 }

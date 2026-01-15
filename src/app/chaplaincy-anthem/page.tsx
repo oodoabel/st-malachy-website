@@ -1,5 +1,7 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Music, Play, Pause, Volume2 } from "lucide-react";
 
 const NFCSAnthem = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -44,133 +46,252 @@ Hail NFCS!`;
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6, ease: [0.4, 0, 0.2, 1] as any },
+    },
+  };
+
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen w-full bg-gradient-to-br from-slate-900 via-gray-900 to-slate-900 py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-20 left-10 w-72 h-72 bg-[var(--primary-red)]/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-gray-500/10 rounded-full blur-3xl"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+
       {/* Audio Element */}
       <audio ref={audioRef} src="/anthem.mp3" loop />
 
-      <div className="max-w-7xl mx-auto">
+      <motion.div
+        className="max-w-6xl mx-auto relative z-10"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3 tracking-tight">
+        <motion.div className="text-center mb-16" variants={itemVariants}>
+          <motion.div
+            className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-[var(--primary-red)] to-red-700 rounded-full mb-6 shadow-lg"
+            whileHover={{ scale: 1.1, rotate: 360 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Music className="w-10 h-10 text-white" />
+          </motion.div>
+
+          <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-white mb-4 tracking-tight">
             NFCS Anthem
           </h1>
-          <div className="w-24 h-1 bg-gray-300 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <motion.div
+              className="h-1 w-12 bg-gradient-to-r from-transparent to-[var(--primary-red)] rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: 48 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            />
+            <motion.div
+              className="h-1 w-24 bg-gradient-to-r from-[var(--primary-red)] via-red-600 to-[var(--primary-red)] rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: 96 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            />
+            <motion.div
+              className="h-1 w-12 bg-gradient-to-r from-[var(--primary-red)] to-transparent rounded-full"
+              initial={{ width: 0 }}
+              animate={{ width: 48 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+            />
+          </div>
+
+          <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-8">
             The official anthem of the Nigeria Federation of Catholic Students
           </p>
 
-          {/* Play Button */}
-          <button
+          {/* Play Button with Visualizer */}
+          <motion.button
             onClick={togglePlay}
-            className="mt-8 px-8 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-full font-medium flex items-center mx-auto transition-all duration-300 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2"
+            className="group relative px-10 py-4 bg-gradient-to-r from-[var(--primary-red)] to-red-700 hover:from-red-600 hover:to-red-800 text-white rounded-full font-semibold flex items-center mx-auto transition-all duration-300 shadow-2xl hover:shadow-[var(--primary-red)]/50"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`h-6 w-6 mr-2 ${isPlaying ? "hidden" : "block"}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+            <AnimatePresence mode="wait">
+              {isPlaying ? (
+                <motion.div
+                  key="pause"
+                  initial={{ rotate: -180, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 180, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex items-center"
+                >
+                  <Pause className="w-6 h-6 mr-2 fill-white" />
+                  <span>Pause Anthem</span>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="play"
+                  initial={{ rotate: -180, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 180, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex items-center"
+                >
+                  <Play className="w-6 h-6 mr-2 fill-white" />
+                  <span>Play Anthem</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Animated Ring */}
+            {isPlaying && (
+              <motion.div
+                className="absolute inset-0 rounded-full border-2 border-white/50"
+                initial={{ scale: 1, opacity: 1 }}
+                animate={{ scale: 1.5, opacity: 0 }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            )}
+          </motion.button>
+
+          {/* Audio Visualizer Bars */}
+          {isPlaying && (
+            <motion.div
+              className="flex items-center justify-center gap-1 mt-6"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className={`h-6 w-6 mr-2 ${isPlaying ? "block" : "hidden"}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            {isPlaying ? "Pause Anthem" : "Play Anthem"}
-          </button>
-        </div>
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="w-1 bg-gradient-to-t from-[var(--primary-red)] to-red-400 rounded-full"
+                  animate={{
+                    height: [8, 24, 8],
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    repeat: Infinity,
+                    delay: i * 0.1,
+                    ease: "easeInOut",
+                  }}
+                />
+              ))}
+            </motion.div>
+          )}
+        </motion.div>
 
         {/* Anthem Content */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <motion.div className="space-y-6" variants={itemVariants}>
           {stanzas.map((stanza, index) => (
-            <div key={index} className="group">
+            <motion.div
+              key={index}
+              className="backdrop-blur-xl bg-white/10 rounded-3xl overflow-hidden border border-white/20 shadow-2xl"
+              variants={itemVariants}
+              whileHover={{ scale: 1.01 }}
+              transition={{ duration: 0.3 }}
+            >
               {/* Stanza */}
-              <div className="p-8 md:p-10 transition-all duration-300 hover:bg-gray-50">
+              <div className="p-8 md:p-10">
                 <div className="flex items-start max-w-5xl mx-auto">
-                  <span className="text-2xl font-serif text-gray-400 mr-6 mt-1">
+                  <motion.span
+                    className="text-4xl font-serif text-gray-400 mr-6 mt-1"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: index * 0.2 + 0.8, type: "spring" }}
+                  >
                     {index + 1}.
-                  </span>
-                  <p className="text-gray-800 whitespace-pre-line leading-relaxed text-lg">
+                  </motion.span>
+                  <p className="text-white/90 whitespace-pre-line leading-relaxed text-lg font-light">
                     {stanza}
                   </p>
                 </div>
               </div>
 
               {/* Chorus after each stanza */}
-              <div className="p-8 md:p-10 bg-gray-75 border-t border-gray-200">
-                <div className="flex items-center max-w-5xl mx-auto">
-                  <div className="mr-6 flex-shrink-0">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-8 w-8 text-gray-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"
-                      />
-                    </svg>
-                  </div>
+              <div className="p-8 md:p-10 bg-gradient-to-r from-[var(--primary-red)]/20 to-gray-800/30 border-t border-white/10">
+                <div className="flex items-start max-w-5xl mx-auto">
+                  <motion.div
+                    className="mr-6 flex-shrink-0"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--primary-red)] to-red-700 flex items-center justify-center">
+                      <Volume2 className="w-6 h-6 text-white" />
+                    </div>
+                  </motion.div>
                   <div>
-                    <h3 className="text-lg font-medium text-gray-700 mb-2">
+                    <h3 className="text-xl font-semibold text-gray-200 mb-3 flex items-center gap-2">
                       Chorus
+                      <motion.span
+                        className="text-xs bg-[var(--primary-red)]/30 px-2 py-1 rounded-full"
+                        animate={{ opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      >
+                        Repeat
+                      </motion.span>
                     </h3>
-                    <p className="text-gray-600 italic whitespace-pre-line leading-relaxed">
+                    <p className="text-gray-300 italic whitespace-pre-line leading-relaxed text-lg">
                       {chorus}
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Footer */}
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center space-x-6">
-            <img
+        <motion.div className="mt-20 text-center" variants={itemVariants}>
+          <div className="inline-flex items-center gap-8 mb-6">
+            <motion.img
               src="/futminna-logo.png"
               alt="FUTMinna Logo"
-              className="h-12 opacity-80 hover:opacity-100 transition-opacity duration-300"
+              className="h-16 opacity-70 hover:opacity-100 transition-opacity duration-300 filter drop-shadow-lg"
+              whileHover={{ scale: 1.1, rotate: 5 }}
             />
-            <img
+            <motion.div
+              className="h-12 w-px bg-gradient-to-b from-transparent via-[var(--primary-red)] to-transparent"
+              initial={{ height: 0 }}
+              animate={{ height: 48 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
+            />
+            <motion.img
               src="/nfcs-logo.png"
               alt="NFCS Logo"
-              className="h-12 opacity-80 hover:opacity-100 transition-opacity duration-300"
+              className="h-16 opacity-70 hover:opacity-100 transition-opacity duration-300 filter drop-shadow-lg"
+              whileHover={{ scale: 1.1, rotate: -5 }}
             />
           </div>
-          <p className="mt-6 text-gray-500">
-            © {new Date().getFullYear()} St Malachy
-          </p>
-        </div>
-      </div>
+          {/* <p className="text-gray-400 text-sm">
+            © {new Date().getFullYear()} St Malachy Catholic Chaplaincy
+          </p> */}
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

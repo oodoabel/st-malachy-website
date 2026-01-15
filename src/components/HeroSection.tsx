@@ -133,7 +133,7 @@ const NavbarHero: React.FC = () => {
                           Featured Gallery
                         </p>
                         <p className="text-white text-2xl font-bold">
-                          Community Moments
+                          NFCS Moments
                         </p>
                       </div>
                     </div>
@@ -149,8 +149,8 @@ const NavbarHero: React.FC = () => {
               <div className="flex items-center gap-12">
                 {stats.map((stat, index) => (
                   <React.Fragment key={stat.label}>
-                    <div className="text-center">
-                      <div className="text-4xl font-black text-[var(--primary-red)] mb-2">
+                    <div className="text-center  ">
+                      <div className=" text-3xl md:text-4xl font-black text-[var(--primary-red)] mb-2">
                         {stat.value}
                       </div>
                       <div className="text-sm font-medium text-[var(--text-secondary)] uppercase tracking-wider">
